@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2229172C-1E91-4006-AA61-975E6E3EAD28}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VideoEditor</RootNamespace>
+    <AssemblyName>VideoEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.5.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Components.Suite.4.5.9\lib\net20\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="FFMpegSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FFMpegSharp.2.1.0\lib\net45\FFMpegSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vlc.DotNet.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.3.0.0\lib\net45\Vlc.DotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core.Interops, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.Interops.3.0.0\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Forms, Version=3.0.0.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Forms.3.0.0\lib\net45\Vlc.DotNet.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Xabe.FFmpeg, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xabe.FFmpeg.3.3.0\lib\netstandard2.0\Xabe.FFmpeg.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FFmpeg.cs" />
+    <Compile Include="mainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainForm.Designer.cs">
+      <DependentUpon>mainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl2.Designer.cs">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="mainForm.resx">
+      <DependentUpon>mainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl2.resx">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="FFMPEG\bin\presets\ffprobe.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FFMPEG\bin\presets\libvpx-1080p.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libvpx-1080p50_60.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libvpx-360p.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libvpx-720p.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libvpx-720p50_60.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libvpx-ultrafast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-baseline.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-fast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-faster.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-faster_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-fast_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-ipod320.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-ipod640.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-lossless_fast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-lossless_max.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-lossless_medium.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-lossless_slow.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-lossless_slower.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-lossless_ultrafast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-main.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-medium.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-medium_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-placebo.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-placebo_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-slow.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-slower.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-slower_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-slow_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-superfast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-superfast_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-ultrafast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-ultrafast_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-veryfast.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-veryfast_firstpass.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-veryslow.ffpreset" />
+    <None Include="FFMPEG\bin\presets\libx264-veryslow_firstpass.ffpreset" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\FFmpeg.NET\FFmpeg.NET.csproj">
+      <Project>{C7CEB960-0B11-4E6F-9C5C-633232C512E2}</Project>
+      <Name>FFmpeg.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxAXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modify_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FFMPEG\bin\x64\ffmpeg.exe" />
+    <Content Include="FFMPEG\bin\x64\ffprobe.exe" />
+    <Content Include="FFMPEG\bin\x86\ffmpeg.exe" />
+    <Content Include="FFMPEG\bin\x86\ffprobe.exe" />
+    <None Include="Resources\Webp.net-resizeimage.gif" />
+    <None Include="Resources\Webp.net-resizeimage %288%29.png" />
+    <None Include="Resources\Webp.net-resizeimage %287%29.png" />
+    <None Include="Resources\Webp.net-resizeimage %286%29.png" />
+    <None Include="Resources\stop-circle-blue-512.png" />
+    <None Include="Resources\play-pause-stop-button-icon_857902.png" />
+    <None Include="Resources\Play-512.png" />
+    <None Include="Resources\Webp.net-resizeimage.png" />
+    <None Include="Resources\26025.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\VideoLAN.LibVLC.Windows.3.0.7.1\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.7.1\build\VideoLAN.LibVLC.Windows.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.7.1\build\VideoLAN.LibVLC.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\VideoLAN.LibVLC.Windows.3.0.7.1\build\VideoLAN.LibVLC.Windows.targets'))" />
+  </Target>
+</Project>
