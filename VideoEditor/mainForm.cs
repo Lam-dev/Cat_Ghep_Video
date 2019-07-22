@@ -361,6 +361,8 @@ namespace VideoEditor
 
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
+            if (vlcControl1.GetCurrentMedia() == null)
+                return;
             var cut = new ThongTinCatVideo()
             {
                 videoPath = playingVideo.FileInfo.FullName,
@@ -440,8 +442,15 @@ namespace VideoEditor
         private void btn_remove_Click(object sender, EventArgs e)
         {
             if (hangDuocChon < 0)
-                return; 
-            danhSachVideoDuocCat.RemoveAt(hangDuocChon);
+                return;
+            try
+            {
+                danhSachVideoDuocCat.RemoveAt(hangDuocChon);
+            }
+            catch
+            {
+                return;
+            }
             GrV_thongTinCat.DataSource = null;
             GrV_thongTinCat.DataSource = danhSachVideoDuocCat;
             hangDuocChon -= 1;
@@ -579,7 +588,17 @@ namespace VideoEditor
 
         private void btn_playVideoCut_Click(object sender, EventArgs e)
         {
-            var video = danhSachVideoDuocCat[hangDuocChon];
+            ThongTinCatVideo video = null;
+            try
+            {
+                video = danhSachVideoDuocCat[hangDuocChon];
+            }
+            catch
+            {
+                return;
+            }
+            if (video == null)
+                return; 
             vlcControl1.Play(new FileInfo(video.videoPath));
             userControl11.startPointPos = video.startPosPercent;
             userControl11.stopPointPos = video.stopPosPercent;
