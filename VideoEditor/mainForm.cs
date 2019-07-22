@@ -15,7 +15,7 @@ namespace VideoEditor
     public partial class mainForm : Form
     {
         string[] danhSachVideoPath;
-        Engine ffmpeg = new Engine("ffmpeg.exe");
+        Engine ffmpeg = new Engine(@"..\..\..\lib\ffmpeg\v4\ffmpeg.exe");
         Conversion x = new Conversion();
         int soVideoDuocChon = 0;
         int soVideoDaCat = 0;
@@ -76,15 +76,15 @@ namespace VideoEditor
         private async void layAnhDaiDienVideo(string path)
         {
             var inputFile = new MediaFile(path);
-            var outputFile = new MediaFile(@"thumbnai\thum" + soVideoDuocChon.ToString() + ".jpg");
+            var outputFile = new MediaFile(@"thum" + soVideoDuocChon.ToString() + ".jpg");
             var options = new ConversionOptions { Seek = TimeSpan.FromSeconds(2) };
             var task  = ffmpeg.GetThumbnailAsync(inputFile, outputFile, options);
              
             task.Wait(500);
          
-            if (File.Exists(@"thumbnai\thum" + soVideoDuocChon.ToString() + ".jpg"))
+            if (File.Exists(@"thum" + soVideoDuocChon.ToString() + ".jpg"))
             {
-                listImage_dsAnhDaiDienVideo.Images.Add(Image.FromFile(@"thumbnai\thum" + soVideoDuocChon.ToString() + ".jpg"));
+                listImage_dsAnhDaiDienVideo.Images.Add(Image.FromFile(@"thum" + soVideoDuocChon.ToString() + ".jpg"));
                 listView_showListVideo.LargeImageList = listImage_dsAnhDaiDienVideo;
                 //ListViewItem item = new ListViewItem(metaData.Duration.Minutes.ToString() + ":" +metaData.Duration.Seconds.ToString());
                 ListViewItem item = new ListViewItem(path);
@@ -128,7 +128,7 @@ namespace VideoEditor
 
         private void xoaDsAnhDaiDien()
         {
-            DirectoryInfo di = new DirectoryInfo("thumbnai");
+            DirectoryInfo di = new DirectoryInfo(@"\");
             foreach (FileInfo file in di.EnumerateFiles())
             {
                 file.Delete();
@@ -487,8 +487,6 @@ namespace VideoEditor
             {
                 listView_showListVideo.Items.RemoveAt((video as ListViewItem).Index);
             }
-                     
-
         }
 
         private void backgroundWoker_noiVideo_DoWork(object sender, DoWorkEventArgs e)
@@ -531,9 +529,10 @@ namespace VideoEditor
                 {
                     cungThongSo = await kiemTraCacVideoCungThongSo(danhSachVideoDuocCat.Count);
                 }
-                catch
+                catch(ArgumentException a)
                 {
-                    MessageBox.Show("Không thành công, hãy thử lại");
+                    MessageBox.Show("Không thành công, hãy thử lại {0}",a.ParamName);
+                    panel_hienThiNutDung.Visible = false;
                     return; 
                 }
             }
@@ -570,7 +569,7 @@ namespace VideoEditor
                     {
                         process.Kill();
                         string outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
-                      
+                        panel_hienThiNutDung.Visible = false;
                         MessageBox.Show("Đã dừng");
                         
                     }
