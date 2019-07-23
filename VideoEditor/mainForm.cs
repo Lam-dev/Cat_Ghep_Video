@@ -15,7 +15,8 @@ namespace VideoEditor
     public partial class mainForm : Form
     {
         string[] danhSachVideoPath;
-        Engine ffmpeg = new Engine(@"..\..\lib\ffmpeg.exe");
+     
+        Engine ffmpeg = new Engine(@"..\..\libFFmpeg\ffmpeg.exe");
         Conversion x = new Conversion();
         int soVideoDuocChon = 0;
         int soVideoDaCat = 0;
@@ -84,7 +85,8 @@ namespace VideoEditor
             var outputFile = new MediaFile(@"thum" + soVideoDuocChon.ToString() + ".jpg");
             var options = new ConversionOptions { Seek = TimeSpan.FromSeconds(2) };
             var task  = ffmpeg.GetThumbnailAsync(inputFile, outputFile, options);
-             
+            if (task == null)
+                return; 
             task.Wait(500);
          
             if (File.Exists(@"thum" + soVideoDuocChon.ToString() + ".jpg"))
