@@ -177,6 +177,10 @@ namespace VideoEditor
                 SB_startPoint.Location = new Point(x - SB_startPoint.Width/2, 0);
                 _startPointPos = mappingValue(SB_startPoint.Location.X, 0, bar.Width - SB_startPoint.Width * 2 - poin_playing.Width - 2);
                 lb_startTime.Location = new Point(x, 0);
+                if (lb_startTime.Location.X + lb_startTime.Width > lb_stopPoint.Location.X)
+                {
+                    lb_stopPoint.Location = new Point(lb_startTime.Location.X + lb_startTime.Width, 0);
+                }
                 lb_startTime.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds* _startPointPos / 100));
 
                 var arg = new doubleScrollBarEvent()
@@ -209,6 +213,10 @@ namespace VideoEditor
                 SB_stopPoint.Location = new Point(x - SB_stopPoint.Width/2, 0);
                 _stopPointPos = mappingValue(SB_stopPoint.Location.X, SB_startPoint.Width + poin_playing.Width, bar.Width - SB_stopPoint.Width);
                 lb_stopPoint.Location = new Point(x - lb_stopPoint.Width + SB_stopPoint.Width, 0);
+                if (lb_stopPoint.Location.X < lb_startTime.Location.X + lb_startTime.Width)
+                {
+                    lb_stopPoint.Location = new Point(lb_startTime.Location.X + lb_startTime.Width, 0);
+                }
                 lb_stopPoint.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100));
                 var arg = new doubleScrollBarEvent()
                 {
