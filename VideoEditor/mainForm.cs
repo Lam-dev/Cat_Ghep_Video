@@ -25,7 +25,7 @@ namespace VideoEditor
         int hangDuocChon;
         TimeSpan doDaiVideoDangPhat; 
         List<ThongTinCatVideo> danhSachVideoDuocCat = new List<ThongTinCatVideo>();
-
+        string outputFilePath;
         public mainForm()
         {
 
@@ -386,6 +386,19 @@ namespace VideoEditor
                 MessageBox.Show("Nhập tên");
                 return;
             }
+
+            outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
+            if (File.Exists(outputFilePath))
+            {
+                MessageBox.Show("Tệp đã tồn tại");
+                return;
+            }
+
+            if (danhSachVideoDuocCat.Count == 0)
+            {
+                MessageBox.Show("Không có phần video nào được ghép nối");
+                return; 
+            }
             panel_hienThiNutDung.Visible = true; 
             backgroundWorker_catVideo.RunWorkerAsync();
             
@@ -555,6 +568,7 @@ namespace VideoEditor
         private void backgroundWoker_noiVideo_Complete(object sender, RunWorkerCompletedEventArgs e)
         {
             panel_hienThiNutDung.Visible = false;
+            MessageBox.Show("Đã xuất video thành công");
         }
 
         private void backgroundWorker_catVideo_DoWork(object sender, DoWorkEventArgs e)
@@ -569,12 +583,7 @@ namespace VideoEditor
 
         private async void backgroundWorker_catVideo_Complete(object sender, RunWorkerCompletedEventArgs e)
         {
-            string outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
-            if (File.Exists(outputFilePath))
-            {
-                MessageBox.Show("Tệp đã tồn tại");
-                return;
-            }
+            
             bool cungThongSo = false;
             try
             {
