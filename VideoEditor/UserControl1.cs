@@ -20,14 +20,14 @@ namespace VideoEditor
             get { return _videoDuration; }
             set
             {
-                _videoDuration = value; 
+                _videoDuration = value;
                 lb_startTime.Text = TimeSpanToString(SecondToTimespan(value.TotalSeconds * _startPointPos / 100));
                 lb_stopPoint.Text = TimeSpanToString(SecondToTimespan(value.TotalSeconds * _stopPointPos / 100));
             }
         }
-        private int _startPointPos = 0;
-        private int _stopPointPos = 0;
-        public int startPointPos
+        private double _startPointPos = 0;
+        private double _stopPointPos = 0;
+        public double startPointPos
         {
             get
             {
@@ -36,14 +36,13 @@ namespace VideoEditor
             set
             {
                 _startPointPos = value;
-                SB_startPoint.Location = new Point(mappingPosFromPercent(value, 0, bar.Width - SB_stopPoint.Width - poin_playing.Width), 0);
+                SB_startPoint.Location = new Point((int)mappingPosFromPercent(value, 0, bar.Width - SB_stopPoint.Width - poin_playing.Width), 0);
                 lb_startTime.Location = new Point(SB_startPoint.Location.X, 0);
                 lb_startTime.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds * _startPointPos / 100));
                 reStartPoint();
             }
-
         }
-        public int stopPointPos
+        public double stopPointPos
         {
             get
             {
@@ -52,13 +51,43 @@ namespace VideoEditor
             set
             {
                 _stopPointPos = value;
-                SB_stopPoint.Location = new Point(mappingPosFromPercent(value, SB_startPoint.Width + poin_playing.Width, bar.Width - SB_stopPoint.Width));
+                SB_stopPoint.Location = new Point((int)mappingPosFromPercent(value, SB_startPoint.Width + poin_playing.Width, bar.Width - SB_stopPoint.Width));
                 lb_stopPoint.Location = new Point(SB_stopPoint.Location.X - lb_stopPoint.Width, 0);
                 lb_stopPoint.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100));
             }
         }
-        public double startPointTime {get => _startPointPos * videoDuration.TotalSeconds / 100;}
+        public double startPointTime { get => _startPointPos * videoDuration.TotalSeconds / 100; }
         public double stopPointTime { get => _stopPointPos * videoDuration.TotalSeconds / 100; }
+        private TimeSpan _startPointTimeSpan;
+        private TimeSpan _stopPointTimeSpan;
+
+        public TimeSpan startPointTimeSpan
+        {
+            set
+            {
+                _startPointTimeSpan = value;
+                lb_startTime.Text = TimeSpanToString(value);
+                _startPointPos = value.TotalSeconds / _videoDuration.TotalSeconds * 100;
+                SB_startPoint.Location = new Point((int)mappingPosFromPercent(_startPointPos, 0, bar.Width - SB_stopPoint.Width - poin_playing.Width), 0);
+                lb_startTime.Location = new Point(SB_startPoint.Location.X, 0);
+                lb_startTime.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds * _startPointPos / 100));
+            }
+        }
+
+        public TimeSpan stopPointTimeSpan
+        {
+            set
+            {
+                _stopPointTimeSpan = value;
+                lb_stopPoint.Text = TimeSpanToString(value);
+                _stopPointPos = value.TotalSeconds / _videoDuration.TotalSeconds * 100;
+                SB_stopPoint.Location = new Point((int)mappingPosFromPercent(_stopPointPos, SB_startPoint.Width + poin_playing.Width, bar.Width - SB_stopPoint.Width));
+                lb_stopPoint.Location = new Point(SB_stopPoint.Location.X - lb_stopPoint.Width, 0);
+                reStartPoint();
+            }
+
+        }
+
         public double playingPointTime
         {
             set => calcPPoinPosFromPPTime(value);
@@ -121,7 +150,7 @@ namespace VideoEditor
  
         }
 
-        private int mappingPosFromPercent(int percent, int minValue, int maxValue)
+        private double mappingPosFromPercent(double percent, int minValue, int maxValue)
         {
             if (percent < 0) percent = 0;
             if (percent > 100) percent = 100;
@@ -135,7 +164,7 @@ namespace VideoEditor
                 var x = bar.PointToClient(Cursor.Position).X;
                 if (x < (SB_startPoint.Width / 2))
                     return;
-                if (x + SB_startPoint.Width / 2 >= poin_playing.Location.X)
+                if (x + SB_startPoint.Width / 2 >= poin_playing.Location.X  - 1 )
                 {
                     if (poin_playing.Location.X + poin_playing.Width >= SB_stopPoint.Location.X - 1)
                     {
@@ -143,17 +172,17 @@ namespace VideoEditor
                         SB_startPoint.Location = new Point(poin_playing.Location.X - SB_startPoint.Width - 1, 0);
                         return;
                     }
-                    poin_playing.Location = new Point(x + SB_startPoint.Width / 2, 0);
+                    poin_playing.Location = new Point(x + SB_startPoint.Width / 2 + 1, 0);
                 }
                 SB_startPoint.Location = new Point(x - SB_startPoint.Width/2, 0);
-                _startPointPos = mappingValue(SB_startPoint.Location.X, 0, bar.Width - SB_startPoint.Width * 2 - poin_playing.Width);
+                _startPointPos = mappingValue(SB_startPoint.Location.X, 0, bar.Width - SB_startPoint.Width * 2 - poin_playing.Width - 2);
                 lb_startTime.Location = new Point(x, 0);
                 lb_startTime.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds* _startPointPos / 100));
-                    
+
                 var arg = new doubleScrollBarEvent()
                 {
                     startPointChange = true,
-                    value = _startPointPos,
+                    value = SecondToTimespan(_videoDuration.TotalSeconds / 100 * _startPointPos),
                     subTime = _stopPointPos - _startPointPos,
                 };
                 pointLocationChange(this, arg);
@@ -175,7 +204,7 @@ namespace VideoEditor
                         SB_stopPoint.Location = new Point(poin_playing.Location.X + poin_playing.Width + 1, 0);
                         return;
                     }
-                    poin_playing.Location = new Point(x - SB_stopPoint.Width / 2 - poin_playing.Width);
+                    poin_playing.Location = new Point(x - SB_stopPoint.Width / 2 - poin_playing.Width - 1);
                 }
                 SB_stopPoint.Location = new Point(x - SB_stopPoint.Width/2, 0);
                 _stopPointPos = mappingValue(SB_stopPoint.Location.X, SB_startPoint.Width + poin_playing.Width, bar.Width - SB_stopPoint.Width);
@@ -184,7 +213,7 @@ namespace VideoEditor
                 var arg = new doubleScrollBarEvent()
                 {
                     startPointChange = false,
-                    value = _stopPointPos,
+                    value = SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100),
                     subTime = _stopPointPos - _startPointPos,
                 };
                 pointLocationChange(this, arg);
@@ -197,6 +226,8 @@ namespace VideoEditor
             totalSecond = totalSecond % 3600;
             var m = totalSecond  / 60;
             var s = totalSecond % 60;
+            if ((int)s > s)
+                s -= 1;
             return new TimeSpan((int)h, (int)m, (int)s);
         }
 
@@ -220,7 +251,7 @@ namespace VideoEditor
             if (pointPlayingHold)
             {
                 var x = bar.PointToClient(Cursor.Position).X;
-                if ((x - poin_playing.Width / 2) <= (SB_startPoint.Location.X + SB_startPoint.Width) | (x + poin_playing.Width / 2) >= (SB_stopPoint.Location.X))
+                if ((x - poin_playing.Width / 2) <= (SB_startPoint.Location.X + SB_startPoint.Width) | (x + poin_playing.Width / 2) >= (SB_stopPoint.Location.X ))
                     return;
                 poin_playing.Location = new Point(x - poin_playing.Width / 2, 0);
             }
@@ -254,10 +285,15 @@ namespace VideoEditor
             {
                 value = (double)mappingValue(poin_playing.Location.X, SB_startPoint.Width + SB_startPoint.Location.X, SB_stopPoint.Location.X) * (stopPointTime - startPointTime) / 100 + startPointTime
             };
-            playingPointChange(this, arg);
+            playingPointChange?.Invoke(this, arg);
         }
 
         private void lb_subTime_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bar_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -265,9 +301,9 @@ namespace VideoEditor
 
     public class doubleScrollBarEvent : EventArgs
     {
-        public int value { get; set;}
+        public TimeSpan value { get; set;}
         public bool startPointChange { get; set;  }
-        public int subTime { get; set;  }
+        public double subTime { get; set;  }
     }
 
     public class playingPointEvent : EventArgs

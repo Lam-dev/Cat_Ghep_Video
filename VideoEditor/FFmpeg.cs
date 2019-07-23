@@ -45,7 +45,7 @@ namespace VideoEditor
         public static bool cutVideo(string filePath, string outputPath, string startTime, string duration)
         {
             var parameter = "-ss " + startTime + " -i " + filePath + " -to " + duration + " -c copy " + outputPath;
-            return ExecuteCommand(@"..\..\..\lib\ffmpeg\v4\ffmpeg.exe", parameter);
+            return ExecuteCommand(@"..\..\lib\ffmpeg.exe", parameter);
             
         }
 
@@ -55,7 +55,7 @@ namespace VideoEditor
             if (isTheSame)
             {
                 parameter = "-f  concat -safe 1 -i listVideo.txt -c copy " + outputPath;
-                return ExecuteCommand(@"..\..\..\lib\ffmpeg\v4\ffmpeg.exe", parameter);
+                return ExecuteCommand(@"..\..\lib\ffmpeg.exe", parameter);
             }
             parameter = "-y -loglevel warning ";
             for (int i = 0; i < numberVideoAdd; i++)
@@ -74,7 +74,7 @@ namespace VideoEditor
             }
             parameter += $" concat=n={numberVideoAdd}:v=1 [v]\" -map \"[v]\" -an -c:v libx264 -crf 23 -preset veryfast -f mp4 {outputPath}";
             //var parameter = "-f  concat -safe 1 -i listVideo.txt -c copy " + outputPath;
-            return ExecuteCommand(@"..\..\..\lib\ffmpeg\v4\ffmpeg.exe", parameter);
+            return ExecuteCommand(@"..\..\lib\ffmpeg.exe", parameter);
         }
     }
 }

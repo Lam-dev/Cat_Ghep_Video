@@ -35,6 +35,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFmpeg.NET.Sample", "sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEditor", "VideoEditor\VideoEditor.csproj", "{2229172C-1E91-4006-AA61-975E6E3EAD28}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{5051716E-A0CC-4B42-A491-645E47D48BBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vlc", "vlc", "{F6C67F73-F715-490F-A80B-B3976D8554AF}"
+	ProjectSection(SolutionItems) = preProject
+		VideoEditor\vlcLib\libvlc.dll = VideoEditor\vlcLib\libvlc.dll
+		VideoEditor\vlcLib\libvlccore.dll = VideoEditor\vlcLib\libvlccore.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +101,12 @@ Global
 		{2229172C-1E91-4006-AA61-975E6E3EAD28}.Release|x64.Build.0 = Release|Any CPU
 		{2229172C-1E91-4006-AA61-975E6E3EAD28}.Release|x86.ActiveCfg = Release|Any CPU
 		{2229172C-1E91-4006-AA61-975E6E3EAD28}.Release|x86.Build.0 = Release|Any CPU
+		{5051716E-A0CC-4B42-A491-645E47D48BBF}.Debug|Any CPU.ActiveCfg = Debug
+		{5051716E-A0CC-4B42-A491-645E47D48BBF}.Debug|x64.ActiveCfg = Debug
+		{5051716E-A0CC-4B42-A491-645E47D48BBF}.Debug|x86.ActiveCfg = Debug
+		{5051716E-A0CC-4B42-A491-645E47D48BBF}.Release|Any CPU.ActiveCfg = Release
+		{5051716E-A0CC-4B42-A491-645E47D48BBF}.Release|x64.ActiveCfg = Release
+		{5051716E-A0CC-4B42-A491-645E47D48BBF}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +117,7 @@ Global
 		{B502D2D6-8F63-4359-9531-2E48E635DBD0} = {5CBF35BC-014C-4608-8E6C-A3EB7A087B82}
 		{8831CF40-BEB6-4760-982D-9B9C8CEDE717} = {B502D2D6-8F63-4359-9531-2E48E635DBD0}
 		{F19B89F2-66E5-4A38-B75A-3CC7B8C72B59} = {745ED296-E6B5-4ADA-81D0-0A25374BCF8C}
+		{F6C67F73-F715-490F-A80B-B3976D8554AF} = {5CBF35BC-014C-4608-8E6C-A3EB7A087B82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD084B74-E89E-4E1D-84D2-38383B7616EE}

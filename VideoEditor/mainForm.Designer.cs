@@ -37,7 +37,17 @@
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.btn_xoaVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button_layVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel = new System.Windows.Forms.Panel();
+            this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.cutTheoComboBox = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.sCuoi = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.mCuoi = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.hCuoi = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.sDau = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.mDau = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.hDau = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonGroupBox3 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
             this.panel_hienThiNutDung = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -59,7 +69,6 @@
             this.btn_up = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btn_remove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.comboBox_pickRate = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.userControl11 = new VideoEditor.UserControl1();
             this.btn_phatDung = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.vlcControl1 = new Vlc.DotNet.Forms.VlcControl();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
@@ -76,6 +85,10 @@
             this.backgroundWorker_catVideo = new System.ComponentModel.BackgroundWorker();
             this.timer_choVLCphanHoi = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.dangPhat = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.tongThoiGian = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.userControl11 = new VideoEditor.UserControl1();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
@@ -84,7 +97,13 @@
             this.kryptonGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sCuoi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mCuoi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hCuoi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sDau)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mDau)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hDau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3.Panel)).BeginInit();
             this.kryptonGroupBox3.Panel.SuspendLayout();
@@ -108,7 +127,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.54933F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.45068F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -133,6 +152,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(198, 668);
             this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // kryptonGroupBox1
             // 
@@ -151,6 +171,7 @@
             // 
             this.listView_showListVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView_showListVideo.Location = new System.Drawing.Point(0, 0);
+            this.listView_showListVideo.MultiSelect = false;
             this.listView_showListVideo.Name = "listView_showListVideo";
             this.listView_showListVideo.Size = new System.Drawing.Size(188, 600);
             this.listView_showListVideo.TabIndex = 0;
@@ -189,26 +210,129 @@
             this.button_layVideo.Values.Text = "Thêm video";
             this.button_layVideo.Click += new System.EventHandler(this.button_layVideo_Click);
             // 
-            // panel1
+            // panel
             // 
-            this.panel1.Controls.Add(this.kryptonGroupBox3);
-            this.panel1.Controls.Add(this.btn_playVideoCut);
-            this.panel1.Controls.Add(this.lb_videoInfor);
-            this.panel1.Controls.Add(this.btn_cutVideo);
-            this.panel1.Controls.Add(this.kryptonButton4);
-            this.panel1.Controls.Add(this.btn_up);
-            this.panel1.Controls.Add(this.btn_remove);
-            this.panel1.Controls.Add(this.comboBox_pickRate);
-            this.panel1.Controls.Add(this.userControl11);
-            this.panel1.Controls.Add(this.btn_phatDung);
-            this.panel1.Controls.Add(this.vlcControl1);
-            this.panel1.Controls.Add(this.kryptonGroupBox2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(207, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(955, 668);
-            this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            this.panel.Controls.Add(this.tongThoiGian);
+            this.panel.Controls.Add(this.kryptonLabel9);
+            this.panel.Controls.Add(this.dangPhat);
+            this.panel.Controls.Add(this.kryptonLabel7);
+            this.panel.Controls.Add(this.cutTheoComboBox);
+            this.panel.Controls.Add(this.sCuoi);
+            this.panel.Controls.Add(this.mCuoi);
+            this.panel.Controls.Add(this.hCuoi);
+            this.panel.Controls.Add(this.sDau);
+            this.panel.Controls.Add(this.mDau);
+            this.panel.Controls.Add(this.hDau);
+            this.panel.Controls.Add(this.kryptonLabel6);
+            this.panel.Controls.Add(this.kryptonLabel5);
+            this.panel.Controls.Add(this.kryptonGroupBox3);
+            this.panel.Controls.Add(this.btn_playVideoCut);
+            this.panel.Controls.Add(this.lb_videoInfor);
+            this.panel.Controls.Add(this.btn_cutVideo);
+            this.panel.Controls.Add(this.kryptonButton4);
+            this.panel.Controls.Add(this.btn_up);
+            this.panel.Controls.Add(this.btn_remove);
+            this.panel.Controls.Add(this.comboBox_pickRate);
+            this.panel.Controls.Add(this.userControl11);
+            this.panel.Controls.Add(this.btn_phatDung);
+            this.panel.Controls.Add(this.vlcControl1);
+            this.panel.Controls.Add(this.kryptonGroupBox2);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(207, 3);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(955, 668);
+            this.panel.TabIndex = 1;
+            this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            // 
+            // kryptonLabel7
+            // 
+            this.kryptonLabel7.Location = new System.Drawing.Point(776, 340);
+            this.kryptonLabel7.Name = "kryptonLabel7";
+            this.kryptonLabel7.Size = new System.Drawing.Size(68, 20);
+            this.kryptonLabel7.TabIndex = 34;
+            this.kryptonLabel7.Values.Text = "Đang phát";
+            // 
+            // cutTheoComboBox
+            // 
+            this.cutTheoComboBox.Location = new System.Drawing.Point(910, 400);
+            this.cutTheoComboBox.Name = "cutTheoComboBox";
+            this.cutTheoComboBox.Size = new System.Drawing.Size(41, 37);
+            this.cutTheoComboBox.TabIndex = 33;
+            this.cutTheoComboBox.Values.Text = "Xem";
+            this.cutTheoComboBox.Click += new System.EventHandler(this.cutTheoComboBox_Click);
+            // 
+            // sCuoi
+            // 
+            this.sCuoi.DropDownWidth = 62;
+            this.sCuoi.Location = new System.Drawing.Point(862, 422);
+            this.sCuoi.Name = "sCuoi";
+            this.sCuoi.Size = new System.Drawing.Size(42, 21);
+            this.sCuoi.TabIndex = 32;
+            this.sCuoi.Text = "0";
+            // 
+            // mCuoi
+            // 
+            this.mCuoi.DropDownWidth = 62;
+            this.mCuoi.Location = new System.Drawing.Point(814, 422);
+            this.mCuoi.Name = "mCuoi";
+            this.mCuoi.Size = new System.Drawing.Size(47, 21);
+            this.mCuoi.TabIndex = 31;
+            this.mCuoi.Text = "0";
+            // 
+            // hCuoi
+            // 
+            this.hCuoi.DropDownWidth = 48;
+            this.hCuoi.Location = new System.Drawing.Point(765, 422);
+            this.hCuoi.Name = "hCuoi";
+            this.hCuoi.Size = new System.Drawing.Size(48, 21);
+            this.hCuoi.TabIndex = 30;
+            this.hCuoi.Text = "0";
+            // 
+            // sDau
+            // 
+            this.sDau.DropDownWidth = 62;
+            this.sDau.Location = new System.Drawing.Point(862, 396);
+            this.sDau.Name = "sDau";
+            this.sDau.Size = new System.Drawing.Size(42, 21);
+            this.sDau.TabIndex = 29;
+            this.sDau.Text = "0";
+            this.sDau.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox3_SelectedIndexChanged);
+            this.sDau.SelectionChangeCommitted += new System.EventHandler(this.sDau_SelectionChangeCommitted);
+            // 
+            // mDau
+            // 
+            this.mDau.DropDownWidth = 62;
+            this.mDau.Location = new System.Drawing.Point(814, 396);
+            this.mDau.Name = "mDau";
+            this.mDau.Size = new System.Drawing.Size(47, 21);
+            this.mDau.TabIndex = 28;
+            this.mDau.Text = "0";
+            // 
+            // hDau
+            // 
+            this.hDau.DropDownWidth = 48;
+            this.hDau.Location = new System.Drawing.Point(765, 396);
+            this.hDau.Name = "hDau";
+            this.hDau.Size = new System.Drawing.Size(48, 21);
+            this.hDau.TabIndex = 27;
+            this.hDau.Text = "0";
+            this.hDau.SelectedIndexChanged += new System.EventHandler(this.hDau_SelectedIndexChanged);
+            // 
+            // kryptonLabel6
+            // 
+            this.kryptonLabel6.Location = new System.Drawing.Point(703, 423);
+            this.kryptonLabel6.Name = "kryptonLabel6";
+            this.kryptonLabel6.Size = new System.Drawing.Size(68, 20);
+            this.kryptonLabel6.TabIndex = 26;
+            this.kryptonLabel6.Values.Text = "Điểm cuối:";
+            // 
+            // kryptonLabel5
+            // 
+            this.kryptonLabel5.Location = new System.Drawing.Point(703, 397);
+            this.kryptonLabel5.Name = "kryptonLabel5";
+            this.kryptonLabel5.Size = new System.Drawing.Size(66, 20);
+            this.kryptonLabel5.TabIndex = 25;
+            this.kryptonLabel5.Values.Text = "Điểm đầu: ";
             // 
             // kryptonGroupBox3
             // 
@@ -230,6 +354,7 @@
             this.kryptonGroupBox3.Size = new System.Drawing.Size(309, 200);
             this.kryptonGroupBox3.TabIndex = 24;
             this.kryptonGroupBox3.Values.Heading = "Xuất tập tin";
+            this.kryptonGroupBox3.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonGroupBox3_Paint);
             // 
             // panel_hienThiNutDung
             // 
@@ -429,16 +554,6 @@
             this.comboBox_pickRate.TabIndex = 9;
             this.comboBox_pickRate.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
             // 
-            // userControl11
-            // 
-            this.userControl11.Location = new System.Drawing.Point(14, 391);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(683, 62);
-            this.userControl11.TabIndex = 8;
-            this.userControl11.videoDuration = System.TimeSpan.Parse("00:00:00");
-            this.userControl11.pointLocationChange += new VideoEditor.ScrollBarHandler(this.uc_poinChange);
-            this.userControl11.playingPointChange += new VideoEditor.PlayingPointHandler(this.playingPointChange);
-            // 
             // btn_phatDung
             // 
             this.btn_phatDung.Location = new System.Drawing.Point(703, 334);
@@ -458,7 +573,7 @@
             this.vlcControl1.Spu = -1;
             this.vlcControl1.TabIndex = 3;
             this.vlcControl1.Text = "vlcControl1";
-            this.vlcControl1.VlcLibDirectory = ((System.IO.DirectoryInfo)(resources.GetObject("vlcControl1.VlcLibDirectory")));
+            this.vlcControl1.VlcLibDirectory = new System.IO.DirectoryInfo(@"..\..\libvlc\win-x86");
             this.vlcControl1.VlcMediaplayerOptions = null;
             this.vlcControl1.Click += new System.EventHandler(this.vlcControl1_Click);
             this.vlcControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vlcControlMouseClick);
@@ -534,7 +649,8 @@
             // 
             // timeGetPlayTime
             // 
-            this.timeGetPlayTime.Interval = 200;
+            this.timeGetPlayTime.Enabled = true;
+            this.timeGetPlayTime.Interval = 1000;
             this.timeGetPlayTime.Tick += new System.EventHandler(this.timeGetPlayTime_Tick);
             // 
             // backgroundWoker_noiVideo
@@ -563,6 +679,44 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // dangPhat
+            // 
+            this.dangPhat.Location = new System.Drawing.Point(779, 364);
+            this.dangPhat.Name = "dangPhat";
+            this.dangPhat.Size = new System.Drawing.Size(36, 20);
+            this.dangPhat.TabIndex = 35;
+            this.dangPhat.Values.Text = "0:0:0";
+            this.dangPhat.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonLabel8_Paint);
+            // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(841, 364);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(15, 20);
+            this.kryptonLabel9.TabIndex = 36;
+            this.kryptonLabel9.Values.Text = "/";
+            // 
+            // tongThoiGian
+            // 
+            this.tongThoiGian.AutoSize = false;
+            this.tongThoiGian.Location = new System.Drawing.Point(870, 364);
+            this.tongThoiGian.Name = "tongThoiGian";
+            this.tongThoiGian.Size = new System.Drawing.Size(67, 20);
+            this.tongThoiGian.TabIndex = 37;
+            this.tongThoiGian.Values.Text = "0:0:0";
+            // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(14, 391);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(683, 62);
+            this.userControl11.startPointPos = 0D;
+            this.userControl11.stopPointPos = 100D;
+            this.userControl11.TabIndex = 8;
+            this.userControl11.videoDuration = System.TimeSpan.Parse("00:00:00");
+            this.userControl11.pointLocationChange += new VideoEditor.ScrollBarHandler(this.uc_poinChange);
+            this.userControl11.playingPointChange += new VideoEditor.PlayingPointHandler(this.playingPointChange);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -584,7 +738,14 @@
             this.kryptonGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             this.kryptonPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sCuoi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mCuoi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hCuoi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sDau)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mDau)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hDau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox3.Panel)).EndInit();
             this.kryptonGroupBox3.Panel.ResumeLayout(false);
             this.kryptonGroupBox3.Panel.PerformLayout();
@@ -613,7 +774,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
         private System.Windows.Forms.ListView listView_showListVideo;
         private System.Windows.Forms.ImageList listImage_dsAnhDaiDienVideo;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel;
         private Vlc.DotNet.Forms.VlcControl vlcControl1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_phatDung;
         private UserControl1 userControl11;
@@ -654,6 +815,19 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox sDau;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox mDau;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox hDau;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox sCuoi;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox mCuoi;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox hCuoi;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton cutTheoComboBox;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel7;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel dangPhat;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel tongThoiGian;
     }
 }
 

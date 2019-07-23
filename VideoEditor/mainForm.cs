@@ -15,23 +15,22 @@ namespace VideoEditor
     public partial class mainForm : Form
     {
         string[] danhSachVideoPath;
-        Engine ffmpeg = new Engine(@"..\..\..\lib\ffmpeg\v4\ffmpeg.exe");
+        Engine ffmpeg = new Engine(@"..\..\lib\ffmpeg.exe");
         Conversion x = new Conversion();
         int soVideoDuocChon = 0;
         int soVideoDaCat = 0;
         bool mouseStartHover = false;
         MediaFile playingVideo;
         int hangDuocChon;
+        TimeSpan doDaiVideoDangPhat; 
         List<ThongTinCatVideo> danhSachVideoDuocCat = new List<ThongTinCatVideo>();
 
         public mainForm()
         {
 
             InitializeComponent();
-            xoaDsAnhDaiDien();
+            //xoaDsAnhDaiDien();
             comboBox_pickRate.SelectedIndex = 2;
-
-
         }
 
         private void button_layVideo_Click(object sender, EventArgs e)
@@ -67,9 +66,15 @@ namespace VideoEditor
         private void thayDoiIconPlayPause()
         {
             if (vlcControl1.IsPlaying)
+            {
                 btn_phatDung.Values.Image = Properties.Resources.pause;
+                timer_getPlayingTime.Stop();
+            }
             else
+            {
                 btn_phatDung.Values.Image = Properties.Resources.play;
+                timer_getPlayingTime.Start();
+            }
             timer_choVLCphanHoi.Stop();
         }
 
@@ -105,6 +110,8 @@ namespace VideoEditor
                 try
                 {
                     userControl11.videoDuration = metaData.Duration;
+                    doDaiVideoDangPhat = metaData.Duration;
+                    tongThoiGian.Text = TimeSpanToString(doDaiVideoDangPhat);
                 }
                 catch
                 {
@@ -124,14 +131,16 @@ namespace VideoEditor
                     lb_videoInfor.Text += "\nAudio:\n" + "SampleRate :" + metaData.AudioData.SampleRate +
                     "\nFormat: " + metaData.AudioData.Format + "\nChannel output: " + metaData.AudioData.ChannelOutput;
             }
+            
         }
 
         private void xoaDsAnhDaiDien()
         {
-            DirectoryInfo di = new DirectoryInfo(@"\");
+            DirectoryInfo di = new DirectoryInfo(@"..\");
             foreach (FileInfo file in di.EnumerateFiles())
             {
-                file.Delete();
+                if(file.Name.Contains("thum"))
+                    file.Delete();
             }
         }
 
@@ -164,6 +173,18 @@ namespace VideoEditor
                 else
                     break;
                 dem += 1;
+            }
+            for (int i = 0; i <= 12; i++)
+            {
+                hDau.Items.Add(i.ToString());
+                hCuoi.Items.Add(i.ToString());
+            }
+            for (int i = 0; i <= 59; i++)
+            {
+                mDau.Items.Add(i.ToString());
+                mCuoi.Items.Add(i.ToString());
+                sDau.Items.Add(i.ToString());
+                sCuoi.Items.Add(i.ToString());
             }
         }
 
@@ -227,14 +248,14 @@ namespace VideoEditor
         private void panel_mouseMove(object sender, MouseEventArgs e)
         {
 
-            Console.WriteLine(panel1.PointToClient(Cursor.Position).X.ToString());
+            Console.WriteLine(panel.PointToClient(Cursor.Position).X.ToString());
 
 
         }
 
         private void formMouseMove(object sender, MouseEventArgs e)
         {
-            Console.WriteLine(panel1.PointToClient(Cursor.Position).X.ToString());
+            Console.WriteLine(panel.PointToClient(Cursor.Position).X.ToString());
         }
 
         private void stPoint_mouseMove(object sender, MouseEventArgs e)
@@ -248,8 +269,18 @@ namespace VideoEditor
 
         private void uc_poinChange(object sender, doubleScrollBarEvent e)
         {
-            //Console.WriteLine("aaaaa {0}, {1}", e.value, e.subTime);
-
+            if (e.startPointChange == false)
+            {
+                hCuoi.Text = e.value.Hours.ToString();
+                mCuoi.Text = e.value.Minutes.ToString();
+                sCuoi.Text = e.value.Seconds.ToString();
+            }
+            else
+            {
+                hDau.Text = e.value.Hours.ToString();
+                mDau.Text = e.value.Minutes.ToString();
+                sDau.Text = e.value.Seconds.ToString();
+            }
         }
 
         private void kryptonComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -271,7 +302,6 @@ namespace VideoEditor
 
         private void playingPointChange(object sender, playingPointEvent e)
         {
-            Console.WriteLine(e.value);
             vlcControl1.Time = (int)(e.value * 1000);
         }
 
@@ -426,9 +456,19 @@ namespace VideoEditor
             if (numberOfVideoAdd < 1)
                 return true;
             var metaData1 = await ffmpeg.GetMetaDataAsync(new MediaFile("0.mp4"));
+            if (metaData1 == null)
+            {
+                huyProcess();
+                return true;
+            }
             for (int i = 1; i < numberOfVideoAdd; i++)
             {
                 var metaData2 = await ffmpeg.GetMetaDataAsync(new MediaFile((i).ToString() + ".mp4"));
+                if (metaData2 == null)
+                {
+                    huyProcess();
+                    return true;
+                }
                 var formatDiferent = metaData1.VideoData.Format != metaData2.VideoData.Format; 
                 var sizeDiferent = metaData1.VideoData.FrameSize != metaData2.VideoData.FrameSize;
                 var colorModelDiferent = metaData1.VideoData.ColorModel != metaData2.VideoData.ColorModel;
@@ -485,8 +525,14 @@ namespace VideoEditor
             if (vlcControl1.IsPlaying)
             {
                 var x = vlcControl1.Time;
-                userControl11.playingPointTime = x/1000;
+                dangPhat.Text = TimeSpanToString(SecondToTimespan(x/1000));
+
             }
+        }
+
+        private string TimeSpanToString(TimeSpan h)
+        {
+            return (h.Hours.ToString() + ":" + h.Minutes.ToString() + ":" + h.Seconds.ToString());
         }
 
         private void btn_xoaVideo_Click(object sender, EventArgs e)
@@ -573,19 +619,28 @@ namespace VideoEditor
             {
                 if (backgroundWoker_noiVideo.IsBusy | backgroundWorker_catVideo.IsBusy)
                 {
-                    var ffmpegPr = Process.GetProcesses().Where(pr => pr.ProcessName == "ffmpeg");
-                    foreach (var process in ffmpegPr)
-                    {
-                        process.Kill();
-                        string outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
-                        panel_hienThiNutDung.Visible = false;
-                        MessageBox.Show("Đã dừng");
-                        
-                    }
+                    huyProcess();
                 }
             }
         }
 
+        private void huyProcess()
+        {
+            var ffmpegPr = Process.GetProcesses().Where(pr => pr.ProcessName == "ffmpeg");
+            foreach (var process in ffmpegPr)
+            {
+                process.Kill();
+                string outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
+                panel_hienThiNutDung.Visible = false;
+                MessageBox.Show("Đã dừng");
+
+            }
+            ffmpegPr = Process.GetProcesses().Where(pr => pr.ProcessName == "ffmpeg");
+            if (ffmpegPr.Count() == 0)
+            {
+                panel_hienThiNutDung.Visible = false;
+            }
+        }
         private void btn_playVideoCut_Click(object sender, EventArgs e)
         {
             ThongTinCatVideo video = null;
@@ -602,6 +657,60 @@ namespace VideoEditor
             vlcControl1.Play(new FileInfo(video.videoPath));
             userControl11.startPointPos = video.startPosPercent;
             userControl11.stopPointPos = video.stopPosPercent;
+        }
+
+        private void kryptonComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //var time = new TimeSpan(Int16.Parse(hDau.Text), Int16.Parse(mDau.Text), Int16.Parse(sDau.Text));
+            //if (time.TotalSeconds >= 0 & time.TotalSeconds <= doDaiVideoDangPhat)
+            //{
+            //    calcPercentFromTime(true);
+            //}
+        }
+
+        private void hDau_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void sDau_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void kryptonGroupBox3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cutTheoComboBox_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var timeDau = new TimeSpan(Int16.Parse(hDau.Text), Int16.Parse(mDau.Text), Int16.Parse(sDau.Text));
+                var timeCuoi = new TimeSpan(Int16.Parse(hCuoi.Text), Int16.Parse(mCuoi.Text), Int16.Parse(sCuoi.Text));
+                if (timeDau.TotalSeconds >= 0 & timeDau <= timeCuoi & timeDau <= doDaiVideoDangPhat)
+                {
+                    userControl11.startPointTimeSpan = timeDau;
+                }
+                
+                if (timeCuoi.TotalSeconds >= 0 & timeCuoi >= timeDau & timeCuoi <= doDaiVideoDangPhat)
+                {
+                    userControl11.stopPointTimeSpan = timeCuoi;
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void kryptonLabel8_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
@@ -620,8 +729,8 @@ namespace VideoEditor
         }
         public string stopTime { get; set; }
         public string subTime { get; set; }
-        public int startPosPercent { get; set; }
-        public int stopPosPercent { get; set; }
+        public double startPosPercent { get; set; }
+        public double stopPosPercent { get; set; }
     }
 
 }

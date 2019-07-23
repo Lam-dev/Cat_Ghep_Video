@@ -72,6 +72,7 @@
             this.bar.Size = new System.Drawing.Size(481, 39);
             this.bar.StateNormal.Color1 = System.Drawing.Color.Gray;
             this.bar.TabIndex = 0;
+            this.bar.Paint += new System.Windows.Forms.PaintEventHandler(this.bar_Paint);
             // 
             // SB_startPoint
             // 
