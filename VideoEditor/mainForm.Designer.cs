@@ -38,6 +38,9 @@
             this.btn_xoaVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button_layVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel = new System.Windows.Forms.Panel();
+            this.tongThoiGian = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.dangPhat = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.cutTheoComboBox = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.sCuoi = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -85,9 +88,6 @@
             this.backgroundWorker_catVideo = new System.ComponentModel.BackgroundWorker();
             this.timer_choVLCphanHoi = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.dangPhat = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.tongThoiGian = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.userControl11 = new VideoEditor.UserControl1();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -243,6 +243,32 @@
             this.panel.Size = new System.Drawing.Size(955, 668);
             this.panel.TabIndex = 1;
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            // 
+            // tongThoiGian
+            // 
+            this.tongThoiGian.AutoSize = false;
+            this.tongThoiGian.Location = new System.Drawing.Point(870, 364);
+            this.tongThoiGian.Name = "tongThoiGian";
+            this.tongThoiGian.Size = new System.Drawing.Size(67, 20);
+            this.tongThoiGian.TabIndex = 37;
+            this.tongThoiGian.Values.Text = "0:0:0";
+            // 
+            // kryptonLabel9
+            // 
+            this.kryptonLabel9.Location = new System.Drawing.Point(841, 364);
+            this.kryptonLabel9.Name = "kryptonLabel9";
+            this.kryptonLabel9.Size = new System.Drawing.Size(15, 20);
+            this.kryptonLabel9.TabIndex = 36;
+            this.kryptonLabel9.Values.Text = "/";
+            // 
+            // dangPhat
+            // 
+            this.dangPhat.Location = new System.Drawing.Point(779, 364);
+            this.dangPhat.Name = "dangPhat";
+            this.dangPhat.Size = new System.Drawing.Size(36, 20);
+            this.dangPhat.TabIndex = 35;
+            this.dangPhat.Values.Text = "0:0:0";
+            this.dangPhat.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonLabel8_Paint);
             // 
             // kryptonLabel7
             // 
@@ -640,6 +666,7 @@
             // 
             this.timer_getPlayingTime.Enabled = true;
             this.timer_getPlayingTime.Interval = 1000;
+            this.timer_getPlayingTime.Tick += new System.EventHandler(this.timer_getPlayingTime_Tick);
             // 
             // imageList_checkedList
             // 
@@ -678,32 +705,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // dangPhat
-            // 
-            this.dangPhat.Location = new System.Drawing.Point(779, 364);
-            this.dangPhat.Name = "dangPhat";
-            this.dangPhat.Size = new System.Drawing.Size(36, 20);
-            this.dangPhat.TabIndex = 35;
-            this.dangPhat.Values.Text = "0:0:0";
-            this.dangPhat.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonLabel8_Paint);
-            // 
-            // kryptonLabel9
-            // 
-            this.kryptonLabel9.Location = new System.Drawing.Point(841, 364);
-            this.kryptonLabel9.Name = "kryptonLabel9";
-            this.kryptonLabel9.Size = new System.Drawing.Size(15, 20);
-            this.kryptonLabel9.TabIndex = 36;
-            this.kryptonLabel9.Values.Text = "/";
-            // 
-            // tongThoiGian
-            // 
-            this.tongThoiGian.AutoSize = false;
-            this.tongThoiGian.Location = new System.Drawing.Point(870, 364);
-            this.tongThoiGian.Name = "tongThoiGian";
-            this.tongThoiGian.Size = new System.Drawing.Size(67, 20);
-            this.tongThoiGian.TabIndex = 37;
-            this.tongThoiGian.Values.Text = "0:0:0";
             // 
             // userControl11
             // 
@@ -775,7 +776,6 @@
         private System.Windows.Forms.ListView listView_showListVideo;
         private System.Windows.Forms.ImageList listImage_dsAnhDaiDienVideo;
         private System.Windows.Forms.Panel panel;
-        private Vlc.DotNet.Forms.VlcControl vlcControl1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_phatDung;
         private UserControl1 userControl11;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox comboBox_pickRate;
@@ -828,6 +828,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel dangPhat;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel tongThoiGian;
+        private Vlc.DotNet.Forms.VlcControl vlcControl1;
     }
 }
 

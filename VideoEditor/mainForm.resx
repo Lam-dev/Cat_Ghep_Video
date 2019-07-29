@@ -120,22 +120,11 @@
   <data name="vlcControl1.VlcLibDirectory" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAEAQAAABdTeXN0ZW0uSU8uRGlyZWN0b3J5SW5mbwIAAAAMT3JpZ2luYWxQ
-        YXRoCEZ1bGxQYXRoAQEGAgAAAFVDOlxVc2Vyc1xBZG1pbmlzdHJhdG9yXERlc2t0b3BcRkZtcGVnLk5F
-        VC1tYXN0ZXJcVmlkZW9FZGl0b3JcYmluXERlYnVnXGxpYnZsY1x3aW4teDg2CQIAAAAL
+        YXRoCEZ1bGxQYXRoAQEGAgAAABQuLlwuLlxsaWJ2bGNcd2luLXg4NgYDAAAATEM6XFByb2dyYW0gRmls
+        ZXMgKHg4NilcTWljcm9zb2Z0IFZpc3VhbCBTdHVkaW9cMjAxN1xDb21tdW5pdHlcbGlidmxjXHdpbi14
+        ODYL
 </value>
   </data>
-  <metadata name="video.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="batDau.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ketThuc.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="thoiGian.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="video.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

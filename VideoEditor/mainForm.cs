@@ -332,7 +332,7 @@ namespace VideoEditor
 
         }
 
-        private TimeSpan SecondToTimespan(double totalSecond)
+        public static TimeSpan SecondToTimespan(double totalSecond)
         {
             var h = totalSecond / 3600;
             totalSecond = totalSecond % 3600;
@@ -545,7 +545,7 @@ namespace VideoEditor
             }
         }
 
-        private string TimeSpanToString(TimeSpan h)
+        public static string TimeSpanToString(TimeSpan h)
         {
             return (h.Hours.ToString() + ":" + h.Minutes.ToString() + ":" + h.Seconds.ToString());
         }
@@ -720,6 +720,16 @@ namespace VideoEditor
         }
 
         private void kryptonLabel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void kryptonButton2_Click_1(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void timer_getPlayingTime_Tick(object sender, EventArgs e)
         {
 
         }

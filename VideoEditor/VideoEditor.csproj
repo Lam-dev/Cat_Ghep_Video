@@ -94,6 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FFmpeg.cs" />
+    <Compile Include="frmPhatVideo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhatVideo.Designer.cs">
+      <DependentUpon>frmPhatVideo.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,18 +108,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucCuonVideo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCuonVideo.Designer.cs">
+      <DependentUpon>ucCuonVideo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl1.Designer.cs">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl2.cs">
+    <Compile Include="ucDaiDienVideo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl2.Designer.cs">
-      <DependentUpon>UserControl2.cs</DependentUpon>
+    <Compile Include="ucDaiDienVideo.Designer.cs">
+      <DependentUpon>ucDaiDienVideo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmPhatVideo.resx">
+      <DependentUpon>frmPhatVideo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -128,13 +143,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucCuonVideo.resx">
+      <DependentUpon>ucCuonVideo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl2.resx">
-      <DependentUpon>UserControl2.cs</DependentUpon>
+    <EmbeddedResource Include="ucDaiDienVideo.resx">
+      <DependentUpon>ucDaiDienVideo.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -180,6 +200,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libFFmpeg\ffmpeg.exe" />
+    <None Include="Resources\addImage.png" />
+    <None Include="Resources\redPoint.jpg" />
+    <None Include="Resources\redPoint.png" />
+    <None Include="Resources\play_smallIcon.png" />
+    <None Include="Resources\merge.png" />
+    <None Include="Resources\camera.png" />
     <Content Include="vlcLib\libvlc.dll" />
     <Content Include="vlcLib\libvlccore.dll" />
     <None Include="Resources\Webp.net-resizeimage.gif" />

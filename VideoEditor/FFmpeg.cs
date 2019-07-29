@@ -44,7 +44,8 @@ namespace VideoEditor
 
         public static bool cutVideo(string filePath, string outputPath, string startTime, string duration)
         {
-            var parameter = "-ss " + startTime + " -i " + filePath + " -to " + duration + " -c copy " + outputPath;
+            var parameter = "-ss " + startTime + " -i " + filePath + " -t " + duration + " -vcodec copy " + outputPath;
+            //var parameter = $"- i {filePath} - vcodec copy - acodec copy - ss {startTime} - t  {duration}  {outputPath}";
             return ExecuteCommand(@"..\..\libFFmpeg\ffmpeg.exe", parameter);
             
         }
