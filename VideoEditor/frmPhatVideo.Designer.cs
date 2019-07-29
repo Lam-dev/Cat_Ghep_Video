@@ -284,7 +284,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vlc_phatVideo)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.vlc_phatVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_chuaThanhCuonVaNutNhan)).EndInit();
             this.panel_chuaThanhCuonVaNutNhan.ResumeLayout(false);
             this.panel_chuaThanhCuonVaNutNhan.PerformLayout();
