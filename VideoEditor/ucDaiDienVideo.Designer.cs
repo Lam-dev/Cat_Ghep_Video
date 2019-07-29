@@ -42,6 +42,7 @@
             // 
             // lb_duongDanVideo
             // 
+            this.lb_duongDanVideo.BackColor = System.Drawing.SystemColors.ControlDark;
             this.lb_duongDanVideo.ColumnCount = 2;
             this.lb_duongDanVideo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.05882F));
             this.lb_duongDanVideo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.94118F));
@@ -102,7 +103,7 @@
             // 
             this.kryptonTextBox1.Location = new System.Drawing.Point(65, 3);
             this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(8, 17);
+            this.kryptonTextBox1.Size = new System.Drawing.Size(8, 20);
             this.kryptonTextBox1.TabIndex = 1;
             this.kryptonTextBox1.Text = "kryptonTextBox1";
             // 

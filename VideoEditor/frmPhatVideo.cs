@@ -20,6 +20,8 @@ namespace VideoEditor
         public frmPhatVideo()
         {
             InitializeComponent();
+            this.vlc_phatVideo.VlcLibDirectory = new System.IO.DirectoryInfo(@"..\..\libvlc\win-x86");
+            ((System.ComponentModel.ISupportInitialize)(this.vlc_phatVideo)).EndInit();
         }
 
         private async void lb_themVideoClick(object sender, MouseEventArgs e)
@@ -165,12 +167,12 @@ namespace VideoEditor
             if (vlc_phatVideo.IsPlaying)
             {
                 lb_playPause.Values.Image = Properties.Resources.pause;
-                timer_layThoiGianVideo.Stop();
+               
             }
             else
             {
                 lb_playPause.Values.Image = Properties.Resources.play;
-                timer_layThoiGianVideo.Start();
+               
             }
             timer_choVLCphanHoi.Stop();
         }
@@ -195,6 +197,28 @@ namespace VideoEditor
             vlc_phatVideo.Stop();
             timer_choVLCphanHoi.Stop();
             new mainForm().ShowDialog();
+        }
+
+        private void formResizeEnd(object sender, EventArgs e)
+        {
+            flowLayOut_chuaCacVideo.Size = new Size(flowLayOut_chuaCacVideo.Width, kryptonPanel1.Height - panel1.Height);
+            vlc_phatVideo.Size = new Size((this.Width - kryptonPanel1.Width - 10), kryptonPanel1.Height - 70);
+            panel_chuaThanhCuonVaNutNhan.Location = new Point(vlc_phatVideo.Location.X +(vlc_phatVideo.Width - panel_chuaThanhCuonVaNutNhan.Width)/2, kryptonPanel1.Location.Y + kryptonPanel1.Height - panel_chuaThanhCuonVaNutNhan.Height);
+        }
+
+        private void kryptonLabel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lb_gopVideo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void frmPhatVideo_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
