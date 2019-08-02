@@ -50,7 +50,7 @@ namespace VideoEditor
             if (mouseUp)
             {
                 var mousePos = panel_duongRay.PointToClient(Cursor.Position).X;
-                panel_diemDangPhat.Location = new Point(mousePos - panel_diemDangPhat.Width / 2);
+               
                 if (mousePos - panel_diemDangPhat.Width / 2 < 0)
                 {
                     panel_diemDangPhat.Location = new Point(0);
@@ -61,6 +61,7 @@ namespace VideoEditor
                     panel_diemDangPhat.Location = new Point(panel_duongRay.Width - panel_diemDangPhat.Width);
                     return;
                 }
+                panel_diemDangPhat.Location = new Point(mousePos - panel_diemDangPhat.Width / 2);
                 var phanTramThanhCuon = (double)panel_diemDangPhat.Location.X / (double)(_doDaiTruotCuaDuongRay) * 100;
                 cuonVideoHandle truotThanhCuon = thanhCuonDangTruot;
                 var arg = new cuonVideoArgs()

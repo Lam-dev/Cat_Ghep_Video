@@ -57,6 +57,7 @@
             this.lb_duongDanVideo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.lb_duongDanVideo.Size = new System.Drawing.Size(170, 57);
             this.lb_duongDanVideo.TabIndex = 0;
+            this.lb_duongDanVideo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucMouseMove);
             // 
             // picbox_anhDaiDienVideo
             // 
@@ -67,6 +68,7 @@
             this.picbox_anhDaiDienVideo.TabIndex = 0;
             this.picbox_anhDaiDienVideo.TabStop = false;
             this.picbox_anhDaiDienVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clickAnhDaiDien);
+            this.picbox_anhDaiDienVideo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucMouseMove);
             // 
             // kryptonPanel1
             // 
@@ -79,6 +81,7 @@
             this.kryptonPanel1.StateCommon.Color1 = System.Drawing.Color.Transparent;
             this.kryptonPanel1.TabIndex = 1;
             this.kryptonPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clickAnhDaiDien);
+            this.kryptonPanel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucMouseMove);
             // 
             // lb_dungLuong
             // 
@@ -89,6 +92,7 @@
             this.lb_dungLuong.TabIndex = 1;
             this.lb_dungLuong.Values.Text = "kryptonLabel2";
             this.lb_dungLuong.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clickAnhDaiDien);
+            this.lb_dungLuong.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucMouseMove);
             // 
             // lb_tenVideo
             // 
@@ -98,6 +102,7 @@
             this.lb_tenVideo.TabIndex = 0;
             this.lb_tenVideo.Values.Text = "kryptonLabel1";
             this.lb_tenVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clickAnhDaiDien);
+            this.lb_tenVideo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ucMouseMove);
             // 
             // kryptonTextBox1
             // 
@@ -126,10 +131,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox picbox_anhDaiDienVideo;
-        private System.Windows.Forms.TableLayoutPanel lb_duongDanVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_dungLuong;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_tenVideo;
+        public System.Windows.Forms.TableLayoutPanel lb_duongDanVideo;
     }
 }

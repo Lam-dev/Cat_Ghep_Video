@@ -93,6 +93,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="circlePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="circlePanel.Designer.cs">
+      <DependentUpon>circlePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FFmpeg.cs" />
     <Compile Include="frmPhatVideo.cs">
       <SubType>Form</SubType>
@@ -106,13 +112,27 @@
     <Compile Include="mainForm.Designer.cs">
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="myControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ucCuonVideo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucCuonVideo.Designer.cs">
       <DependentUpon>ucCuonVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucThanhTruot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucThanhTruot.Designer.cs">
+      <DependentUpon>ucThanhTruot.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
@@ -126,6 +146,9 @@
     <Compile Include="ucDaiDienVideo.Designer.cs">
       <DependentUpon>ucDaiDienVideo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="circlePanel.resx">
+      <DependentUpon>circlePanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPhatVideo.resx">
       <DependentUpon>frmPhatVideo.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,16 +158,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="ucCuonVideo.resx">
       <DependentUpon>ucCuonVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucThanhTruot.resx">
+      <DependentUpon>ucThanhTruot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
@@ -206,6 +227,47 @@
     <None Include="Resources\play_smallIcon.png" />
     <None Include="Resources\merge.png" />
     <None Include="Resources\camera.png" />
+    <None Include="Resources\20-512.png" />
+    <None Include="Resources\speaker.png" />
+    <None Include="Resources\frame_next.png" />
+    <None Include="Resources\nextPrev.png" />
+    <None Include="Resources\backPrev.png" />
+    <None Include="Resources\frameBack.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\play_3535.png" />
+    <None Include="Resources\play4040.png" />
+    <None Include="Resources\pause4040.png" />
+    <None Include="Resources\play_35351.png" />
+    <None Include="Resources\pause4545.png" />
+    <None Include="Resources\searchIcon.png" />
+    <None Include="Resources\Webp.net-resizeimage %281%291.png" />
+    <None Include="Resources\next10s.bmp" />
+    <None Include="Resources\Webp.net-resizeimage %282%291.png" />
+    <None Include="Resources\playEnter.png" />
+    <None Include="Resources\MouseEnter.png" />
+    <None Include="Resources\next10sMouseEnter.png" />
+    <None Include="Resources\pauseEnter.png" />
+    <None Include="Resources\pauseLeave.png" />
+    <None Include="Resources\playleave.png" />
+    <None Include="Resources\pre10sMouseEnter.png" />
+    <None Include="Resources\pre10sMouseLeave.png" />
+    <None Include="Resources\speedDownMouseEnter.png" />
+    <None Include="Resources\speedDownMouseLeave.png" />
+    <None Include="Resources\speedUpMouseEnter.png" />
+    <None Include="Resources\speedUpMouseLeave.png" />
+    <None Include="Resources\next10sMouseLeave.png" />
+    <None Include="Resources\stopEnter.png" />
+    <None Include="Resources\stopLeave.png" />
+    <None Include="Resources\Webp.net-resizeimage %281%29.png" />
+    <None Include="Resources\Webp.net-resizeimage %282%29.png" />
+    <None Include="Resources\Webp.net-resizeimage %283%29.png" />
+    <None Include="Resources\Webp.net-resizeimage %285%29.png" />
+    <None Include="Resources\Webp.net-resizeimage %284%29.png" />
+    <None Include="Resources\speaker_mute.png" />
+    <None Include="Resources\addImageLeave.png" />
+    <None Include="Resources\searchIconLeave.png" />
+    <None Include="Resources\Webp.net-resizeimage_leave.png" />
+    <None Include="Resources\bigPlay.png" />
     <Content Include="vlcLib\libvlc.dll" />
     <Content Include="vlcLib\libvlccore.dll" />
     <None Include="Resources\Webp.net-resizeimage.gif" />
