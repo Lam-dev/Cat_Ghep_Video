@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Xabe.FFmpeg;
+
 
 namespace VideoEditor
 {
@@ -17,7 +17,6 @@ namespace VideoEditor
         string[] danhSachVideoPath;
      
         Engine ffmpeg = new Engine(@"..\..\libFFmpeg\ffmpeg.exe");
-        Conversion x = new Conversion();
         int soVideoDuocChon = 0;
         int soVideoDaCat = 0;
         bool mouseStartHover = false;
@@ -66,7 +65,7 @@ namespace VideoEditor
 
         private void thayDoiIconPlayPause()
         {
-            if (vlcControl1.IsPlaying)
+            if (ucChoiVideo.dangChay)
             {
                 btn_phatDung.Values.Image = Properties.Resources.pause;
                 timer_getPlayingTime.Stop();
@@ -106,7 +105,7 @@ namespace VideoEditor
             foreach (var item in listView_showListVideo.SelectedItems)
             {
                 var listViewItem = item as ListViewItem;
-                vlcControl1.Play(new FileInfo(listViewItem.Text));
+                ucChoiVideo.Play(listViewItem.Text);
                 playingVideo = new MediaFile(listViewItem.Text);
                 var metaData = await ffmpeg.GetMetaDataAsync(playingVideo);
                 try
@@ -207,15 +206,15 @@ namespace VideoEditor
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (vlcControl1.IsPlaying)
+            if (ucChoiVideo.dangChay)
             {
-                vlcControl1.Pause();
+                ucChoiVideo.Pause();
                 timer_choVLCphanHoi.Start();
                 
             }
             else
             {
-                vlcControl1.Play();
+                ucChoiVideo.Play();
                 timer_choVLCphanHoi.Start();
             }
         }
@@ -287,12 +286,12 @@ namespace VideoEditor
 
         private void kryptonComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox_pickRate.SelectedIndex == 0) vlcControl1.Rate = (float)0.25;
-            if (comboBox_pickRate.SelectedIndex == 1) vlcControl1.Rate = (float)0.5;
-            if (comboBox_pickRate.SelectedIndex == 2) vlcControl1.Rate = (float)1;
-            if (comboBox_pickRate.SelectedIndex == 3) vlcControl1.Rate = (float)1.5;
-            if (comboBox_pickRate.SelectedIndex == 4) vlcControl1.Rate = (float)2;
-            if (comboBox_pickRate.SelectedIndex == 5) vlcControl1.Rate = (float)4;
+            if (comboBox_pickRate.SelectedIndex == 0) ucChoiVideo.tocDoPhat = (float)0.25;
+            if (comboBox_pickRate.SelectedIndex == 1) ucChoiVideo.tocDoPhat = (float)0.5;
+            if (comboBox_pickRate.SelectedIndex == 2) ucChoiVideo.tocDoPhat = (float)1;
+            if (comboBox_pickRate.SelectedIndex == 3) ucChoiVideo.tocDoPhat = (float)1.5;
+            if (comboBox_pickRate.SelectedIndex == 4) ucChoiVideo.tocDoPhat = (float)2;
+            if (comboBox_pickRate.SelectedIndex == 5) ucChoiVideo.tocDoPhat = (float)4;
 
         }
 
@@ -304,7 +303,7 @@ namespace VideoEditor
 
         private void playingPointChange(object sender, playingPointEvent e)
         {
-            vlcControl1.Time = (int)(e.value * 1000);
+            ucChoiVideo.thoiGianDangPhat = (int)(e.value * 1000);
         }
 
         private void showListVideo_colClick(object sender, ColumnClickEventArgs e)
@@ -338,6 +337,8 @@ namespace VideoEditor
             totalSecond = totalSecond % 3600;
             var m = totalSecond / 60;
             var s = totalSecond % 60;
+            if (h > 24)
+                h = 24;
             return new TimeSpan((int)h, (int)m, (int)s);
         }
 
@@ -406,8 +407,8 @@ namespace VideoEditor
 
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            if (vlcControl1.GetCurrentMedia() == null)
-                return;
+            //if (tocDoPhat.GetCurrentMedia() == null)
+            //    return;
             var cut = new ThongTinCatVideo()
             {
                 videoPath = playingVideo.FileInfo.FullName,
@@ -436,10 +437,10 @@ namespace VideoEditor
 
         private void vlcControl1_Click(object sender, EventArgs e)
         {
-            if (vlcControl1.IsPlaying)
-                vlcControl1.Pause();
+            if (ucChoiVideo.dangChay)
+                ucChoiVideo.Pause();
             else
-                vlcControl1.Play();
+                ucChoiVideo.Play();
         }
 
         private void vlcControlMouseClick(object sender, MouseEventArgs e)
@@ -537,9 +538,9 @@ namespace VideoEditor
 
         private void timeGetPlayTime_Tick(object sender, EventArgs e)
         {
-            if (vlcControl1.IsPlaying)
+            if (ucChoiVideo.dangChay)
             {
-                var x = vlcControl1.Time;
+                var x = ucChoiVideo.thoiGianDangPhat;
                 dangPhat.Text = TimeSpanToString(SecondToTimespan(x/1000));
 
             }
@@ -665,7 +666,7 @@ namespace VideoEditor
             }
             if (video == null)
                 return; 
-            vlcControl1.Play(new FileInfo(video.videoPath));
+            ucChoiVideo.Play(video.videoPath);
             userControl11.startPointPos = video.startPosPercent;
             userControl11.stopPointPos = video.stopPosPercent;
         }

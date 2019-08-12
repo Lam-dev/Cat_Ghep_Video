@@ -31,22 +31,17 @@ namespace VideoEditor
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhatVideo));
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.flowLayOut_chuaCacVideo = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lb_ = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lb_themVideo = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lb_xoaDaiDien = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonGallery1 = new ComponentFactory.Krypton.Ribbon.KryptonGallery();
             this.bgw_choLayAnhDaiDien = new System.ComponentModel.BackgroundWorker();
-            this.vlc_phatVideo = new Vlc.DotNet.Forms.VlcControl();
             this.lb_DangPhat = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lb_tongThoiGian = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.timer_layThoiGianVideo = new System.Windows.Forms.Timer(this.components);
             this.lb_playPause = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.timer_choVLCphanHoi = new System.Windows.Forms.Timer(this.components);
             this.panel_dieuKhien = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.ucThanhTruot_tuaVideo = new VideoEditor.ucThanhTruot();
             this.panel_chuaCacNutDieuKhien = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
@@ -64,14 +59,16 @@ namespace VideoEditor
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel_congCu = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonPanel2 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.zoomControl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.btnZoomLen = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.btnChupManHinh = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lb_gopVideo = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.btn_chonVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel_chonVideoBanDau = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.btn_chonVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ucChoiVideo = new VideoEditor.ucChoiVideo();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vlc_phatVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_dieuKhien)).BeginInit();
             this.panel_dieuKhien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_chuaCacNutDieuKhien)).BeginInit();
@@ -111,8 +108,7 @@ namespace VideoEditor
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
-            this.panel1.Controls.Add(this.lb_);
+            this.panel1.BackColor = System.Drawing.Color.DimGray;
             this.panel1.Controls.Add(this.kryptonLabel2);
             this.panel1.Controls.Add(this.lb_themVideo);
             this.panel1.Controls.Add(this.lb_xoaDaiDien);
@@ -120,19 +116,6 @@ namespace VideoEditor
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(178, 44);
             this.panel1.TabIndex = 0;
-            // 
-            // lb_
-            // 
-            this.lb_.Location = new System.Drawing.Point(114, 7);
-            this.lb_.Name = "lb_";
-            this.lb_.Size = new System.Drawing.Size(31, 27);
-            this.lb_.TabIndex = 6;
-            this.lb_.Values.Image = global::VideoEditor.Properties.Resources.searchIcon;
-            this.lb_.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.lb_.Values.Text = "";
-            this.lb_.MouseClick += new System.Windows.Forms.MouseEventHandler(this.timKiemMouseClick);
-            this.lb_.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
             // 
             // kryptonLabel2
             // 
@@ -145,7 +128,7 @@ namespace VideoEditor
             // lb_themVideo
             // 
             this.lb_themVideo.AutoSize = false;
-            this.lb_themVideo.Location = new System.Drawing.Point(84, 2);
+            this.lb_themVideo.Location = new System.Drawing.Point(116, 2);
             this.lb_themVideo.Name = "lb_themVideo";
             this.lb_themVideo.Size = new System.Drawing.Size(26, 38);
             this.lb_themVideo.TabIndex = 3;
@@ -165,37 +148,13 @@ namespace VideoEditor
             this.lb_xoaDaiDien.TabIndex = 4;
             this.lb_xoaDaiDien.Values.Image = global::VideoEditor.Properties.Resources.Webp_net_resizeimage__3_;
             this.lb_xoaDaiDien.Values.Text = "";
-            this.lb_xoaDaiDien.Paint += new System.Windows.Forms.PaintEventHandler(this.lb_xoaDaiDien_Paint);
             this.lb_xoaDaiDien.MouseClick += new System.Windows.Forms.MouseEventHandler(this.xoaVideoTrongDanhSachClick);
             this.lb_xoaDaiDien.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
             this.lb_xoaDaiDien.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
             // 
-            // kryptonGallery1
-            // 
-            this.kryptonGallery1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.kryptonGallery1.ImageList = null;
-            this.kryptonGallery1.Location = new System.Drawing.Point(709, 145);
-            this.kryptonGallery1.Name = "kryptonGallery1";
-            this.kryptonGallery1.Size = new System.Drawing.Size(8, 8);
-            this.kryptonGallery1.TabIndex = 1;
-            // 
             // bgw_choLayAnhDaiDien
             // 
             this.bgw_choLayAnhDaiDien.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_choLayAnhDaiDien_DoWork);
-            // 
-            // vlc_phatVideo
-            // 
-            this.vlc_phatVideo.BackColor = System.Drawing.Color.SkyBlue;
-            this.vlc_phatVideo.ForeColor = System.Drawing.Color.Transparent;
-            this.vlc_phatVideo.Location = new System.Drawing.Point(181, 44);
-            this.vlc_phatVideo.Name = "vlc_phatVideo";
-            this.vlc_phatVideo.Size = new System.Drawing.Size(947, 530);
-            this.vlc_phatVideo.Spu = -1;
-            this.vlc_phatVideo.TabIndex = 2;
-            this.vlc_phatVideo.Text = "vlcControl1";
-            this.vlc_phatVideo.VlcLibDirectory = ((System.IO.DirectoryInfo)(resources.GetObject("vlc_phatVideo.VlcLibDirectory")));
-            this.vlc_phatVideo.VlcMediaplayerOptions = null;
-            this.vlc_phatVideo.Click += new System.EventHandler(this.vlc_phatVideo_Click);
             // 
             // lb_DangPhat
             // 
@@ -205,7 +164,6 @@ namespace VideoEditor
             this.lb_DangPhat.Size = new System.Drawing.Size(58, 25);
             this.lb_DangPhat.TabIndex = 4;
             this.lb_DangPhat.Values.Text = "0:0:0";
-            this.lb_DangPhat.Paint += new System.Windows.Forms.PaintEventHandler(this.lb_DangPhat_Paint);
             // 
             // lb_tongThoiGian
             // 
@@ -232,10 +190,6 @@ namespace VideoEditor
             this.lb_playPause.MouseClick += new System.Windows.Forms.MouseEventHandler(this.playPauseMouseClick);
             this.lb_playPause.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
             this.lb_playPause.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
-            // 
-            // timer_choVLCphanHoi
-            // 
-            this.timer_choVLCphanHoi.Tick += new System.EventHandler(this.timer_choVLCphanHoi_Tick);
             // 
             // panel_dieuKhien
             // 
@@ -340,7 +294,6 @@ namespace VideoEditor
             this.lb_tuaNhanh.TabIndex = 19;
             this.lb_tuaNhanh.Values.Image = global::VideoEditor.Properties.Resources.speedUpMouseLeave;
             this.lb_tuaNhanh.Values.Text = "";
-            this.lb_tuaNhanh.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonLabel7_Paint);
             this.lb_tuaNhanh.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nutDieuKhien_MC);
             this.lb_tuaNhanh.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
             this.lb_tuaNhanh.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
@@ -379,7 +332,6 @@ namespace VideoEditor
             this.lb_stop.TabIndex = 18;
             this.lb_stop.Values.Image = global::VideoEditor.Properties.Resources.stopLeave;
             this.lb_stop.Values.Text = "";
-            this.lb_stop.Paint += new System.Windows.Forms.PaintEventHandler(this.lb_stop_Paint);
             this.lb_stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dungPhatVideoClick);
             this.lb_stop.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
             this.lb_stop.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
@@ -405,7 +357,6 @@ namespace VideoEditor
             this.btn_loa.TabIndex = 14;
             this.btn_loa.Values.Image = global::VideoEditor.Properties.Resources.speaker;
             this.btn_loa.Values.Text = "";
-            this.btn_loa.Paint += new System.Windows.Forms.PaintEventHandler(this.btn_loa_Paint);
             // 
             // lb_phongTo
             // 
@@ -441,58 +392,100 @@ namespace VideoEditor
             this.panel_congCu.Location = new System.Drawing.Point(181, 0);
             this.panel_congCu.Name = "panel_congCu";
             this.panel_congCu.Size = new System.Drawing.Size(947, 44);
-            this.panel_congCu.StateNormal.Color1 = System.Drawing.Color.DarkGray;
+            this.panel_congCu.StateNormal.Color1 = System.Drawing.Color.DimGray;
             this.panel_congCu.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.panel_congCu.TabIndex = 11;
             // 
             // kryptonPanel2
             // 
-            this.kryptonPanel2.Controls.Add(this.kryptonLabel3);
+            this.kryptonPanel2.Controls.Add(this.zoomControl);
+            this.kryptonPanel2.Controls.Add(this.btnZoomLen);
+            this.kryptonPanel2.Controls.Add(this.btnChupManHinh);
             this.kryptonPanel2.Controls.Add(this.lb_gopVideo);
             this.kryptonPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.kryptonPanel2.Location = new System.Drawing.Point(790, 0);
+            this.kryptonPanel2.Location = new System.Drawing.Point(724, 0);
             this.kryptonPanel2.Name = "kryptonPanel2";
-            this.kryptonPanel2.Size = new System.Drawing.Size(157, 44);
+            this.kryptonPanel2.Size = new System.Drawing.Size(223, 44);
             this.kryptonPanel2.StateNormal.Color1 = System.Drawing.Color.Transparent;
             this.kryptonPanel2.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonPanel2.TabIndex = 15;
             // 
-            // kryptonLabel3
+            // zoomControl
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(68, 7);
-            this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(31, 27);
-            this.kryptonLabel3.TabIndex = 14;
-            this.kryptonLabel3.Values.Image = global::VideoEditor.Properties.Resources.camera;
-            this.kryptonLabel3.Values.Text = "";
+            this.zoomControl.Location = new System.Drawing.Point(92, 8);
+            this.zoomControl.Name = "zoomControl";
+            this.zoomControl.Size = new System.Drawing.Size(31, 27);
+            this.zoomControl.TabIndex = 0;
+            this.zoomControl.Values.Image = global::VideoEditor.Properties.Resources.zoom;
+            this.zoomControl.Values.Text = "";
+            this.zoomControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZoomControlMC);
+            this.zoomControl.MouseEnter += new System.EventHandler(this.ZoomControlME);
+            this.zoomControl.MouseLeave += new System.EventHandler(this.ZoomControlML);
+            // 
+            // btnZoomLen
+            // 
+            this.btnZoomLen.Location = new System.Drawing.Point(52, 8);
+            this.btnZoomLen.Name = "btnZoomLen";
+            this.btnZoomLen.Size = new System.Drawing.Size(31, 27);
+            this.btnZoomLen.TabIndex = 15;
+            this.btnZoomLen.Values.Image = global::VideoEditor.Properties.Resources.zoomLen;
+            this.btnZoomLen.Values.Text = "";
+            this.btnZoomLen.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnZoomLenMC);
+            this.btnZoomLen.MouseEnter += new System.EventHandler(this.ZoomlenME);
+            this.btnZoomLen.MouseLeave += new System.EventHandler(this.ZoomLenML);
+            // 
+            // btnChupManHinh
+            // 
+            this.btnChupManHinh.Location = new System.Drawing.Point(134, 7);
+            this.btnChupManHinh.Name = "btnChupManHinh";
+            this.btnChupManHinh.Size = new System.Drawing.Size(31, 27);
+            this.btnChupManHinh.TabIndex = 14;
+            this.btnChupManHinh.Values.Image = global::VideoEditor.Properties.Resources.camera;
+            this.btnChupManHinh.Values.Text = "";
+            this.btnChupManHinh.MouseEnter += new System.EventHandler(this.btnChupManHinhME);
+            this.btnChupManHinh.MouseLeave += new System.EventHandler(this.btnChupManHinhML);
             // 
             // lb_gopVideo
             // 
-            this.lb_gopVideo.Location = new System.Drawing.Point(112, 7);
+            this.lb_gopVideo.Location = new System.Drawing.Point(178, 7);
             this.lb_gopVideo.Name = "lb_gopVideo";
             this.lb_gopVideo.Size = new System.Drawing.Size(31, 26);
             this.lb_gopVideo.TabIndex = 13;
             this.lb_gopVideo.Values.Image = global::VideoEditor.Properties.Resources.merge;
             this.lb_gopVideo.Values.Text = "";
             this.lb_gopVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gopVideoClick);
+            this.lb_gopVideo.MouseEnter += new System.EventHandler(this.lb_gopVideoME);
+            this.lb_gopVideo.MouseLeave += new System.EventHandler(this.lb_gopVideoML);
+            // 
+            // panel_chonVideoBanDau
+            // 
+            this.panel_chonVideoBanDau.Controls.Add(this.btn_chonVideo);
+            this.panel_chonVideoBanDau.Location = new System.Drawing.Point(590, 275);
+            this.panel_chonVideoBanDau.Name = "panel_chonVideoBanDau";
+            this.panel_chonVideoBanDau.Size = new System.Drawing.Size(234, 101);
+            this.panel_chonVideoBanDau.TabIndex = 14;
             // 
             // btn_chonVideo
             // 
             this.btn_chonVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_chonVideo.Location = new System.Drawing.Point(0, 0);
             this.btn_chonVideo.Name = "btn_chonVideo";
-            this.btn_chonVideo.Size = new System.Drawing.Size(132, 57);
+            this.btn_chonVideo.Size = new System.Drawing.Size(234, 101);
             this.btn_chonVideo.TabIndex = 12;
             this.btn_chonVideo.Values.Text = "Mở";
             this.btn_chonVideo.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
-            // panel_chonVideoBanDau
+            // ucChoiVideo
             // 
-            this.panel_chonVideoBanDau.Controls.Add(this.btn_chonVideo);
-            this.panel_chonVideoBanDau.Location = new System.Drawing.Point(597, 280);
-            this.panel_chonVideoBanDau.Name = "panel_chonVideoBanDau";
-            this.panel_chonVideoBanDau.Size = new System.Drawing.Size(132, 57);
-            this.panel_chonVideoBanDau.TabIndex = 14;
+            this.ucChoiVideo.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.ucChoiVideo.batKinhLup = false;
+            this.ucChoiVideo.batZoomControl = false;
+            this.ucChoiVideo.Location = new System.Drawing.Point(181, 44);
+            this.ucChoiVideo.Name = "ucChoiVideo";
+            this.ucChoiVideo.Size = new System.Drawing.Size(941, 526);
+            this.ucChoiVideo.TabIndex = 12;
+            this.ucChoiVideo.thoiGianDangPhat = 1;
+            this.ucChoiVideo.tocDoPhat = 1F;
             // 
             // frmPhatVideo
             // 
@@ -501,9 +494,8 @@ namespace VideoEditor
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1126, 651);
             this.Controls.Add(this.panel_chonVideoBanDau);
+            this.Controls.Add(this.ucChoiVideo);
             this.Controls.Add(this.panel_congCu);
-            this.Controls.Add(this.vlc_phatVideo);
-            this.Controls.Add(this.kryptonGallery1);
             this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.panel_dieuKhien);
             this.ForeColor = System.Drawing.Color.White;
@@ -522,7 +514,6 @@ namespace VideoEditor
             this.kryptonPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            //((System.ComponentModel.ISupportInitialize)(this.vlc_phatVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel_dieuKhien)).EndInit();
             this.panel_dieuKhien.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panel_chuaCacNutDieuKhien)).EndInit();
@@ -549,20 +540,17 @@ namespace VideoEditor
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_themVideo;
         private System.Windows.Forms.FlowLayoutPanel flowLayOut_chuaCacVideo;
         private System.Windows.Forms.Panel panel1;
-        private ComponentFactory.Krypton.Ribbon.KryptonGallery kryptonGallery1;
         private System.ComponentModel.BackgroundWorker bgw_choLayAnhDaiDien;
-        private Vlc.DotNet.Forms.VlcControl vlc_phatVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_DangPhat;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_tongThoiGian;
         private System.Windows.Forms.Timer timer_layThoiGianVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_playPause;
-        private System.Windows.Forms.Timer timer_choVLCphanHoi;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel panel_dieuKhien;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel panel_congCu;
         private ucThanhTruot ucThanhTruot_tuaVideo;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel3;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel btnChupManHinh;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_gopVideo;
         private ucThanhTruot ucThanhTruot_amThanh;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel btn_loa;
@@ -570,9 +558,7 @@ namespace VideoEditor
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_tuaCham;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_quayLai10s;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_tuaNhanh;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_phongTo;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_chonVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel panel_chonVideoBanDau;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_tien10s;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel panel_chuaCacNutDieuKhien;
@@ -580,5 +566,9 @@ namespace VideoEditor
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel3;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel prevSpeed;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel nextSpeed;
+        private ucChoiVideo ucChoiVideo;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btn_chonVideo;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel btnZoomLen;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel zoomControl;
     }
 }

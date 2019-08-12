@@ -18,6 +18,7 @@ namespace VideoEditor
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new mainForm());
             Application.Run(new frmPhatVideo());
+            //Application.Run(new test());
         }
     }
 }

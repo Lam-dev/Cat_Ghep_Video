@@ -73,7 +73,6 @@
             this.btn_remove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.comboBox_pickRate = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.btn_phatDung = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.vlcControl1 = new Vlc.DotNet.Forms.VlcControl();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
             this.GrV_thongTinCat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.video = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +87,7 @@
             this.backgroundWorker_catVideo = new System.ComponentModel.BackgroundWorker();
             this.timer_choVLCphanHoi = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.ucChoiVideo = new VideoEditor.ucChoiVideo();
             this.userControl11 = new VideoEditor.UserControl1();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -113,7 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbb_dinhDangXuat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBox_pickRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vlcControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
             this.kryptonGroupBox2.Panel.SuspendLayout();
@@ -156,7 +155,10 @@
             // 
             // kryptonGroupBox1
             // 
+            this.kryptonGroupBox1.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.GroupBoxCaption;
             this.kryptonGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonGroupBox1.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
+            this.kryptonGroupBox1.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ControlGroupBox;
             this.kryptonGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.kryptonGroupBox1.Name = "kryptonGroupBox1";
             // 
@@ -170,6 +172,7 @@
             // listView_showListVideo
             // 
             this.listView_showListVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView_showListVideo.HideSelection = false;
             this.listView_showListVideo.Location = new System.Drawing.Point(0, 0);
             this.listView_showListVideo.MultiSelect = false;
             this.listView_showListVideo.Name = "listView_showListVideo";
@@ -212,6 +215,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.ucChoiVideo);
             this.panel.Controls.Add(this.tongThoiGian);
             this.panel.Controls.Add(this.kryptonLabel9);
             this.panel.Controls.Add(this.dangPhat);
@@ -235,7 +239,6 @@
             this.panel.Controls.Add(this.comboBox_pickRate);
             this.panel.Controls.Add(this.userControl11);
             this.panel.Controls.Add(this.btn_phatDung);
-            this.panel.Controls.Add(this.vlcControl1);
             this.panel.Controls.Add(this.kryptonGroupBox2);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(207, 3);
@@ -362,6 +365,9 @@
             // 
             // kryptonGroupBox3
             // 
+            this.kryptonGroupBox3.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.GroupBoxCaption;
+            this.kryptonGroupBox3.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
+            this.kryptonGroupBox3.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ControlGroupBox;
             this.kryptonGroupBox3.Location = new System.Drawing.Point(626, 459);
             this.kryptonGroupBox3.Name = "kryptonGroupBox3";
             // 
@@ -483,7 +489,7 @@
             // 
             this.tb_exportFilePath.Location = new System.Drawing.Point(90, 8);
             this.tb_exportFilePath.Name = "tb_exportFilePath";
-            this.tb_exportFilePath.Size = new System.Drawing.Size(146, 20);
+            this.tb_exportFilePath.Size = new System.Drawing.Size(146, 23);
             this.tb_exportFilePath.StateDisabled.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_exportFilePath.StateNormal.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_exportFilePath.TabIndex = 18;
@@ -502,7 +508,7 @@
             // 
             this.tb_exportFileName.Location = new System.Drawing.Point(90, 34);
             this.tb_exportFileName.Name = "tb_exportFileName";
-            this.tb_exportFileName.Size = new System.Drawing.Size(146, 20);
+            this.tb_exportFileName.Size = new System.Drawing.Size(146, 23);
             this.tb_exportFileName.TabIndex = 20;
             // 
             // btn_playVideoCut
@@ -590,22 +596,11 @@
             this.btn_phatDung.Values.Text = "";
             this.btn_phatDung.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
-            // vlcControl1
-            // 
-            this.vlcControl1.BackColor = System.Drawing.Color.White;
-            this.vlcControl1.Location = new System.Drawing.Point(14, 25);
-            this.vlcControl1.Name = "vlcControl1";
-            this.vlcControl1.Size = new System.Drawing.Size(683, 376);
-            this.vlcControl1.Spu = -1;
-            this.vlcControl1.TabIndex = 3;
-            this.vlcControl1.Text = "vlcControl1";
-            this.vlcControl1.VlcLibDirectory = new System.IO.DirectoryInfo(@"..\..\libvlc\win-x86");
-            this.vlcControl1.VlcMediaplayerOptions = null;
-            this.vlcControl1.Click += new System.EventHandler(this.vlcControl1_Click);
-            this.vlcControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.vlcControlMouseClick);
-            // 
             // kryptonGroupBox2
             // 
+            this.kryptonGroupBox2.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.GroupBoxCaption;
+            this.kryptonGroupBox2.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
+            this.kryptonGroupBox2.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ControlGroupBox;
             this.kryptonGroupBox2.Location = new System.Drawing.Point(88, 459);
             this.kryptonGroupBox2.Name = "kryptonGroupBox2";
             // 
@@ -706,9 +701,21 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // ucChoiVideo
+            // 
+            this.ucChoiVideo.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.ucChoiVideo.batKinhLup = false;
+            this.ucChoiVideo.batZoomControl = false;
+            this.ucChoiVideo.Location = new System.Drawing.Point(10, 9);
+            this.ucChoiVideo.Name = "ucChoiVideo";
+            this.ucChoiVideo.Size = new System.Drawing.Size(683, 375);
+            this.ucChoiVideo.TabIndex = 38;
+            this.ucChoiVideo.thoiGianDangPhat = 0;
+            this.ucChoiVideo.tocDoPhat = 1F;
+            // 
             // userControl11
             // 
-            this.userControl11.Location = new System.Drawing.Point(14, 391);
+            this.userControl11.Location = new System.Drawing.Point(9, 391);
             this.userControl11.Name = "userControl11";
             this.userControl11.Size = new System.Drawing.Size(683, 62);
             this.userControl11.startPointPos = 0D;
@@ -758,7 +765,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbb_dinhDangXuat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBox_pickRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vlcControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
             this.kryptonGroupBox2.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).EndInit();
@@ -828,7 +834,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel dangPhat;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel tongThoiGian;
-        private Vlc.DotNet.Forms.VlcControl vlcControl1;
+        private ucChoiVideo ucChoiVideo;
     }
 }
 

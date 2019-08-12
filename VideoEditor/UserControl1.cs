@@ -14,6 +14,7 @@ namespace VideoEditor
     public delegate void PlayingPointHandler(object sender, playingPointEvent e);
     public partial class UserControl1 : UserControl
     {
+        bool _daThayDoiViTriPhat = false;
         private TimeSpan _videoDuration;
         public TimeSpan videoDuration
         {
@@ -128,6 +129,24 @@ namespace VideoEditor
         private void stopButton_mouseMove(object sender, MouseEventArgs e)
         {
             startPointHold = false; 
+            var arg = new doubleScrollBarEvent()
+                {
+                    startPointChange = true,
+                    value = SecondToTimespan(_videoDuration.TotalSeconds / 100 * _startPointPos),
+                    subTime = _stopPointPos - _startPointPos,
+                };
+            pointLocationChange(this, arg);
+            if (_daThayDoiViTriPhat)
+            {
+                var argPlayingPoint = new playingPointEvent()
+                {
+                    //value = ((float)poin_playing.Location.X / (float)bar.Width * (float)videoDuration.TotalSeconds)
+                    value = (double)mappingValue(poin_playing.Location.X, SB_startPoint.Width + SB_startPoint.Location.X, SB_stopPoint.Location.X) * (double)(stopPointTime - startPointTime) / 100 + startPointTime
+                };
+                playingPointChange(this, argPlayingPoint);
+                _daThayDoiViTriPhat = false;
+            }
+
         }
 
         private void SB_stopPoint_MouseDown(object sender, MouseEventArgs e)
@@ -137,7 +156,24 @@ namespace VideoEditor
 
         private void SB_stopPoint_mouseUp(object sender, MouseEventArgs e)
         {
-            stopPointHold = false; 
+            stopPointHold = false;
+            var arg = new doubleScrollBarEvent()
+            {
+                startPointChange = false,
+                value = SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100),
+                subTime = _stopPointPos - _startPointPos,
+            };
+            pointLocationChange(this, arg);
+            if (_daThayDoiViTriPhat)
+            {
+                var argPlayingPoint = new playingPointEvent()
+                {
+                    //value = ((float)poin_playing.Location.X / (float)bar.Width * (float)videoDuration.TotalSeconds)
+                    value = (double)mappingValue(poin_playing.Location.X, SB_startPoint.Width + SB_startPoint.Location.X, SB_stopPoint.Location.X) * (double)(stopPointTime - startPointTime) / 100 + startPointTime
+                };
+                playingPointChange(this, argPlayingPoint);
+                _daThayDoiViTriPhat = false;
+            }
         }
 
         private int mappingValue(int curentPos, int minValue, int maxValue)
@@ -183,13 +219,7 @@ namespace VideoEditor
                 }
                 lb_startTime.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds* _startPointPos / 100));
 
-                var arg = new doubleScrollBarEvent()
-                {
-                    startPointChange = true,
-                    value = SecondToTimespan(_videoDuration.TotalSeconds / 100 * _startPointPos),
-                    subTime = _stopPointPos - _startPointPos,
-                };
-                pointLocationChange(this, arg);
+                
             }
         }
 
@@ -218,13 +248,7 @@ namespace VideoEditor
                     lb_stopPoint.Location = new Point(lb_startTime.Location.X + lb_startTime.Width, 0);
                 }
                 lb_stopPoint.Text = TimeSpanToString(SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100));
-                var arg = new doubleScrollBarEvent()
-                {
-                    startPointChange = false,
-                    value = SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100),
-                    subTime = _stopPointPos - _startPointPos,
-                };
-                pointLocationChange(this, arg);
+               
             }
         }
 
@@ -252,6 +276,13 @@ namespace VideoEditor
         private void poin_playingMU(object sender, MouseEventArgs e)
         {
             pointPlayingHold = false;
+            var arg = new doubleScrollBarEvent()
+            {
+                startPointChange = false,
+                value = SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100),
+                subTime = _stopPointPos - _startPointPos,
+            };
+            pointLocationChange(this, arg);
         }
 
         private void poin_playingMM(object sender, MouseEventArgs e)
@@ -270,12 +301,13 @@ namespace VideoEditor
         {
             if (pointPlayingHold | startPointHold | stopPointHold)
             {
-                var arg = new playingPointEvent()
-                {
-                    //value = ((float)poin_playing.Location.X / (float)bar.Width * (float)videoDuration.TotalSeconds)
-                    value =(double)mappingValue(poin_playing.Location.X, SB_startPoint.Width+SB_startPoint.Location.X, SB_stopPoint.Location.X) * (double)(stopPointTime - startPointTime) / 100 + startPointTime
-                };
-                playingPointChange(this, arg);
+                _daThayDoiViTriPhat = true;
+                //var arg = new playingPointEvent()
+                //{
+                //    //value = ((float)poin_playing.Location.X / (float)bar.Width * (float)videoDuration.TotalSeconds)
+                //    value =(double)mappingValue(poin_playing.Location.X, SB_startPoint.Width+SB_startPoint.Location.X, SB_stopPoint.Location.X) * (double)(stopPointTime - startPointTime) / 100 + startPointTime
+                //};
+                //playingPointChange(this, arg);
             }
         }
 

@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace VideoEditor
 {
 
@@ -25,8 +24,6 @@ namespace VideoEditor
         public frmPhatVideo()
         {
             InitializeComponent();
-            this.vlc_phatVideo.VlcLibDirectory = new System.IO.DirectoryInfo(@"..\..\libvlc\win-x86");
-            ((System.ComponentModel.ISupportInitialize)(this.vlc_phatVideo)).EndInit();
         }
 
         private async void lb_themVideoClick(object sender, MouseEventArgs e)
@@ -61,30 +58,23 @@ namespace VideoEditor
             foreach (var path in danhSachVideo)
             {
                 var inputFile = new MediaFile(path);
-                var outputFile = new MediaFile("thum.jpg");
-                var options = new ConversionOptions { Seek = TimeSpan.FromSeconds(2) };
-                var task = ffmpeg.GetThumbnailAsync(inputFile, outputFile, options);
-                task.Wait(1000);
-                var file = File.Exists("thum.jpg");
-                if (file)
+                try
                 {
-                    try
+                  
+                    var anhDaiDien = ucChoiVideo.LayAnhDaiDienVideo(path);
+                    flowLayOut_chuaCacVideo.Invoke(new MethodInvoker(delegate ()
                     {
-                        var imageStream = new FileStream("thum.jpg", FileMode.Open);
-                        flowLayOut_chuaCacVideo.Invoke(new MethodInvoker(delegate ()
-                        {
-                            dsVideoControl.Add(new ucDaiDienVideo(flowLayOut_chuaCacVideo.Controls.Count, (Bitmap)Bitmap.FromStream(imageStream), path, inputFile.FileInfo.Name, byteToMegabye(inputFile.FileInfo.Length)));
-                            flowLayOut_chuaCacVideo.Controls.Add(dsVideoControl[dsVideoControl.Count - 1]);
-                            dsVideoControl[dsVideoControl.Count - 1].anhDaiDienClick += new VideoEditor.anhDaiDienVideoClick(chonPhatVideo);
-                            dsVideoControl[dsVideoControl.Count - 1].iMouseMove += new MouseEventHandler(danhSachVideo_MM);
-                        }));
-                        imageStream.Dispose();
+                        dsVideoControl.Add(new ucDaiDienVideo(flowLayOut_chuaCacVideo.Controls.Count, anhDaiDien, path, inputFile.FileInfo.Name, byteToMegabye(inputFile.FileInfo.Length)));
+                        flowLayOut_chuaCacVideo.Controls.Add(dsVideoControl[dsVideoControl.Count - 1]);
+                        dsVideoControl[dsVideoControl.Count - 1].anhDaiDienClick += new VideoEditor.anhDaiDienVideoClick(chonPhatVideo);
+                        dsVideoControl[dsVideoControl.Count - 1].iMouseMove += new MouseEventHandler(danhSachVideo_MM);
+                    }));
+                   
 
-                    }
-                    catch
-                    { }
-                    File.Delete("thum.jpg");
                 }
+                catch
+                { }
+             
             }
         }
 
@@ -119,15 +109,15 @@ namespace VideoEditor
             }
             else
             {
-                vlc_phatVideo.Play(new FileInfo(e.filePath));
+                ucChoiVideo.Play(e.filePath);
                 var video = new MediaFile(e.filePath);
-                //var task =  ffmpeg.GetMetaDataAsync(video);
-                //lb_tongThoiGian.Text = thongTinVideo.Duration.ToString();
+        
                 await layThongTinVideo(video);
                 timer_layThoiGianVideo.Start();
                 dangChonNhieu = false;
                 dsDangChon.Clear();
-                timer_choVLCphanHoi.Start();
+                thayDoiIconPlayPause();
+
             }
         }
 
@@ -151,9 +141,9 @@ namespace VideoEditor
 
         private void timer_layThoiGianVideo_Tick(object sender, EventArgs e)
         {
-            if (vlc_phatVideo.IsPlaying)
+            if (ucChoiVideo.dangChay)
             {
-                var x = vlc_phatVideo.Time;
+                var x = ucChoiVideo.thoiGianDangPhat;
                 lb_DangPhat.Text = mainForm.TimeSpanToString(mainForm.SecondToTimespan(x / 1000));
                 ucThanhTruot_tuaVideo.phanTramHienTai = x / thongTinVideo.Duration.TotalMilliseconds * 100;
             }
@@ -173,8 +163,8 @@ namespace VideoEditor
             try
             {
                 var thoiGianTuongUng = thongTinVideo.Duration.TotalMilliseconds * e.phanTramThanhCuon / 100;
-                vlc_phatVideo.Time = (long)thoiGianTuongUng;
-                lb_DangPhat.Text = mainForm.TimeSpanToString(mainForm.SecondToTimespan(vlc_phatVideo.Time / 1000));
+                ucChoiVideo.thoiGianDangPhat = (int)thoiGianTuongUng;
+                lb_DangPhat.Text = mainForm.TimeSpanToString(mainForm.SecondToTimespan(thoiGianTuongUng / 1000));
             }
             catch
             {
@@ -189,7 +179,7 @@ namespace VideoEditor
 
         private void thayDoiIconPlayPause()
         {
-            if (vlc_phatVideo.IsPlaying)
+            if (ucChoiVideo.dangChay)
             {
 
                 lb_playPause.Values.Image = Properties.Resources.pauseLeave;
@@ -200,37 +190,35 @@ namespace VideoEditor
                 lb_playPause.Values.Image = Properties.Resources.playleave;
 
             }
-            timer_choVLCphanHoi.Stop();
+            
         }
 
         private void playPauseMouseClick(object sender, MouseEventArgs e)
         {
-            if (vlc_phatVideo.IsPlaying)
+            if (ucChoiVideo.dangChay)
             {
-                vlc_phatVideo.Pause();
-                timer_choVLCphanHoi.Start();
+                ucChoiVideo.Pause();
+               
 
             }
             else
             {
-                vlc_phatVideo.Play();
-                timer_choVLCphanHoi.Start();
+                ucChoiVideo.Play();
+          
             }
+            thayDoiIconPlayPause();
         }
 
         private void gopVideoClick(object sender, MouseEventArgs e)
         {
-            vlc_phatVideo.Stop();
+            ucChoiVideo.Stop();
             panel_chonVideoBanDau.Visible = true;
-            timer_choVLCphanHoi.Stop();
+            //timer_choVLCphanHoi.Stop();
             new mainForm().ShowDialog();
         }
 
         private void formResizeEnd(object sender, EventArgs e)
         {
-            //flowLayOut_chuaCacVideo.Size = new Size(flowLayOut_chuaCacVideo.Width, kryptonPanel1.Height - panel1.Height);
-            //vlc_phatVideo.Size = new Size((this.Width - kryptonPanel1.Width - 10), kryptonPanel1.Height - 70);
-            //panel_chuaThanhCuonVaNutNhan.Location = new Point(vlc_phatVideo.Location.X + (vlc_phatVideo.Width - panel_chuaThanhCuonVaNutNhan.Width) / 2, kryptonPanel1.Location.Y + kryptonPanel1.Height - panel_chuaThanhCuonVaNutNhan.Height);
             canChinhForm();
         }
 
@@ -329,31 +317,10 @@ namespace VideoEditor
             ucThanhTruot_amThanh.mauDuongRay = Color.FromArgb(255, 196, 196, 196);
         }
 
-        private void lb_DangPhat_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btn_loa_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lb_xoaDaiDien_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void timKiemMouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-
         private void thayDoiGiaTriAmThanh(object sender, cuonVideoArgs e)
         {
 
-            vlc_phatVideo.Audio.Volume = (int)e.phanTramThanhCuon;
+            ucChoiVideo.Audio.Volume = (int)e.phanTramThanhCuon;
             if ((int)e.phanTramThanhCuon <= 5)
             {
                 btn_loa.Values.Image = VideoEditor.Properties.Resources.speaker_mute;
@@ -366,8 +333,10 @@ namespace VideoEditor
 
         private void dungPhatVideoClick(object sender, MouseEventArgs e)
         {
-            vlc_phatVideo.Stop();
+            ucChoiVideo.Stop();
             panel_chonVideoBanDau.Visible = true;
+            
+            
         }
 
         private async void kryptonButton1_Click(object sender, EventArgs e)
@@ -394,7 +363,7 @@ namespace VideoEditor
                 bgw_choLayAnhDaiDien.RunWorkerAsync(argument: danhSachPath);
                 try
                 {
-                    vlc_phatVideo.Play(new FileInfo(danhSachPath[0]));
+                    ucChoiVideo.Play(danhSachPath[0]);
                     panel_chonVideoBanDau.Visible = false;
                     var video = new MediaFile(danhSachPath[0]);
                     await layThongTinVideo(video);
@@ -418,15 +387,7 @@ namespace VideoEditor
             lb_playPause.Values.Image = VideoEditor.Properties.Resources.playEnter;
         }
 
-        private void lb_stop_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void kryptonLabel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+     
 
         private void nutDieuKhien_ME(object sender, EventArgs e)
         {
@@ -457,7 +418,7 @@ namespace VideoEditor
             }
             if ((sender as Control) == lb_playPause)
             {
-                if (vlc_phatVideo.IsPlaying)
+                if (ucChoiVideo.dangChay)
                     lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseEnter;
                 else
                     lb_playPause.Values.Image = VideoEditor.Properties.Resources.playEnter;
@@ -468,11 +429,7 @@ namespace VideoEditor
                 lb_themVideo.Values.Image = VideoEditor.Properties.Resources.addImageLeave;
                 return;
             }
-            if ((sender as Control) == lb_)
-            {
-                lb_.Values.Image = VideoEditor.Properties.Resources.searchIconLeave;
-                return;
-            }
+            
             if ((sender as Control) == lb_xoaDaiDien)
             {
                 lb_xoaDaiDien.Values.Image = VideoEditor.Properties.Resources.Webp_net_resizeimage_leave;
@@ -510,7 +467,7 @@ namespace VideoEditor
             }
             if ((sender as Control) == lb_playPause)
             {
-                if (vlc_phatVideo.IsPlaying)
+                if (ucChoiVideo.dangChay)
                     lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
                 else
                     lb_playPause.Values.Image = VideoEditor.Properties.Resources.playleave;
@@ -520,11 +477,7 @@ namespace VideoEditor
                 lb_themVideo.Values.Image = VideoEditor.Properties.Resources.addImage;
                 return;
             }
-            if ((sender as Control) == lb_)
-            {
-                lb_.Values.Image = VideoEditor.Properties.Resources.searchIcon;
-                return;
-            }
+          
             if ((sender as Control) == lb_xoaDaiDien)
             {
                 lb_xoaDaiDien.Values.Image = VideoEditor.Properties.Resources.Webp_net_resizeimage__3_;
@@ -532,10 +485,6 @@ namespace VideoEditor
             }
         }
 
-        private void vlc_phatVideo_Click(object sender, EventArgs e)
-        {
-
-        }
         private void canChinhForm()
         {
             panel1.Location = new Point(0, 0);
@@ -544,29 +493,31 @@ namespace VideoEditor
             panel_congCu.Location = new Point(kryptonPanel1.Width, 0);
             panel_dieuKhien.Location = new Point(kryptonPanel1.Width +  kryptonPanel1.Location.X, kryptonPanel1.Location.X + kryptonPanel1.Height - panel_dieuKhien.Height);
             panel_dieuKhien.Width = panel_congCu.Width;
-            vlc_phatVideo.Location = new Point(panel_congCu.Location.X, panel_congCu.Height);
-            vlc_phatVideo.Size = new Size(panel_congCu.Width, panel_dieuKhien.Location.Y - panel_congCu.Height);
+            ucChoiVideo.Location = new Point(panel_congCu.Location.X, panel_congCu.Height);
+            ucChoiVideo.Size = new Size(panel_congCu.Width, panel_dieuKhien.Location.Y - panel_congCu.Height);
             lb_DangPhat.Location = new Point(0, lb_DangPhat.Location.Y);
             lb_tongThoiGian.Location = new Point(panel_dieuKhien.Width - lb_tongThoiGian.Width, lb_tongThoiGian.Location.Y);
             ucThanhTruot_tuaVideo.Location = new Point(lb_DangPhat.Width, ucThanhTruot_tuaVideo.Location.Y);
             ucThanhTruot_tuaVideo.Width = lb_tongThoiGian.Location.X - lb_DangPhat.Width;
             panel_chuaCacNutDieuKhien.Location = new Point((panel_dieuKhien.Width - panel_chuaCacNutDieuKhien.Width) / 2, panel_chuaCacNutDieuKhien.Location.Y);
+            ucChoiVideo.ChuyenKinhLupRaGiua();
+            ucChoiVideo.ChuyenKhungNhinToanCanhXuongGoc();
         }
 
         private void lb_tien10sMC(object sender, MouseEventArgs e)
         {
-            vlc_phatVideo.Rate = (float)1;
+            ucChoiVideo.tocDoPhat = (float)1;
             nextSpeed.Text = "";
             prevSpeed.Text = "";
-            vlc_phatVideo.Time = vlc_phatVideo.Time + 10000;
+            ucChoiVideo.thoiGianDangPhat = ucChoiVideo.thoiGianDangPhat + 10000;
         }
 
         private void lb_quayLai10s_MC(object sender, MouseEventArgs e)
         {
-            vlc_phatVideo.Rate = (float)1;
+            ucChoiVideo.tocDoPhat = (float)1;
             nextSpeed.Text = "";
             prevSpeed.Text = "";
-            vlc_phatVideo.Time = vlc_phatVideo.Time - 10000;
+            ucChoiVideo.thoiGianDangPhat = ucChoiVideo.thoiGianDangPhat - 10000;
         }
 
         private void nutDieuKhien_MC(object sender, MouseEventArgs e)
@@ -580,23 +531,23 @@ namespace VideoEditor
                 case "0.25":
                     nextSpeed.Text = "1.5X";
                     prevSpeed.Text = "";
-                    vlc_phatVideo.Rate = (float)1.5;
+                    ucChoiVideo.tocDoPhat = (float)1.5;
                     break;
                 case "1.5X":
                     nextSpeed.Text = "2X";
-                    vlc_phatVideo.Rate = (float)2;
+                    ucChoiVideo.tocDoPhat = (float)2;
                     break;
                 case "2X":
                     nextSpeed.Text = "3X";
-                    vlc_phatVideo.Rate = (float)3;
+                    ucChoiVideo.tocDoPhat = (float)3;
                     break;
                 case "3X":
                     nextSpeed.Text = "4X";
-                    vlc_phatVideo.Rate = (float)4;
+                    ucChoiVideo.tocDoPhat = (float)4;
                     break;
                 case "4X":
                     nextSpeed.Text = "";
-                    vlc_phatVideo.Rate = (float)1;
+                    ucChoiVideo.tocDoPhat = (float)1;
                     break;
             }
         }
@@ -613,27 +564,73 @@ namespace VideoEditor
                 case "4X":
                     prevSpeed.Text = "0.75X";
                     nextSpeed.Text = "";
-                    vlc_phatVideo.Rate = (float)0.75;
+                    ucChoiVideo.tocDoPhat = (float)0.75;
                     break;
                 case "0.75X":
                     prevSpeed.Text = "0.5X";
-                    vlc_phatVideo.Rate = (float)0.5;
+                    ucChoiVideo.tocDoPhat = (float)0.5;
                     break;
                 case "0.5X":
                     prevSpeed.Text = "0.25X";
-                    vlc_phatVideo.Rate = (float)0.25;
+                    ucChoiVideo.tocDoPhat = (float)0.25;
                     break;
                 case "0.25X":
                     prevSpeed.Text = "";
-                    vlc_phatVideo.Rate = (float)1;
+                    ucChoiVideo.tocDoPhat = (float)1;
                     break;
             }
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private void ZoomlenME(object sender, EventArgs e)
         {
-
+            btnZoomLen.Values.Image = VideoEditor.Properties.Resources.zoomLenEnter;
         }
+
+        private void ZoomLenML(object sender, EventArgs e)
+        {
+            btnZoomLen.Values.Image = VideoEditor.Properties.Resources.zoomLen;
+        }
+
+        private void ZoomControlME(object sender, EventArgs e)
+        {
+            zoomControl.Values.Image = VideoEditor.Properties.Resources.zoomEnter;
+        }
+
+        private void ZoomControlML(object sender, EventArgs e)
+        {
+            zoomControl.Values.Image = VideoEditor.Properties.Resources.zoom;
+        }
+
+        private void btnZoomLenMC(object sender, MouseEventArgs e)
+        {
+            ucChoiVideo.batKinhLup = !ucChoiVideo.batKinhLup;
+        }
+
+        private void btnZoomControlMC(object sender, MouseEventArgs e)
+        {
+            ucChoiVideo.batZoomControl = !ucChoiVideo.batZoomControl;
+        }
+
+        private void btnChupManHinhME(object sender, EventArgs e)
+        {
+            btnChupManHinh.Values.Image = VideoEditor.Properties.Resources.cameraMouseEnter;
+        }
+
+        private void btnChupManHinhML(object sender, EventArgs e)
+        {
+            btnChupManHinh.Values.Image = VideoEditor.Properties.Resources.camera;
+        }
+
+        private void lb_gopVideoME(object sender, EventArgs e)
+        {
+            lb_gopVideo.Values.Image = VideoEditor.Properties.Resources.mergeMouseEnter;
+        }
+
+        private void lb_gopVideoML(object sender, EventArgs e)
+        {
+            lb_gopVideo.Values.Image = VideoEditor.Properties.Resources.merge;
+        }
+
     }
 }
 

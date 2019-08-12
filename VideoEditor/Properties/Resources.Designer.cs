@@ -123,6 +123,16 @@ namespace VideoEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cameraMouseEnter {
+            get {
+                object obj = ResourceManager.GetObject("cameraMouseEnter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap frame_next {
             get {
                 object obj = ResourceManager.GetObject("frame_next", resourceCulture);
@@ -146,6 +156,16 @@ namespace VideoEditor.Properties {
         internal static System.Drawing.Bitmap merge {
             get {
                 object obj = ResourceManager.GetObject("merge", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mergeMouseEnter {
+            get {
+                object obj = ResourceManager.GetObject("mergeMouseEnter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -503,6 +523,16 @@ namespace VideoEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Webp_net_resizeimage__2_1 {
+            get {
+                object obj = ResourceManager.GetObject("Webp_net_resizeimage__2_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Webp_net_resizeimage__3_ {
             get {
                 object obj = ResourceManager.GetObject("Webp_net_resizeimage__3_", resourceCulture);
@@ -566,6 +596,46 @@ namespace VideoEditor.Properties {
         internal static System.Drawing.Bitmap Webp3 {
             get {
                 object obj = ResourceManager.GetObject("Webp3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zoom {
+            get {
+                object obj = ResourceManager.GetObject("zoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zoomEnter {
+            get {
+                object obj = ResourceManager.GetObject("zoomEnter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zoomLen {
+            get {
+                object obj = ResourceManager.GetObject("zoomLen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zoomLenEnter {
+            get {
+                object obj = ResourceManager.GetObject("zoomLenEnter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

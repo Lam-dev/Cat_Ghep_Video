@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace VideoEditor
 {
+    public delegate void NhanNhaNutCuonHandle(object sender, NutCuonDuocNhanArgs NutCuonArgs);
     public partial class ucThanhTruot : UserControl
     {
         public ucThanhTruot()
@@ -66,17 +67,39 @@ namespace VideoEditor
             panel_duongRay.Location = new Point(panel_redPoint.Width / 2, (panel_nen.Height - panel_duongRay.Height) / 2);
             panel_daQua.Location = new Point(0, 0);
             panel_daQua.Size = new Size(panel_redPoint.Location.X, panel_duongRay.Height);
-            bienDoTruot = panel_duongRay.Width - panel_redPoint.Width - 1;
+            bienDoTruot = panel_nen.Width  - panel_redPoint.Width;
         }
-
+        public event NhanNhaNutCuonHandle nhanNhaNutCuon;
         private void diemPhat_MD(object sender, MouseEventArgs e)
         {
             mouseHold = true;
+            var nutCuonArg = new NutCuonDuocNhanArgs()
+            {
+                duocNhanXuong = true,
+            };
+            if (nhanNhaNutCuon != null)
+                nhanNhaNutCuon(this, nutCuonArg);
+
         }
 
         private void diemPhat_MU(object sender, MouseEventArgs e)
         {
             mouseHold = false;
+            var nutCuonArg = new NutCuonDuocNhanArgs()
+            {
+                duocNhanXuong = false,
+            };
+            if (nhanNhaNutCuon != null)
+                nhanNhaNutCuon(this, nutCuonArg);
+            var phanTramThanhCuon = (double)panel_redPoint.Location.X / (double)(bienDoTruot) * 100;
+
+            var arg = new cuonVideoArgs()
+            {
+                phanTramThanhCuon = phanTramThanhCuon,
+
+            };
+            if (thanhCuonDangTruot != null)
+                thanhCuonDangTruot(this, arg);
         }
         public event cuonVideoHandle thanhCuonDangTruot;
         private void diemPhat_MM(object sender, MouseEventArgs e)
@@ -96,15 +119,15 @@ namespace VideoEditor
                     panel_redPoint.Location = new Point(panel_nen.Width - panel_redPoint.Width);
                     return;
                 }
-                var phanTramThanhCuon = (double)panel_redPoint.Location.X / (double)(bienDoTruot) * 100;
+                //var phanTramThanhCuon = (double)panel_redPoint.Location.X / (double)(bienDoTruot) * 100;
                 
-                var arg = new cuonVideoArgs()
-                {
-                    phanTramThanhCuon = phanTramThanhCuon,
+                //var arg = new cuonVideoArgs()
+                //{
+                //    phanTramThanhCuon = phanTramThanhCuon,
 
-                };
-                if(thanhCuonDangTruot != null)
-                    thanhCuonDangTruot(this, arg);
+                //};
+                //if(thanhCuonDangTruot != null)
+                //    thanhCuonDangTruot(this, arg);
             }
         }
 
@@ -144,5 +167,11 @@ namespace VideoEditor
         {
             tinhKichThuoc();
         }
+
     }
+    public class NutCuonDuocNhanArgs : EventArgs
+    {
+        public bool duocNhanXuong;
+    }
+   
 }
