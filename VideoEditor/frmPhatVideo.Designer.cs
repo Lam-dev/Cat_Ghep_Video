@@ -66,6 +66,7 @@ namespace VideoEditor
             this.panel_chonVideoBanDau = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.btn_chonVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ucChoiVideo = new VideoEditor.ucChoiVideo();
+            this.btnFitFill = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -203,11 +204,8 @@ namespace VideoEditor
             this.panel_dieuKhien.Size = new System.Drawing.Size(947, 75);
             this.panel_dieuKhien.StateCommon.Color1 = System.Drawing.Color.White;
             this.panel_dieuKhien.StateCommon.Color2 = System.Drawing.Color.White;
-            this.panel_dieuKhien.StateCommon.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.panel_dieuKhien.StateDisabled.Color1 = System.Drawing.Color.White;
-            this.panel_dieuKhien.StateDisabled.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.panel_dieuKhien.StateNormal.Color1 = System.Drawing.Color.DarkGray;
-            this.panel_dieuKhien.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.panel_dieuKhien.TabIndex = 10;
             // 
             // ucThanhTruot_tuaVideo
@@ -238,7 +236,6 @@ namespace VideoEditor
             this.panel_chuaCacNutDieuKhien.Size = new System.Drawing.Size(393, 55);
             this.panel_chuaCacNutDieuKhien.StateNormal.Color1 = System.Drawing.Color.Transparent;
             this.panel_chuaCacNutDieuKhien.StateNormal.Color2 = System.Drawing.Color.Transparent;
-            this.panel_chuaCacNutDieuKhien.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.panel_chuaCacNutDieuKhien.TabIndex = 22;
             // 
             // nextSpeed
@@ -248,12 +245,8 @@ namespace VideoEditor
             this.nextSpeed.Size = new System.Drawing.Size(6, 2);
             this.nextSpeed.StateCommon.LongText.Color1 = System.Drawing.Color.White;
             this.nextSpeed.StateCommon.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextSpeed.StateCommon.LongText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.nextSpeed.StateCommon.LongText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.nextSpeed.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.nextSpeed.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextSpeed.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.nextSpeed.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.nextSpeed.TabIndex = 23;
             this.nextSpeed.Values.Text = "";
             // 
@@ -264,12 +257,8 @@ namespace VideoEditor
             this.prevSpeed.Size = new System.Drawing.Size(6, 2);
             this.prevSpeed.StateCommon.LongText.Color1 = System.Drawing.Color.White;
             this.prevSpeed.StateCommon.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prevSpeed.StateCommon.LongText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.prevSpeed.StateCommon.LongText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.prevSpeed.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.prevSpeed.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prevSpeed.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.prevSpeed.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.prevSpeed.TabIndex = 22;
             this.prevSpeed.Values.Text = "";
             // 
@@ -346,7 +335,6 @@ namespace VideoEditor
             this.kryptonPanel3.Name = "kryptonPanel3";
             this.kryptonPanel3.Size = new System.Drawing.Size(203, 75);
             this.kryptonPanel3.StateNormal.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonPanel3.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonPanel3.TabIndex = 23;
             // 
             // btn_loa
@@ -393,11 +381,11 @@ namespace VideoEditor
             this.panel_congCu.Name = "panel_congCu";
             this.panel_congCu.Size = new System.Drawing.Size(947, 44);
             this.panel_congCu.StateNormal.Color1 = System.Drawing.Color.DimGray;
-            this.panel_congCu.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.panel_congCu.TabIndex = 11;
             // 
             // kryptonPanel2
             // 
+            this.kryptonPanel2.Controls.Add(this.btnFitFill);
             this.kryptonPanel2.Controls.Add(this.zoomControl);
             this.kryptonPanel2.Controls.Add(this.btnZoomLen);
             this.kryptonPanel2.Controls.Add(this.btnChupManHinh);
@@ -407,7 +395,6 @@ namespace VideoEditor
             this.kryptonPanel2.Name = "kryptonPanel2";
             this.kryptonPanel2.Size = new System.Drawing.Size(223, 44);
             this.kryptonPanel2.StateNormal.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonPanel2.StateNormal.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonPanel2.TabIndex = 15;
             // 
             // zoomControl
@@ -480,12 +467,25 @@ namespace VideoEditor
             this.ucChoiVideo.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ucChoiVideo.batKinhLup = false;
             this.ucChoiVideo.batZoomControl = false;
+            this.ucChoiVideo.ForeColor = System.Drawing.SystemColors.Control;
             this.ucChoiVideo.Location = new System.Drawing.Point(181, 44);
             this.ucChoiVideo.Name = "ucChoiVideo";
             this.ucChoiVideo.Size = new System.Drawing.Size(941, 526);
             this.ucChoiVideo.TabIndex = 12;
             this.ucChoiVideo.thoiGianDangPhat = 1;
             this.ucChoiVideo.tocDoPhat = 1F;
+            // 
+            // btnFitFill
+            // 
+            this.btnFitFill.Location = new System.Drawing.Point(13, 7);
+            this.btnFitFill.Name = "btnFitFill";
+            this.btnFitFill.Size = new System.Drawing.Size(31, 27);
+            this.btnFitFill.TabIndex = 16;
+            this.btnFitFill.Values.Image = global::VideoEditor.Properties.Resources.fit;
+            this.btnFitFill.Values.Text = "";
+            this.btnFitFill.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFitFillMC);
+            this.btnFitFill.MouseEnter += new System.EventHandler(this.btnFitFillME);
+            this.btnFitFill.MouseLeave += new System.EventHandler(this.btnFitFillML);
             // 
             // frmPhatVideo
             // 
@@ -570,5 +570,6 @@ namespace VideoEditor
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_chonVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel btnZoomLen;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel zoomControl;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel btnFitFill;
     }
 }

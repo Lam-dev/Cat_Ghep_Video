@@ -33,8 +33,8 @@
             this.bgw_choiVideo = new System.ComponentModel.BackgroundWorker();
             this.timer_thoiGianChuyenKhungHinh = new System.Windows.Forms.Timer(this.components);
             this.picbox_nhinToanCanh = new OpenCvSharp.UserInterface.PictureBoxIpl();
-            this.picBox_kinhLup = new VideoEditor.pictureBoxTron();
             this.bgw_layHinhChoKinhLup = new System.ComponentModel.BackgroundWorker();
+            this.picBox_kinhLup = new VideoEditor.pictureBoxTron();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_hienThiVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_nhinToanCanh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_kinhLup)).BeginInit();
@@ -42,14 +42,11 @@
             // 
             // picBox_hienThiVideo
             // 
-            this.picBox_hienThiVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picBox_hienThiVideo.Location = new System.Drawing.Point(0, 0);
             this.picBox_hienThiVideo.Name = "picBox_hienThiVideo";
             this.picBox_hienThiVideo.Size = new System.Drawing.Size(563, 334);
             this.picBox_hienThiVideo.TabIndex = 0;
             this.picBox_hienThiVideo.TabStop = false;
-            this.picBox_hienThiVideo.SizeChanged += new System.EventHandler(this.picBoxSizeChanged);
-            this.picBox_hienThiVideo.Click += new System.EventHandler(this.picBox_hienThiVideo_Click);
             this.picBox_hienThiVideo.MouseEnter += new System.EventHandler(this.picbox_nhinToanCanhME);
             // 
             // bgw_choiVideo
@@ -69,7 +66,14 @@
             this.picbox_nhinToanCanh.TabIndex = 2;
             this.picbox_nhinToanCanh.TabStop = false;
             this.picbox_nhinToanCanh.Visible = false;
+            this.picbox_nhinToanCanh.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picbox_nhinToanCanhMD);
             this.picbox_nhinToanCanh.MouseEnter += new System.EventHandler(this.picbox_nhinToanCanhME);
+            this.picbox_nhinToanCanh.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picBox_nhinToanCanhMM);
+            this.picbox_nhinToanCanh.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picBox_nhinToanCanhMU);
+            // 
+            // bgw_layHinhChoKinhLup
+            // 
+            this.bgw_layHinhChoKinhLup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_layHinhChoKinhLup_DoWork);
             // 
             // picBox_kinhLup
             // 
@@ -84,14 +88,11 @@
             this.picBox_kinhLup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KinhLupMM);
             this.picBox_kinhLup.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KinhLupMU);
             // 
-            // bgw_layHinhChoKinhLup
-            // 
-            this.bgw_layHinhChoKinhLup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_layHinhChoKinhLup_DoWork);
-            // 
             // ucChoiVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.picbox_nhinToanCanh);
             this.Controls.Add(this.picBox_kinhLup);
             this.Controls.Add(this.picBox_hienThiVideo);

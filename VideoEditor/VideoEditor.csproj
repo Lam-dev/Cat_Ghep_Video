@@ -103,6 +103,12 @@
     <Compile Include="circlePanel.Designer.cs">
       <DependentUpon>circlePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl1.Designer.cs">
+      <DependentUpon>CustomControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="pictureBoxTron.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -292,6 +298,10 @@
     <None Include="Resources\zoomLenEnter.png" />
     <None Include="Resources\cameraMouseEnter.png" />
     <None Include="Resources\mergeMouseEnter.png" />
+    <None Include="Resources\fill.png" />
+    <None Include="Resources\fillMouseEnter.png" />
+    <None Include="Resources\fit.png" />
+    <None Include="Resources\fitMouseEnter.png" />
     <Content Include="vlcLib\libvlc.dll" />
     <Content Include="vlcLib\libvlccore.dll" />
     <None Include="Resources\Webp.net-resizeimage.gif" />

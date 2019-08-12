@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using Point = System.Drawing.Point;
+using Size = System.Drawing.Size;
 
 namespace VideoEditor
 {
@@ -26,6 +28,23 @@ namespace VideoEditor
         bool _batKinhLup = false;
         bool _batZoomControl = false;
         int phanTramKhungZoom = 100;
+        bool _khungZoomDuocGiu = false;
+        bool _dangFit;
+
+        public bool dangFit
+        {
+            get
+            {
+                return _dangFit;
+            }
+
+            set
+            {
+                _dangFit = value;
+                KichThuocThayDoi();
+            }
+        }
+        Rect khungZoom;
         public bool batZoomControl
         {
             get
@@ -34,8 +53,14 @@ namespace VideoEditor
             }
             set
             {
-                _batZoomControl = value;
-                picbox_nhinToanCanh.Visible = value;
+                try
+                {
+                    dangFit = false;
+                    khungZoom = new Rect(0, 0, picbox_nhinToanCanh.Width, picbox_nhinToanCanh.Height);
+                    _batZoomControl = value;
+                    picbox_nhinToanCanh.Visible = value;
+                }
+                catch { }
 
             }
 
@@ -105,11 +130,13 @@ namespace VideoEditor
             {
                 _duongDanVideoDangPhat = duongDan;
                 _videoDangPhat = new VideoCapture(_duongDanVideoDangPhat);
+                KichThuocThayDoi();
                 _doDaiVideo = _videoDangPhat.FrameCount / _videoDangPhat.Fps * 1000;
                 timer_thoiGianChuyenKhungHinh.Interval = (int)(1 / _videoDangPhat.Fps * 1000);
                 timer_thoiGianChuyenKhungHinh.Start();
                 if (timer_thoiGianChuyenKhungHinh.Enabled) _dangChay = true;
                 else _dangChay = false;
+
             }
             catch { }
         }
@@ -144,15 +171,24 @@ namespace VideoEditor
                 var khungHinh = new Mat();
                 _videoDangPhat.Read(khungHinh);
                 khungHinhDangXem = khungHinh.Resize(new OpenCvSharp.Size(picBox_hienThiVideo.Width, picBox_hienThiVideo.Height), 0, 0, InterpolationFlags.Linear);
-                picBox_hienThiVideo.ImageIpl = khungHinhDangXem;
                 if (_batZoomControl)
+                {
                     HienThiKhungNhin(khungHinhDangXem);
+                    picBox_hienThiVideo.ImageIpl = new Mat(khungHinhDangXem, new Rect(khungZoom.X * 4, khungZoom.Y * 4, khungZoom.Width * 4, khungZoom.Height * 4));
+                }
+                else
+                {
+                    
+                    picBox_hienThiVideo.ImageIpl = khungHinhDangXem;
+                }
                 if (_batKinhLup)
                     LayHinhChoKinhLup();
+                
             }
             catch
             {
-                timer_thoiGianChuyenKhungHinh.Stop(); 
+                timer_thoiGianChuyenKhungHinh.Stop();
+                
             }
         }
 
@@ -164,20 +200,13 @@ namespace VideoEditor
                 bgw_choiVideo.RunWorkerAsync();
                 _thoiGianDangPhat = _videoDangPhat.PosMsec;
             }
-        }
-
-        private void picBoxSizeChanged(object sender, EventArgs e)
-        {
-
+            else {
+            }
         }
 
         public struct _Audio
         {
             public int Volume;
-        }
-
-        private void picBox_hienThiVideo_Click(object sender, EventArgs e)
-        {
         }
 
         private void KinhLupMD(object sender, MouseEventArgs e)
@@ -208,7 +237,7 @@ namespace VideoEditor
                 if (_dangGiuKinhLup)
                 {
                     var viTriChuot = picBox_hienThiVideo.PointToClient(Cursor.Position);
-                    picBox_kinhLup.Location = new System.Drawing.Point(viTriChuot.X - picBox_kinhLup.Width / 2, viTriChuot.Y - picBox_kinhLup.Height / 2);
+                    picBox_kinhLup.Location = new Point(viTriChuot.X - picBox_kinhLup.Width / 2, viTriChuot.Y - picBox_kinhLup.Height / 2);
                     if (!bgw_choiVideo.IsBusy)
                         LayHinhChoKinhLup();
                 }
@@ -218,16 +247,16 @@ namespace VideoEditor
 
         public void ChuyenKinhLupRaGiua()
         {
-            picBox_kinhLup.Location = new System.Drawing.Point(picBox_hienThiVideo.Width / 2, picBox_hienThiVideo.Height / 2);
-            picBox_kinhLup.Size = new System.Drawing.Size((int)(this.Width / 5), (int)(this.Width / 5));
+            picBox_kinhLup.Location = new Point(picBox_hienThiVideo.Width / 2, picBox_hienThiVideo.Height / 2);
+            picBox_kinhLup.Size = new Size((int)(this.Width / 5), (int)(this.Width / 5));
            
         }
 
         public void ChuyenKhungNhinToanCanhXuongGoc()
         {
-            picbox_nhinToanCanh.Size = new System.Drawing.Size(this.Width / 4, this.Height / 4);
-            picbox_nhinToanCanh.Location = new System.Drawing.Point(picBox_hienThiVideo.Width - picbox_nhinToanCanh.Width, picBox_hienThiVideo.Height - picbox_nhinToanCanh.Height);
-            
+            picbox_nhinToanCanh.Size = new Size(this.Width / 4, this.Height / 4);
+            picbox_nhinToanCanh.Location = new Point(picBox_hienThiVideo.Width - picbox_nhinToanCanh.Width , picBox_hienThiVideo.Height - picbox_nhinToanCanh.Height);
+            khungZoom = new Rect(0, 0, picbox_nhinToanCanh.Width, picbox_nhinToanCanh.Height);
         }
 
         private void LanChuot(object sender, MouseEventArgs e)
@@ -236,15 +265,55 @@ namespace VideoEditor
             {
                 if (phanTramKhungZoom < 10)
                     return;
-                phanTramKhungZoom = phanTramKhungZoom - 3;
-                
+                phanTramKhungZoom = phanTramKhungZoom - 6;
+                var khungZoomWidth = (int)(picbox_nhinToanCanh.Width * phanTramKhungZoom / 100);
+                var khungZoomHeight = (int)(picbox_nhinToanCanh.Height * phanTramKhungZoom / 100);
+                int khungZoomX;
+                khungZoomX = (int)(khungZoom.X + picbox_nhinToanCanh.Width * 6 / 200);
+                int khungZoomY;
+                khungZoomY = (int)(khungZoom.Y + picbox_nhinToanCanh.Height * 6 / 200);
+                khungZoom = new Rect(khungZoomX, khungZoomY, khungZoomWidth, khungZoomHeight);
+
             }
             if (e.Delta > 0)
             {
                 
-                phanTramKhungZoom = phanTramKhungZoom + 3;
-                if (phanTramKhungZoom > 100) phanTramKhungZoom = 100;
+                phanTramKhungZoom = phanTramKhungZoom + 6;
+                if (phanTramKhungZoom > 100)
+                {
+                    phanTramKhungZoom = 100;
+                    return;
+                }
+                var khungZoomWidth = (int)(picbox_nhinToanCanh.Width * phanTramKhungZoom / 100);
+                var khungZoomHeight = (int)(picbox_nhinToanCanh.Height * phanTramKhungZoom / 100);
+                int khungZoomX;
+                if (khungZoom.X > 0)
+                    if (khungZoom.X + khungZoomWidth >= picbox_nhinToanCanh.Width)
+                        khungZoomX = (int)(picbox_nhinToanCanh.Width - khungZoomWidth);
+                    else
+                        khungZoomX = (int)(khungZoom.X - picbox_nhinToanCanh.Width * 6 / 200);
+                else khungZoomX = 0;
+                
+                
+                int khungZoomY;
+                if (khungZoom.Y > 0)
+                    if (khungZoom.Y + khungZoomHeight >= picbox_nhinToanCanh.Height)
+                        khungZoomY = (int)(picbox_nhinToanCanh.Height - khungZoomHeight);
+                    else
+                        khungZoomY = (int)(khungZoom.Y - picbox_nhinToanCanh.Height * 6 / 200);
+                else khungZoomY = 0;
+                
+                khungZoom = new Rect(khungZoomX, khungZoomY, khungZoomWidth, khungZoomHeight);
             }
+            try
+            {
+                if (!timer_thoiGianChuyenKhungHinh.Enabled)
+                {
+                    HienThiKhungNhin(khungHinhDangXem);
+                    picBox_hienThiVideo.ImageIpl = new Mat(khungHinhDangXem, new Rect(khungZoom.X * 4, khungZoom.Y * 4, khungZoom.Width * 4, khungZoom.Height * 4));
+                }
+            }
+            catch { }
         }
         private void LayHinhChoKinhLup()
         {
@@ -254,14 +323,39 @@ namespace VideoEditor
             }
         }
 
-        
-        private Rect HienThiKhungNhin(Mat khungHinh)
+        public void KichThuocThayDoi()
+        {
+            try
+            {
+                if (_dangFit)
+                {
+                    picBox_hienThiVideo.Dock = DockStyle.None;
+                    double tiLeDaiRongVideo = (double)_videoDangPhat.FrameWidth / (double)_videoDangPhat.FrameHeight;
+                    if (tiLeDaiRongVideo > (double)this.Width / (double)this.Height)
+                    {
+                        picBox_hienThiVideo.Size = new Size(this.Width, (int)(this.Width / tiLeDaiRongVideo));
+                        picBox_hienThiVideo.Location = new Point(0, (int)((this.Height - picBox_hienThiVideo.Height) / 2));
+                    }
+                    else
+                    {
+                        picBox_hienThiVideo.Size = new Size((int)(this.Height * tiLeDaiRongVideo), this.Height);
+                        picBox_hienThiVideo.Location = new Point((int)((this.Width - picBox_hienThiVideo.Width) / 2), 0);
+                    }
+                }
+                else
+                {
+                    picBox_hienThiVideo.Dock = DockStyle.Fill;
+                }
+            }
+            catch { }
+        }
+        private void HienThiKhungNhin(Mat khungHinh)
         {
             var khungHinhToanCanh = khungHinh.Resize(new OpenCvSharp.Size(picbox_nhinToanCanh.Width, picbox_nhinToanCanh.Height), 0, 0, InterpolationFlags.Linear);
-            var khungZoom = new Rect(0, 0, (int)(picbox_nhinToanCanh.Width * phanTramKhungZoom /100), (int)(picbox_nhinToanCanh.Height * phanTramKhungZoom / 100));
+            //var khungZoom = new Rect(0, 0, (int)(picbox_nhinToanCanh.Width * phanTramKhungZoom /100), (int)(picbox_nhinToanCanh.Height * phanTramKhungZoom / 100));
             khungHinhToanCanh.Rectangle(khungZoom, Scalar.Yellow, 1);
             picbox_nhinToanCanh.ImageIpl = khungHinhToanCanh;
-            return khungZoom;
+            
         }
 
         private void picbox_nhinToanCanhME(object sender, EventArgs e)
@@ -290,11 +384,50 @@ namespace VideoEditor
             try
             {
                 Rect khungCat = new Rect(picBox_kinhLup.Location.X + picBox_kinhLup.Width / 3, picBox_kinhLup.Location.Y + picBox_kinhLup.Width / 3, picBox_kinhLup.Width / 3, picBox_kinhLup.Width / 3);
+               
                 Mat hinhDuocCat = new Mat(khungHinhDangXem, khungCat);
                 hinhDuocCat = hinhDuocCat.Resize(new OpenCvSharp.Size(picBox_kinhLup.Width, picBox_kinhLup.Height), 0, 0, InterpolationFlags.Linear);
                 picBox_kinhLup.Image = BitmapConverter.ToBitmap(hinhDuocCat);
+                hinhDuocCat.Dispose();
+
             }
             catch { }
+        }
+
+        private void picBox_nhinToanCanhMM(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (_khungZoomDuocGiu)
+                {
+                    var viTriConTro = picbox_nhinToanCanh.PointToClient(Cursor.Position);
+                    var khungZoomWidth = (int)(picbox_nhinToanCanh.Width * phanTramKhungZoom / 100);
+                    var khungZoomHeight = (int)(picbox_nhinToanCanh.Height * phanTramKhungZoom / 100);
+                    var khungZoomX = viTriConTro.X - khungZoomWidth / 2;
+                    if (khungZoomX <= 0) khungZoomX = 0;
+                    if (khungZoomX + khungZoomWidth >= picbox_nhinToanCanh.Width) khungZoomX = picbox_nhinToanCanh.Width - khungZoomWidth;
+                    var khungZoomY = viTriConTro.Y - khungZoomHeight / 2;
+                    if (khungZoomY <= 0) khungZoomY = 0;
+                    if (khungZoomY + khungZoomHeight >= picbox_nhinToanCanh.Height) khungZoomY = picbox_nhinToanCanh.Height - khungZoomHeight;
+                    khungZoom = new Rect(khungZoomX, khungZoomY, khungZoomWidth, khungZoomHeight);
+                    if (!timer_thoiGianChuyenKhungHinh.Enabled)
+                    {
+                        HienThiKhungNhin(khungHinhDangXem);
+                        picBox_hienThiVideo.ImageIpl = new Mat(khungHinhDangXem, new Rect(khungZoom.X * 4, khungZoom.Y * 4, khungZoom.Width * 4, khungZoom.Height * 4));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void picbox_nhinToanCanhMD(object sender, MouseEventArgs e)
+        {
+            _khungZoomDuocGiu = true;
+        }
+
+        private void picBox_nhinToanCanhMU(object sender, MouseEventArgs e)
+        {
+            _khungZoomDuocGiu = false;
         }
     }
 }

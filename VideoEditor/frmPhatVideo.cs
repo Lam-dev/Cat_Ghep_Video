@@ -111,7 +111,6 @@ namespace VideoEditor
             {
                 ucChoiVideo.Play(e.filePath);
                 var video = new MediaFile(e.filePath);
-        
                 await layThongTinVideo(video);
                 timer_layThoiGianVideo.Start();
                 dangChonNhieu = false;
@@ -214,7 +213,9 @@ namespace VideoEditor
             ucChoiVideo.Stop();
             panel_chonVideoBanDau.Visible = true;
             //timer_choVLCphanHoi.Stop();
-            new mainForm().ShowDialog();
+            var catVideoForm = new mainForm();
+            catVideoForm.ShowDialog();
+            catVideoForm.Dispose();
         }
 
         private void formResizeEnd(object sender, EventArgs e)
@@ -494,7 +495,7 @@ namespace VideoEditor
             panel_dieuKhien.Location = new Point(kryptonPanel1.Width +  kryptonPanel1.Location.X, kryptonPanel1.Location.X + kryptonPanel1.Height - panel_dieuKhien.Height);
             panel_dieuKhien.Width = panel_congCu.Width;
             ucChoiVideo.Location = new Point(panel_congCu.Location.X, panel_congCu.Height);
-            ucChoiVideo.Size = new Size(panel_congCu.Width, panel_dieuKhien.Location.Y - panel_congCu.Height);
+            ucChoiVideo.Size = new Size(panel_congCu.Width - 15, panel_dieuKhien.Location.Y - panel_congCu.Height);
             lb_DangPhat.Location = new Point(0, lb_DangPhat.Location.Y);
             lb_tongThoiGian.Location = new Point(panel_dieuKhien.Width - lb_tongThoiGian.Width, lb_tongThoiGian.Location.Y);
             ucThanhTruot_tuaVideo.Location = new Point(lb_DangPhat.Width, ucThanhTruot_tuaVideo.Location.Y);
@@ -502,6 +503,7 @@ namespace VideoEditor
             panel_chuaCacNutDieuKhien.Location = new Point((panel_dieuKhien.Width - panel_chuaCacNutDieuKhien.Width) / 2, panel_chuaCacNutDieuKhien.Location.Y);
             ucChoiVideo.ChuyenKinhLupRaGiua();
             ucChoiVideo.ChuyenKhungNhinToanCanhXuongGoc();
+            ucChoiVideo.KichThuocThayDoi();
         }
 
         private void lb_tien10sMC(object sender, MouseEventArgs e)
@@ -631,6 +633,33 @@ namespace VideoEditor
             lb_gopVideo.Values.Image = VideoEditor.Properties.Resources.merge;
         }
 
+        private void btnFitFillME(object sender, EventArgs e)
+        {
+            if(ucChoiVideo.dangFit)
+                btnFitFill.Values.Image = VideoEditor.Properties.Resources.fitMouseEnter;
+            else
+                btnFitFill.Values.Image = VideoEditor.Properties.Resources.fillMouseEnter;
+        }
+
+        private void btnFitFillML(object sender, EventArgs e)
+        {
+            if (ucChoiVideo.dangFit)
+                btnFitFill.Values.Image = VideoEditor.Properties.Resources.fit;
+            else
+                btnFitFill.Values.Image = VideoEditor.Properties.Resources.fill;
+        }
+
+        private void btnFitFillMC(object sender, MouseEventArgs e)
+        {
+            if (ucChoiVideo.dangFit)
+            {
+                ucChoiVideo.dangFit = false;
+            }
+            else
+            {
+                ucChoiVideo.dangFit = true;
+            }
+        }
     }
 }
 

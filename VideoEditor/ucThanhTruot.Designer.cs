@@ -57,6 +57,7 @@
             this.panel_redPoint.Name = "panel_redPoint";
             this.panel_redPoint.Size = new System.Drawing.Size(42, 41);
             this.panel_redPoint.TabIndex = 1;
+            this.panel_redPoint.Visible = false;
             this.panel_redPoint.MouseDown += new System.Windows.Forms.MouseEventHandler(this.diemPhat_MD);
             this.panel_redPoint.MouseLeave += new System.EventHandler(this.diemPhat_MLeave);
             this.panel_redPoint.MouseMove += new System.Windows.Forms.MouseEventHandler(this.diemPhat_MM);

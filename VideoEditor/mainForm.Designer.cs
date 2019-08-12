@@ -89,6 +89,7 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.ucChoiVideo = new VideoEditor.ucChoiVideo();
             this.userControl11 = new VideoEditor.UserControl1();
+            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
@@ -155,10 +156,7 @@
             // 
             // kryptonGroupBox1
             // 
-            this.kryptonGroupBox1.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.GroupBoxCaption;
             this.kryptonGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.kryptonGroupBox1.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
-            this.kryptonGroupBox1.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ControlGroupBox;
             this.kryptonGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.kryptonGroupBox1.Name = "kryptonGroupBox1";
             // 
@@ -215,6 +213,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.kryptonButton2);
             this.panel.Controls.Add(this.ucChoiVideo);
             this.panel.Controls.Add(this.tongThoiGian);
             this.panel.Controls.Add(this.kryptonLabel9);
@@ -365,9 +364,6 @@
             // 
             // kryptonGroupBox3
             // 
-            this.kryptonGroupBox3.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.GroupBoxCaption;
-            this.kryptonGroupBox3.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
-            this.kryptonGroupBox3.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ControlGroupBox;
             this.kryptonGroupBox3.Location = new System.Drawing.Point(626, 459);
             this.kryptonGroupBox3.Name = "kryptonGroupBox3";
             // 
@@ -598,9 +594,6 @@
             // 
             // kryptonGroupBox2
             // 
-            this.kryptonGroupBox2.CaptionStyle = ComponentFactory.Krypton.Toolkit.LabelStyle.GroupBoxCaption;
-            this.kryptonGroupBox2.GroupBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ControlGroupBox;
-            this.kryptonGroupBox2.GroupBorderStyle = ComponentFactory.Krypton.Toolkit.PaletteBorderStyle.ControlGroupBox;
             this.kryptonGroupBox2.Location = new System.Drawing.Point(88, 459);
             this.kryptonGroupBox2.Name = "kryptonGroupBox2";
             // 
@@ -725,6 +718,15 @@
             this.userControl11.pointLocationChange += new VideoEditor.ScrollBarHandler(this.uc_poinChange);
             this.userControl11.playingPointChange += new VideoEditor.PlayingPointHandler(this.playingPointChange);
             // 
+            // kryptonButton2
+            // 
+            this.kryptonButton2.Location = new System.Drawing.Point(814, 275);
+            this.kryptonButton2.Name = "kryptonButton2";
+            this.kryptonButton2.Size = new System.Drawing.Size(90, 25);
+            this.kryptonButton2.TabIndex = 39;
+            this.kryptonButton2.Values.Text = "kryptonButton2";
+            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click_2);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -835,6 +837,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel dangPhat;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel tongThoiGian;
         private ucChoiVideo ucChoiVideo;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
     }
 }
 

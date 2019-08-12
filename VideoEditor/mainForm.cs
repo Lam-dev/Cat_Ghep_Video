@@ -734,6 +734,11 @@ namespace VideoEditor
         {
 
         }
+
+        private void kryptonButton2_Click_2(object sender, EventArgs e)
+        {
+            ucChoiVideo.batKinhLup = true;
+        }
     }
 
     public class ThongTinCatVideo

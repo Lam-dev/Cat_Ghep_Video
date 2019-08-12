@@ -140,7 +140,6 @@ namespace VideoEditor
             {
                 var argPlayingPoint = new playingPointEvent()
                 {
-                    //value = ((float)poin_playing.Location.X / (float)bar.Width * (float)videoDuration.TotalSeconds)
                     value = (double)mappingValue(poin_playing.Location.X, SB_startPoint.Width + SB_startPoint.Location.X, SB_stopPoint.Location.X) * (double)(stopPointTime - startPointTime) / 100 + startPointTime
                 };
                 playingPointChange(this, argPlayingPoint);
@@ -276,13 +275,12 @@ namespace VideoEditor
         private void poin_playingMU(object sender, MouseEventArgs e)
         {
             pointPlayingHold = false;
-            var arg = new doubleScrollBarEvent()
+            var argPlayingPoint = new playingPointEvent()
             {
-                startPointChange = false,
-                value = SecondToTimespan(_videoDuration.TotalSeconds * _stopPointPos / 100),
-                subTime = _stopPointPos - _startPointPos,
+                value = (double)mappingValue(poin_playing.Location.X, SB_startPoint.Width + SB_startPoint.Location.X, SB_stopPoint.Location.X) * (double)(stopPointTime - startPointTime) / 100 + startPointTime
             };
-            pointLocationChange(this, arg);
+            playingPointChange(this, argPlayingPoint);
+            _daThayDoiViTriPhat = false;
         }
 
         private void poin_playingMM(object sender, MouseEventArgs e)

@@ -136,17 +136,29 @@
   <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cameraMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cameraMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Webp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mergeMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mergeMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="searchIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\searchIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play4040" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play4040.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Webp_net_resizeimage__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Webp.net-resizeimage (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Webp2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,23 +187,29 @@
   <data name="redPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redPoint.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="play_3535" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play_3535.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="redPoint1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="speedDownMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\speedDownMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="speaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\speaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nextPrev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nextPrev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="playleave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playleave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Webp_net_resizeimage__5_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,17 +223,14 @@
   <data name="next10sMouseLeave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\next10sMouseLeave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="playEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\playEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stopLeave" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stopLeave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pre10sMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pre10sMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="frame_next" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\frame_next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Webp_net_resizeimage__2_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Webp.net-resizeimage (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="addImage1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,23 +247,23 @@
   <data name="frameBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\frameBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="speedDownMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\speedDownMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="playEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="next10s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\next10s.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="addImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bigPlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bigPlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nextPrev" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nextPrev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="addImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Webp_net_resizeimage__2_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Webp.net-resizeimage (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="play_3535" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play_3535.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoomLenEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoomLenEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play_smallIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play_smallIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,8 +277,8 @@
   <data name="Webp_net_resizeimage__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Webp_net_resizeimage__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Webp.net-resizeimage (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="stopLeave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stopLeave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Webp.net-resizeimage_leave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage_leave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,25 +286,22 @@
   <data name="Webp3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-resizeimage (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="speedUpMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\speedUpMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zoom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zoomEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zoomEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="zoomLen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zoomLen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="zoomLenEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zoomLenEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="speedUpMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\speedUpMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cameraMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cameraMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mergeMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mergeMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fillMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fillMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fitMouseEnter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fitMouseEnter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
