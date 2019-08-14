@@ -29,25 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.picBox_hienThiVideo = new OpenCvSharp.UserInterface.PictureBoxIpl();
             this.bgw_choiVideo = new System.ComponentModel.BackgroundWorker();
             this.timer_thoiGianChuyenKhungHinh = new System.Windows.Forms.Timer(this.components);
             this.picbox_nhinToanCanh = new OpenCvSharp.UserInterface.PictureBoxIpl();
             this.bgw_layHinhChoKinhLup = new System.ComponentModel.BackgroundWorker();
+            this.picBox_hienThiVideo = new OpenCvSharp.UserInterface.PictureBoxIpl();
+            this.timer_thongBaoDaChupHinh = new System.Windows.Forms.Timer(this.components);
+            this.bgw_luuHinhDuocChup = new System.ComponentModel.BackgroundWorker();
             this.picBox_kinhLup = new VideoEditor.pictureBoxTron();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_hienThiVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_nhinToanCanh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox_hienThiVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_kinhLup)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picBox_hienThiVideo
-            // 
-            this.picBox_hienThiVideo.Location = new System.Drawing.Point(0, 0);
-            this.picBox_hienThiVideo.Name = "picBox_hienThiVideo";
-            this.picBox_hienThiVideo.Size = new System.Drawing.Size(563, 334);
-            this.picBox_hienThiVideo.TabIndex = 0;
-            this.picBox_hienThiVideo.TabStop = false;
-            this.picBox_hienThiVideo.MouseEnter += new System.EventHandler(this.picbox_nhinToanCanhME);
             // 
             // bgw_choiVideo
             // 
@@ -75,6 +68,25 @@
             // 
             this.bgw_layHinhChoKinhLup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_layHinhChoKinhLup_DoWork);
             // 
+            // picBox_hienThiVideo
+            // 
+            this.picBox_hienThiVideo.Location = new System.Drawing.Point(-3, 0);
+            this.picBox_hienThiVideo.Name = "picBox_hienThiVideo";
+            this.picBox_hienThiVideo.Size = new System.Drawing.Size(563, 334);
+            this.picBox_hienThiVideo.TabIndex = 0;
+            this.picBox_hienThiVideo.TabStop = false;
+            this.picBox_hienThiVideo.MouseEnter += new System.EventHandler(this.picbox_nhinToanCanhME);
+            // 
+            // timer_thongBaoDaChupHinh
+            // 
+            this.timer_thongBaoDaChupHinh.Enabled = true;
+            this.timer_thongBaoDaChupHinh.Interval = 3000;
+            this.timer_thongBaoDaChupHinh.Tick += new System.EventHandler(this.timer_thongBaoDaChupHinh_Tick);
+            // 
+            // bgw_luuHinhDuocChup
+            // 
+            this.bgw_luuHinhDuocChup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_luuHinhDuocChup_DoWork);
+            // 
             // picBox_kinhLup
             // 
             this.picBox_kinhLup.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -98,20 +110,21 @@
             this.Controls.Add(this.picBox_hienThiVideo);
             this.Name = "ucChoiVideo";
             this.Size = new System.Drawing.Size(563, 334);
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_hienThiVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_nhinToanCanh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox_hienThiVideo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_kinhLup)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private OpenCvSharp.UserInterface.PictureBoxIpl picBox_hienThiVideo;
         private System.ComponentModel.BackgroundWorker bgw_choiVideo;
         private System.Windows.Forms.Timer timer_thoiGianChuyenKhungHinh;
         private pictureBoxTron picBox_kinhLup;
         private OpenCvSharp.UserInterface.PictureBoxIpl picbox_nhinToanCanh;
         private System.ComponentModel.BackgroundWorker bgw_layHinhChoKinhLup;
+        private OpenCvSharp.UserInterface.PictureBoxIpl picBox_hienThiVideo;
+        private System.Windows.Forms.Timer timer_thongBaoDaChupHinh;
+        private System.ComponentModel.BackgroundWorker bgw_luuHinhDuocChup;
     }
 }

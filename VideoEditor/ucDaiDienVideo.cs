@@ -29,10 +29,15 @@ namespace VideoEditor
             lb_dungLuong.Text = dungLuong;
         }
 
+        public string duongDanVideo
+        {
+            get { return _filePath; }
+        }
         int _index { get; set; }
         public int index
         {
             set { _index = value; }
+            get { return _index; }
         }
         string _filePath { get; set; }
         string _dungLuong { get; set; }

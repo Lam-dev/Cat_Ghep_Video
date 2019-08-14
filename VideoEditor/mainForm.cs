@@ -78,26 +78,18 @@ namespace VideoEditor
             timer_choVLCphanHoi.Stop();
         }
 
-        private async void layAnhDaiDienVideo(string path)
+        private void layAnhDaiDienVideo(string path)
         {
-            var inputFile = new MediaFile(path);
-            var outputFile = new MediaFile(@"thum" + soVideoDuocChon.ToString() + ".jpg");
-            var options = new ConversionOptions { Seek = TimeSpan.FromSeconds(2) };
-            var task  = ffmpeg.GetThumbnailAsync(inputFile, outputFile, options);
-            if (task == null)
-                return; 
-            task.Wait(500);
-         
-            if (File.Exists(@"thum" + soVideoDuocChon.ToString() + ".jpg"))
+            try
             {
-                listImage_dsAnhDaiDienVideo.Images.Add(Image.FromFile(@"thum" + soVideoDuocChon.ToString() + ".jpg"));
+                listImage_dsAnhDaiDienVideo.Images.Add(ucChoiVideo.LayAnhDaiDienVideo(path));
                 listView_showListVideo.LargeImageList = listImage_dsAnhDaiDienVideo;
-                //ListViewItem item = new ListViewItem(metaData.Duration.Minutes.ToString() + ":" +metaData.Duration.Seconds.ToString());
                 ListViewItem item = new ListViewItem(path);
                 item.ImageIndex = soVideoDuocChon;
                 listView_showListVideo.Items.Add(item);
                 soVideoDuocChon += 1;
             }
+            catch { }
         }
 
         private async void listView_showListVideo_SelectedIndexChanged(object sender, EventArgs e)

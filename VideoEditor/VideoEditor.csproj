@@ -109,6 +109,12 @@
     <Compile Include="CustomControl1.Designer.cs">
       <DependentUpon>CustomControl1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAnhTheoThoiGian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnhTheoThoiGian.Designer.cs">
+      <DependentUpon>FrmAnhTheoThoiGian.cs</DependentUpon>
+    </Compile>
     <Compile Include="pictureBoxTron.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </Compile>
     <EmbeddedResource Include="circlePanel.resx">
       <DependentUpon>circlePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnhTheoThoiGian.resx">
+      <DependentUpon>FrmAnhTheoThoiGian.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhatVideo.resx">
       <DependentUpon>frmPhatVideo.cs</DependentUpon>

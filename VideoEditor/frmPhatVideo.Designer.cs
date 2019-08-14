@@ -59,14 +59,17 @@ namespace VideoEditor
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel_congCu = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonPanel2 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.kryptonPanel6 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.btnFitFill = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonPanel5 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.zoomControl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btnZoomLen = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.btnChupManHinh = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonPanel4 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.lb_gopVideo = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.btnChupManHinh = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel_chonVideoBanDau = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.btn_chonVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ucChoiVideo = new VideoEditor.ucChoiVideo();
-            this.btnFitFill = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -80,6 +83,12 @@ namespace VideoEditor
             this.panel_congCu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).BeginInit();
             this.kryptonPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel6)).BeginInit();
+            this.kryptonPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel5)).BeginInit();
+            this.kryptonPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel4)).BeginInit();
+            this.kryptonPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_chonVideoBanDau)).BeginInit();
             this.panel_chonVideoBanDau.SuspendLayout();
             this.SuspendLayout();
@@ -137,8 +146,8 @@ namespace VideoEditor
             this.lb_themVideo.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.lb_themVideo.Values.Text = "";
             this.lb_themVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lb_themVideoClick);
-            this.lb_themVideo.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_themVideo.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_themVideo.MouseEnter += new System.EventHandler(this.lb_themVideo_ME);
+            this.lb_themVideo.MouseLeave += new System.EventHandler(this.lb_themVideo_ML);
             // 
             // lb_xoaDaiDien
             // 
@@ -150,8 +159,8 @@ namespace VideoEditor
             this.lb_xoaDaiDien.Values.Image = global::VideoEditor.Properties.Resources.Webp_net_resizeimage__3_;
             this.lb_xoaDaiDien.Values.Text = "";
             this.lb_xoaDaiDien.MouseClick += new System.Windows.Forms.MouseEventHandler(this.xoaVideoTrongDanhSachClick);
-            this.lb_xoaDaiDien.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_xoaDaiDien.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_xoaDaiDien.MouseEnter += new System.EventHandler(this.lb_xoaDaiDien_ME);
+            this.lb_xoaDaiDien.MouseLeave += new System.EventHandler(this.lb_xoaDaiDien_ML);
             // 
             // bgw_choLayAnhDaiDien
             // 
@@ -189,8 +198,8 @@ namespace VideoEditor
             this.lb_playPause.Values.Image = global::VideoEditor.Properties.Resources.Webp3;
             this.lb_playPause.Values.Text = "";
             this.lb_playPause.MouseClick += new System.Windows.Forms.MouseEventHandler(this.playPauseMouseClick);
-            this.lb_playPause.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_playPause.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_playPause.MouseEnter += new System.EventHandler(this.lb_playPause_ME);
+            this.lb_playPause.MouseLeave += new System.EventHandler(this.lb_playPause_ML);
             // 
             // panel_dieuKhien
             // 
@@ -272,8 +281,8 @@ namespace VideoEditor
             this.lb_tien10s.Values.Image = global::VideoEditor.Properties.Resources.next10sMouseLeave;
             this.lb_tien10s.Values.Text = "";
             this.lb_tien10s.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lb_tien10sMC);
-            this.lb_tien10s.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_tien10s.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_tien10s.MouseEnter += new System.EventHandler(this.tien10s_ME);
+            this.lb_tien10s.MouseLeave += new System.EventHandler(this.tien10s_ML);
             // 
             // lb_tuaNhanh
             // 
@@ -284,8 +293,8 @@ namespace VideoEditor
             this.lb_tuaNhanh.Values.Image = global::VideoEditor.Properties.Resources.speedUpMouseLeave;
             this.lb_tuaNhanh.Values.Text = "";
             this.lb_tuaNhanh.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nutDieuKhien_MC);
-            this.lb_tuaNhanh.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_tuaNhanh.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_tuaNhanh.MouseEnter += new System.EventHandler(this.tuaNhanh_ME);
+            this.lb_tuaNhanh.MouseLeave += new System.EventHandler(this.tuaNhanh_ML);
             // 
             // lb_quayLai10s
             // 
@@ -297,8 +306,8 @@ namespace VideoEditor
             this.lb_quayLai10s.Values.Image = global::VideoEditor.Properties.Resources.pre10sMouseLeave;
             this.lb_quayLai10s.Values.Text = "";
             this.lb_quayLai10s.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lb_quayLai10s_MC);
-            this.lb_quayLai10s.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_quayLai10s.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_quayLai10s.MouseEnter += new System.EventHandler(this.lb_lui10s_ME);
+            this.lb_quayLai10s.MouseLeave += new System.EventHandler(this.lb_lui10s_ML);
             // 
             // lb_tuaCham
             // 
@@ -309,8 +318,8 @@ namespace VideoEditor
             this.lb_tuaCham.Values.Image = global::VideoEditor.Properties.Resources.speedDownMouseLeave;
             this.lb_tuaCham.Values.Text = "";
             this.lb_tuaCham.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lb_tuaCham_MC);
-            this.lb_tuaCham.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_tuaCham.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_tuaCham.MouseEnter += new System.EventHandler(this.lb_tuaCham_ME);
+            this.lb_tuaCham.MouseLeave += new System.EventHandler(this.lb_tuaCham_ML);
             // 
             // lb_stop
             // 
@@ -322,8 +331,8 @@ namespace VideoEditor
             this.lb_stop.Values.Image = global::VideoEditor.Properties.Resources.stopLeave;
             this.lb_stop.Values.Text = "";
             this.lb_stop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dungPhatVideoClick);
-            this.lb_stop.MouseEnter += new System.EventHandler(this.nutDieuKhien_ME);
-            this.lb_stop.MouseLeave += new System.EventHandler(this.nutDieuKhien_ML);
+            this.lb_stop.MouseEnter += new System.EventHandler(this.lb_stop_ME);
+            this.lb_stop.MouseLeave += new System.EventHandler(this.lb_stop_ML);
             // 
             // kryptonPanel3
             // 
@@ -385,21 +394,51 @@ namespace VideoEditor
             // 
             // kryptonPanel2
             // 
-            this.kryptonPanel2.Controls.Add(this.btnFitFill);
-            this.kryptonPanel2.Controls.Add(this.zoomControl);
-            this.kryptonPanel2.Controls.Add(this.btnZoomLen);
-            this.kryptonPanel2.Controls.Add(this.btnChupManHinh);
-            this.kryptonPanel2.Controls.Add(this.lb_gopVideo);
+            this.kryptonPanel2.Controls.Add(this.kryptonPanel6);
+            this.kryptonPanel2.Controls.Add(this.kryptonPanel5);
+            this.kryptonPanel2.Controls.Add(this.kryptonPanel4);
             this.kryptonPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.kryptonPanel2.Location = new System.Drawing.Point(724, 0);
+            this.kryptonPanel2.Location = new System.Drawing.Point(703, 0);
             this.kryptonPanel2.Name = "kryptonPanel2";
-            this.kryptonPanel2.Size = new System.Drawing.Size(223, 44);
-            this.kryptonPanel2.StateNormal.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonPanel2.Size = new System.Drawing.Size(244, 44);
+            this.kryptonPanel2.StateCommon.Color1 = System.Drawing.Color.White;
+            this.kryptonPanel2.StateNormal.Color1 = System.Drawing.Color.LightGray;
             this.kryptonPanel2.TabIndex = 15;
+            // 
+            // kryptonPanel6
+            // 
+            this.kryptonPanel6.Controls.Add(this.btnFitFill);
+            this.kryptonPanel6.Location = new System.Drawing.Point(3, 0);
+            this.kryptonPanel6.Name = "kryptonPanel6";
+            this.kryptonPanel6.Size = new System.Drawing.Size(63, 44);
+            this.kryptonPanel6.StateNormal.Color1 = System.Drawing.Color.DimGray;
+            this.kryptonPanel6.TabIndex = 15;
+            // 
+            // btnFitFill
+            // 
+            this.btnFitFill.Location = new System.Drawing.Point(16, 8);
+            this.btnFitFill.Name = "btnFitFill";
+            this.btnFitFill.Size = new System.Drawing.Size(31, 27);
+            this.btnFitFill.TabIndex = 16;
+            this.btnFitFill.Values.Image = global::VideoEditor.Properties.Resources.fit;
+            this.btnFitFill.Values.Text = "";
+            this.btnFitFill.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFitFillMC);
+            this.btnFitFill.MouseEnter += new System.EventHandler(this.btnFitFillME);
+            this.btnFitFill.MouseLeave += new System.EventHandler(this.btnFitFillML);
+            // 
+            // kryptonPanel5
+            // 
+            this.kryptonPanel5.Controls.Add(this.zoomControl);
+            this.kryptonPanel5.Controls.Add(this.btnZoomLen);
+            this.kryptonPanel5.Location = new System.Drawing.Point(68, 0);
+            this.kryptonPanel5.Name = "kryptonPanel5";
+            this.kryptonPanel5.Size = new System.Drawing.Size(84, 44);
+            this.kryptonPanel5.StateNormal.Color1 = System.Drawing.Color.DimGray;
+            this.kryptonPanel5.TabIndex = 1;
             // 
             // zoomControl
             // 
-            this.zoomControl.Location = new System.Drawing.Point(92, 8);
+            this.zoomControl.Location = new System.Drawing.Point(8, 9);
             this.zoomControl.Name = "zoomControl";
             this.zoomControl.Size = new System.Drawing.Size(31, 27);
             this.zoomControl.TabIndex = 0;
@@ -411,7 +450,7 @@ namespace VideoEditor
             // 
             // btnZoomLen
             // 
-            this.btnZoomLen.Location = new System.Drawing.Point(52, 8);
+            this.btnZoomLen.Location = new System.Drawing.Point(50, 9);
             this.btnZoomLen.Name = "btnZoomLen";
             this.btnZoomLen.Size = new System.Drawing.Size(31, 27);
             this.btnZoomLen.TabIndex = 15;
@@ -421,20 +460,19 @@ namespace VideoEditor
             this.btnZoomLen.MouseEnter += new System.EventHandler(this.ZoomlenME);
             this.btnZoomLen.MouseLeave += new System.EventHandler(this.ZoomLenML);
             // 
-            // btnChupManHinh
+            // kryptonPanel4
             // 
-            this.btnChupManHinh.Location = new System.Drawing.Point(134, 7);
-            this.btnChupManHinh.Name = "btnChupManHinh";
-            this.btnChupManHinh.Size = new System.Drawing.Size(31, 27);
-            this.btnChupManHinh.TabIndex = 14;
-            this.btnChupManHinh.Values.Image = global::VideoEditor.Properties.Resources.camera;
-            this.btnChupManHinh.Values.Text = "";
-            this.btnChupManHinh.MouseEnter += new System.EventHandler(this.btnChupManHinhME);
-            this.btnChupManHinh.MouseLeave += new System.EventHandler(this.btnChupManHinhML);
+            this.kryptonPanel4.Controls.Add(this.lb_gopVideo);
+            this.kryptonPanel4.Controls.Add(this.btnChupManHinh);
+            this.kryptonPanel4.Location = new System.Drawing.Point(154, 1);
+            this.kryptonPanel4.Name = "kryptonPanel4";
+            this.kryptonPanel4.Size = new System.Drawing.Size(90, 43);
+            this.kryptonPanel4.StateNormal.Color1 = System.Drawing.Color.DimGray;
+            this.kryptonPanel4.TabIndex = 0;
             // 
             // lb_gopVideo
             // 
-            this.lb_gopVideo.Location = new System.Drawing.Point(178, 7);
+            this.lb_gopVideo.Location = new System.Drawing.Point(45, 7);
             this.lb_gopVideo.Name = "lb_gopVideo";
             this.lb_gopVideo.Size = new System.Drawing.Size(31, 26);
             this.lb_gopVideo.TabIndex = 13;
@@ -443,6 +481,18 @@ namespace VideoEditor
             this.lb_gopVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gopVideoClick);
             this.lb_gopVideo.MouseEnter += new System.EventHandler(this.lb_gopVideoME);
             this.lb_gopVideo.MouseLeave += new System.EventHandler(this.lb_gopVideoML);
+            // 
+            // btnChupManHinh
+            // 
+            this.btnChupManHinh.Location = new System.Drawing.Point(3, 7);
+            this.btnChupManHinh.Name = "btnChupManHinh";
+            this.btnChupManHinh.Size = new System.Drawing.Size(31, 27);
+            this.btnChupManHinh.TabIndex = 14;
+            this.btnChupManHinh.Values.Image = global::VideoEditor.Properties.Resources.camera;
+            this.btnChupManHinh.Values.Text = "";
+            this.btnChupManHinh.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chupAnhMC);
+            this.btnChupManHinh.MouseEnter += new System.EventHandler(this.btnChupManHinhME);
+            this.btnChupManHinh.MouseLeave += new System.EventHandler(this.btnChupManHinhML);
             // 
             // panel_chonVideoBanDau
             // 
@@ -467,37 +517,26 @@ namespace VideoEditor
             this.ucChoiVideo.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ucChoiVideo.batKinhLup = false;
             this.ucChoiVideo.batZoomControl = false;
+            this.ucChoiVideo.dangFit = false;
             this.ucChoiVideo.ForeColor = System.Drawing.SystemColors.Control;
             this.ucChoiVideo.Location = new System.Drawing.Point(181, 44);
             this.ucChoiVideo.Name = "ucChoiVideo";
-            this.ucChoiVideo.Size = new System.Drawing.Size(941, 526);
+            this.ucChoiVideo.Size = new System.Drawing.Size(947, 526);
             this.ucChoiVideo.TabIndex = 12;
             this.ucChoiVideo.thoiGianDangPhat = 1;
             this.ucChoiVideo.tocDoPhat = 1F;
-            // 
-            // btnFitFill
-            // 
-            this.btnFitFill.Location = new System.Drawing.Point(13, 7);
-            this.btnFitFill.Name = "btnFitFill";
-            this.btnFitFill.Size = new System.Drawing.Size(31, 27);
-            this.btnFitFill.TabIndex = 16;
-            this.btnFitFill.Values.Image = global::VideoEditor.Properties.Resources.fit;
-            this.btnFitFill.Values.Text = "";
-            this.btnFitFill.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnFitFillMC);
-            this.btnFitFill.MouseEnter += new System.EventHandler(this.btnFitFillME);
-            this.btnFitFill.MouseLeave += new System.EventHandler(this.btnFitFillML);
             // 
             // frmPhatVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1126, 651);
+            this.ClientSize = new System.Drawing.Size(1128, 651);
             this.Controls.Add(this.panel_chonVideoBanDau);
-            this.Controls.Add(this.ucChoiVideo);
             this.Controls.Add(this.panel_congCu);
             this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.panel_dieuKhien);
+            this.Controls.Add(this.ucChoiVideo);
             this.ForeColor = System.Drawing.Color.White;
             this.KeyPreview = true;
             this.Name = "frmPhatVideo";
@@ -526,7 +565,15 @@ namespace VideoEditor
             this.panel_congCu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).EndInit();
             this.kryptonPanel2.ResumeLayout(false);
-            this.kryptonPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel6)).EndInit();
+            this.kryptonPanel6.ResumeLayout(false);
+            this.kryptonPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel5)).EndInit();
+            this.kryptonPanel5.ResumeLayout(false);
+            this.kryptonPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel4)).EndInit();
+            this.kryptonPanel4.ResumeLayout(false);
+            this.kryptonPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_chonVideoBanDau)).EndInit();
             this.panel_chonVideoBanDau.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -571,5 +618,8 @@ namespace VideoEditor
         private ComponentFactory.Krypton.Toolkit.KryptonLabel btnZoomLen;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel zoomControl;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel btnFitFill;
+        private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel4;
+        private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel5;
+        private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel6;
     }
 }

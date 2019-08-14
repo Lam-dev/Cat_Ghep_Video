@@ -38,6 +38,7 @@
             this.btn_xoaVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.button_layVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel = new System.Windows.Forms.Panel();
+            this.ucChoiVideo = new VideoEditor.ucChoiVideo();
             this.tongThoiGian = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.dangPhat = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -72,6 +73,7 @@
             this.btn_up = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btn_remove = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.comboBox_pickRate = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.userControl11 = new VideoEditor.UserControl1();
             this.btn_phatDung = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
             this.GrV_thongTinCat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -87,9 +89,6 @@
             this.backgroundWorker_catVideo = new System.ComponentModel.BackgroundWorker();
             this.timer_choVLCphanHoi = new System.Windows.Forms.Timer(this.components);
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.ucChoiVideo = new VideoEditor.ucChoiVideo();
-            this.userControl11 = new VideoEditor.UserControl1();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
@@ -213,7 +212,6 @@
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.kryptonButton2);
             this.panel.Controls.Add(this.ucChoiVideo);
             this.panel.Controls.Add(this.tongThoiGian);
             this.panel.Controls.Add(this.kryptonLabel9);
@@ -245,6 +243,19 @@
             this.panel.Size = new System.Drawing.Size(955, 668);
             this.panel.TabIndex = 1;
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
+            // 
+            // ucChoiVideo
+            // 
+            this.ucChoiVideo.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.ucChoiVideo.batKinhLup = false;
+            this.ucChoiVideo.batZoomControl = false;
+            this.ucChoiVideo.dangFit = false;
+            this.ucChoiVideo.Location = new System.Drawing.Point(10, 9);
+            this.ucChoiVideo.Name = "ucChoiVideo";
+            this.ucChoiVideo.Size = new System.Drawing.Size(683, 375);
+            this.ucChoiVideo.TabIndex = 38;
+            this.ucChoiVideo.thoiGianDangPhat = 0;
+            this.ucChoiVideo.tocDoPhat = 1F;
             // 
             // tongThoiGian
             // 
@@ -582,6 +593,18 @@
             this.comboBox_pickRate.TabIndex = 9;
             this.comboBox_pickRate.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
             // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(9, 391);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(683, 62);
+            this.userControl11.startPointPos = 0D;
+            this.userControl11.stopPointPos = 100D;
+            this.userControl11.TabIndex = 8;
+            this.userControl11.videoDuration = System.TimeSpan.Parse("00:00:00");
+            this.userControl11.pointLocationChange += new VideoEditor.ScrollBarHandler(this.uc_poinChange);
+            this.userControl11.playingPointChange += new VideoEditor.PlayingPointHandler(this.playingPointChange);
+            // 
             // btn_phatDung
             // 
             this.btn_phatDung.Location = new System.Drawing.Point(703, 334);
@@ -694,39 +717,6 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
-            // ucChoiVideo
-            // 
-            this.ucChoiVideo.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ucChoiVideo.batKinhLup = false;
-            this.ucChoiVideo.batZoomControl = false;
-            this.ucChoiVideo.Location = new System.Drawing.Point(10, 9);
-            this.ucChoiVideo.Name = "ucChoiVideo";
-            this.ucChoiVideo.Size = new System.Drawing.Size(683, 375);
-            this.ucChoiVideo.TabIndex = 38;
-            this.ucChoiVideo.thoiGianDangPhat = 0;
-            this.ucChoiVideo.tocDoPhat = 1F;
-            // 
-            // userControl11
-            // 
-            this.userControl11.Location = new System.Drawing.Point(9, 391);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(683, 62);
-            this.userControl11.startPointPos = 0D;
-            this.userControl11.stopPointPos = 100D;
-            this.userControl11.TabIndex = 8;
-            this.userControl11.videoDuration = System.TimeSpan.Parse("00:00:00");
-            this.userControl11.pointLocationChange += new VideoEditor.ScrollBarHandler(this.uc_poinChange);
-            this.userControl11.playingPointChange += new VideoEditor.PlayingPointHandler(this.playingPointChange);
-            // 
-            // kryptonButton2
-            // 
-            this.kryptonButton2.Location = new System.Drawing.Point(814, 275);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(90, 25);
-            this.kryptonButton2.TabIndex = 39;
-            this.kryptonButton2.Values.Text = "kryptonButton2";
-            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click_2);
-            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -837,7 +827,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel dangPhat;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel tongThoiGian;
         private ucChoiVideo ucChoiVideo;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
     }
 }
 

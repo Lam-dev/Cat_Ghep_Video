@@ -15,15 +15,18 @@ namespace VideoEditor
 
     public partial class frmPhatVideo : Form
     {
+        
         Engine ffmpeg = new Engine(@"..\..\libFFmpeg\ffmpeg.exe");
-        MetaData thongTinVideo;
+        ThongTinVideo thongTinVideo;
         List<ucDaiDienVideo> dsVideoControl = new List<ucDaiDienVideo>();
         bool dangGiuCtr = false;
         bool dangChonNhieu = false;
         List<int> dsDangChon = new List<int>();
+        Form hinhTheoThoiGian = new FrmAnhTheoThoiGian();
         public frmPhatVideo()
         {
             InitializeComponent();
+            ucChoiVideo.dangFit = true;
         }
 
         private async void lb_themVideoClick(object sender, MouseEventArgs e)
@@ -60,7 +63,7 @@ namespace VideoEditor
                 var inputFile = new MediaFile(path);
                 try
                 {
-                  
+
                     var anhDaiDien = ucChoiVideo.LayAnhDaiDienVideo(path);
                     flowLayOut_chuaCacVideo.Invoke(new MethodInvoker(delegate ()
                     {
@@ -69,12 +72,12 @@ namespace VideoEditor
                         dsVideoControl[dsVideoControl.Count - 1].anhDaiDienClick += new VideoEditor.anhDaiDienVideoClick(chonPhatVideo);
                         dsVideoControl[dsVideoControl.Count - 1].iMouseMove += new MouseEventHandler(danhSachVideo_MM);
                     }));
-                   
+
 
                 }
                 catch
                 { }
-             
+
             }
         }
 
@@ -110,29 +113,30 @@ namespace VideoEditor
             else
             {
                 ucChoiVideo.Play(e.filePath);
-                var video = new MediaFile(e.filePath);
-                await layThongTinVideo(video);
+                layThongTinVideo(e.filePath);
+               
                 timer_layThoiGianVideo.Start();
                 dangChonNhieu = false;
                 dsDangChon.Clear();
-                thayDoiIconPlayPause();
+                lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
+                panel_chonVideoBanDau.Visible = false;
+                ucChoiVideo.BackColor = Color.Black;
 
             }
         }
 
-        private async Task<bool> layThongTinVideo(MediaFile video)
+        private void layThongTinVideo(string video)
         {
-            thongTinVideo = await ffmpeg.GetMetaDataAsync(video);
-            while (true)
+            var thoiGianVideo = ucChoiVideo.DoDaiVideo(video);
+            var duongDanFile = new FileInfo(video);
+            thongTinVideo = new ThongTinVideo()
             {
-                if (thongTinVideo != null)
-                {
-                    lb_tongThoiGian.Text = thongTinVideo.Duration.ToString();
-                    return true;
-                }
-            }
+                Duration = thoiGianVideo,
+                TenVideo = duongDanFile.Name.Split('.')[0],
+                DuongDanCuaVideo = video,
+            };
+            lb_tongThoiGian.Text = thongTinVideo.Duration.ToString();
         }
-
         private void frmPhatVideo_Load(object sender, EventArgs e)
         {
             canChinhForm();
@@ -145,6 +149,10 @@ namespace VideoEditor
                 var x = ucChoiVideo.thoiGianDangPhat;
                 lb_DangPhat.Text = mainForm.TimeSpanToString(mainForm.SecondToTimespan(x / 1000));
                 ucThanhTruot_tuaVideo.phanTramHienTai = x / thongTinVideo.Duration.TotalMilliseconds * 100;
+            }
+            else
+            {
+                lb_playPause.Values.Image = VideoEditor.Properties.Resources.playleave;
             }
         }
 
@@ -181,15 +189,15 @@ namespace VideoEditor
             if (ucChoiVideo.dangChay)
             {
 
-                lb_playPause.Values.Image = Properties.Resources.pauseLeave;
+                lb_playPause.Values.Image = Properties.Resources.pauseEnter;
                 panel_chonVideoBanDau.Visible = false;
             }
             else
             {
-                lb_playPause.Values.Image = Properties.Resources.playleave;
+                lb_playPause.Values.Image = Properties.Resources.playEnter;
 
             }
-            
+
         }
 
         private void playPauseMouseClick(object sender, MouseEventArgs e)
@@ -197,13 +205,10 @@ namespace VideoEditor
             if (ucChoiVideo.dangChay)
             {
                 ucChoiVideo.Pause();
-               
-
             }
             else
             {
                 ucChoiVideo.Play();
-          
             }
             thayDoiIconPlayPause();
         }
@@ -291,6 +296,14 @@ namespace VideoEditor
 
         private void xoaVideoTrongDanhSachClick(object sender, MouseEventArgs e)
         {
+            var danhSachChuanBiXoa = dsVideoControl.FindAll(c => c.lb_duongDanVideo.BackColor == Color.Yellow);
+            if (danhSachChuanBiXoa.FindAll(c => c.duongDanVideo == thongTinVideo.DuongDanCuaVideo).Count != 0)
+            {
+                ucChoiVideo.Stop();
+                panel_chonVideoBanDau.Visible = true;
+                ucChoiVideo.BackColor = Color.MediumTurquoise;
+
+            }
             dsVideoControl.RemoveAll(c => c.lb_duongDanVideo.BackColor == Color.Yellow);
             for (int i = 0; i < dsVideoControl.Count; i++)
             {
@@ -336,8 +349,9 @@ namespace VideoEditor
         {
             ucChoiVideo.Stop();
             panel_chonVideoBanDau.Visible = true;
-            
-            
+            ucChoiVideo.BackColor = Color.MediumTurquoise; 
+
+
         }
 
         private async void kryptonButton1_Click(object sender, EventArgs e)
@@ -366,9 +380,10 @@ namespace VideoEditor
                 {
                     ucChoiVideo.Play(danhSachPath[0]);
                     panel_chonVideoBanDau.Visible = false;
-                    var video = new MediaFile(danhSachPath[0]);
-                    await layThongTinVideo(video);
+                    layThongTinVideo(danhSachPath[0]);
                     timer_layThoiGianVideo.Start();
+                    lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
+                    ucChoiVideo.BackColor = Color.Black;
                 }
                 catch
                 {
@@ -388,111 +403,13 @@ namespace VideoEditor
             lb_playPause.Values.Image = VideoEditor.Properties.Resources.playEnter;
         }
 
-     
-
-        private void nutDieuKhien_ME(object sender, EventArgs e)
-        {
-            if ((sender as Control) == lb_tuaCham)
-            {
-                lb_tuaCham.Values.Image = VideoEditor.Properties.Resources.speedDownMouseEnter;
-                return;
-            }
-            if ((sender as Control) == lb_quayLai10s)
-            {
-                lb_quayLai10s.Values.Image = VideoEditor.Properties.Resources.pre10sMouseEnter;
-                return; 
-            }
-            if ((sender as Control) == lb_stop)
-            {
-                lb_stop.Values.Image = VideoEditor.Properties.Resources.stopEnter;
-                return; 
-            }
-            if ((sender as Control) == lb_tien10s)
-            {
-                lb_tien10s.Values.Image = VideoEditor.Properties.Resources.next10sMouseEnter;
-                return; 
-            }
-            if ((sender as Control) == lb_tuaNhanh)
-            {
-                lb_tuaNhanh.Values.Image = VideoEditor.Properties.Resources.speedUpMouseEnter;
-                return; 
-            }
-            if ((sender as Control) == lb_playPause)
-            {
-                if (ucChoiVideo.dangChay)
-                    lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseEnter;
-                else
-                    lb_playPause.Values.Image = VideoEditor.Properties.Resources.playEnter;
-                return;
-            }
-            if ((sender as Control) == lb_themVideo)
-            {
-                lb_themVideo.Values.Image = VideoEditor.Properties.Resources.addImageLeave;
-                return;
-            }
-            
-            if ((sender as Control) == lb_xoaDaiDien)
-            {
-                lb_xoaDaiDien.Values.Image = VideoEditor.Properties.Resources.Webp_net_resizeimage_leave;
-                return;
-            }
-
-        }
-
-        private void nutDieuKhien_ML(object sender, EventArgs e)
-        {
-            if ((sender as Control) == lb_tuaCham)
-            {
-                lb_tuaCham.Values.Image = VideoEditor.Properties.Resources.speedDownMouseLeave;
-                return;
-            }
-            if ((sender as Control) == lb_quayLai10s)
-            {
-                lb_quayLai10s.Values.Image = VideoEditor.Properties.Resources.pre10sMouseLeave;
-                return;
-            }
-            if ((sender as Control) == lb_stop)
-            {
-                lb_stop.Values.Image = VideoEditor.Properties.Resources.stopLeave;
-                return;
-            }
-            if ((sender as Control) == lb_tien10s)
-            {
-                lb_tien10s.Values.Image = VideoEditor.Properties.Resources.next10sMouseLeave;
-                return;
-            }
-            if ((sender as Control) == lb_tuaNhanh)
-            {
-                lb_tuaNhanh.Values.Image = VideoEditor.Properties.Resources.speedUpMouseLeave;
-                return;
-            }
-            if ((sender as Control) == lb_playPause)
-            {
-                if (ucChoiVideo.dangChay)
-                    lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
-                else
-                    lb_playPause.Values.Image = VideoEditor.Properties.Resources.playleave;
-            }
-            if ((sender as Control) == lb_themVideo)
-            {
-                lb_themVideo.Values.Image = VideoEditor.Properties.Resources.addImage;
-                return;
-            }
-          
-            if ((sender as Control) == lb_xoaDaiDien)
-            {
-                lb_xoaDaiDien.Values.Image = VideoEditor.Properties.Resources.Webp_net_resizeimage__3_;
-                return;
-            }
-        }
-
         private void canChinhForm()
         {
             panel1.Location = new Point(0, 0);
             flowLayOut_chuaCacVideo.Size = new Size(kryptonPanel1.Width, kryptonPanel1.Height - panel1.Height);
             panel_congCu.Size = new Size(this.Width - kryptonPanel1.Width, panel_congCu.Height);
             panel_congCu.Location = new Point(kryptonPanel1.Width, 0);
-            panel_dieuKhien.Location = new Point(kryptonPanel1.Width +  kryptonPanel1.Location.X, kryptonPanel1.Location.X + kryptonPanel1.Height - panel_dieuKhien.Height);
+            panel_dieuKhien.Location = new Point(kryptonPanel1.Width + kryptonPanel1.Location.X, kryptonPanel1.Location.X + kryptonPanel1.Height - panel_dieuKhien.Height);
             panel_dieuKhien.Width = panel_congCu.Width;
             ucChoiVideo.Location = new Point(panel_congCu.Location.X, panel_congCu.Height);
             ucChoiVideo.Size = new Size(panel_congCu.Width - 15, panel_dieuKhien.Location.Y - panel_congCu.Height);
@@ -524,7 +441,7 @@ namespace VideoEditor
 
         private void nutDieuKhien_MC(object sender, MouseEventArgs e)
         {
-            switch(nextSpeed.Text)
+            switch (nextSpeed.Text)
             {
                 case "":
                 case "0.75":
@@ -635,7 +552,7 @@ namespace VideoEditor
 
         private void btnFitFillME(object sender, EventArgs e)
         {
-            if(ucChoiVideo.dangFit)
+            if (ucChoiVideo.dangFit)
                 btnFitFill.Values.Image = VideoEditor.Properties.Resources.fitMouseEnter;
             else
                 btnFitFill.Values.Image = VideoEditor.Properties.Resources.fillMouseEnter;
@@ -654,15 +571,125 @@ namespace VideoEditor
             if (ucChoiVideo.dangFit)
             {
                 ucChoiVideo.dangFit = false;
+                btnFitFill.Values.Image = VideoEditor.Properties.Resources.fitMouseEnter;
             }
             else
             {
                 ucChoiVideo.dangFit = true;
+                btnFitFill.Values.Image = VideoEditor.Properties.Resources.fillMouseEnter;
             }
         }
+
+        #region
+        private void tuaNhanh_ML(object sender, EventArgs e)
+        {
+            lb_tuaNhanh.Values.Image = VideoEditor.Properties.Resources.speedUpMouseLeave;
+        }
+
+        private void tien10s_ML(object sender, EventArgs e)
+        {
+            lb_tien10s.Values.Image = VideoEditor.Properties.Resources.next10sMouseLeave;
+        }
+
+        private void lb_stop_ML(object sender, EventArgs e)
+        {
+            lb_stop.Values.Image = VideoEditor.Properties.Resources.stopLeave;
+        }
+
+        private void lb_playPause_ML(object sender, EventArgs e)
+        {
+            if (ucChoiVideo.dangChay)
+                lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
+            else
+                lb_playPause.Values.Image = VideoEditor.Properties.Resources.playleave;
+            return;
+        }
+
+        private void lb_lui10s_ML(object sender, EventArgs e)
+        {
+            lb_quayLai10s.Values.Image = VideoEditor.Properties.Resources.pre10sMouseLeave;
+        }
+
+        private void lb_tuaCham_ML(object sender, EventArgs e)
+        {
+            lb_tuaCham.Values.Image = VideoEditor.Properties.Resources.speedDownMouseLeave;
+        }
+
+        private void lb_themVideo_ML(object sender, EventArgs e)
+        {
+            lb_themVideo.Values.Image = VideoEditor.Properties.Resources.addImage;
+        }
+
+        private void lb_xoaDaiDien_ML(object sender, EventArgs e)
+        {
+            lb_xoaDaiDien.Values.Image = VideoEditor.Properties.Resources.Webp_net_resizeimage__3_;
+        }
+
+        private void tuaNhanh_ME(object sender, EventArgs e)
+        {
+            lb_tuaNhanh.Values.Image = VideoEditor.Properties.Resources.speedUpMouseEnter;
+        }
+
+        private void tien10s_ME(object sender, EventArgs e)
+        {
+            lb_tien10s.Values.Image = VideoEditor.Properties.Resources.next10sMouseEnter;
+        }
+
+        private void lb_stop_ME(object sender, EventArgs e)
+        {
+            lb_stop.Values.Image = VideoEditor.Properties.Resources.stopEnter;
+        }
+
+        private void lb_playPause_ME(object sender, EventArgs e)
+        {
+            if (ucChoiVideo.dangChay)
+                lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseEnter;
+            else
+                lb_playPause.Values.Image = VideoEditor.Properties.Resources.playEnter;
+        }
+
+        private void lb_lui10s_ME(object sender, EventArgs e)
+        {
+            lb_quayLai10s.Values.Image = VideoEditor.Properties.Resources.pre10sMouseEnter;
+        }
+
+        private void lb_themVideo_ME(object sender, EventArgs e)
+        {
+            lb_themVideo.Values.Image = VideoEditor.Properties.Resources.addImageLeave;
+        }
+
+        private void lb_xoaDaiDien_ME(object sender, EventArgs e)
+        {
+            lb_xoaDaiDien.Values.Image = VideoEditor.Properties.Resources.Webp_net_resizeimage_leave;
+        }
+
+        private void lb_tuaCham_ME(object sender, EventArgs e)
+        {
+            lb_tuaCham.Values.Image = VideoEditor.Properties.Resources.speedDownMouseEnter;
+        }
+        #endregion
+
+        private void chupAnhMC(object sender, MouseEventArgs e)
+        {
+            var gioChup = DateTime.Now;
+            ucChoiVideo.ChupHinh($"{thongTinVideo.TenVideo}_{gioChup.Hour}_{gioChup.Minute}_{gioChup.Second}_{gioChup.Millisecond}.jpg");
+        }
+
+        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        {
+            hinhTheoThoiGian.Show();
+            hinhTheoThoiGian.TopLevel = true;
+            
+        }
+
+      
+    }
+
+    public class ThongTinVideo
+    {
+        public TimeSpan Duration;
+        public string TenVideo;
+        public string DuongDanCuaVideo;
+
     }
 }
-
-
-
-
