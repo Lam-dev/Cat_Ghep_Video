@@ -398,9 +398,9 @@ namespace VideoEditor
             this.kryptonPanel2.Controls.Add(this.kryptonPanel5);
             this.kryptonPanel2.Controls.Add(this.kryptonPanel4);
             this.kryptonPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.kryptonPanel2.Location = new System.Drawing.Point(703, 0);
+            this.kryptonPanel2.Location = new System.Drawing.Point(717, 0);
             this.kryptonPanel2.Name = "kryptonPanel2";
-            this.kryptonPanel2.Size = new System.Drawing.Size(244, 44);
+            this.kryptonPanel2.Size = new System.Drawing.Size(230, 44);
             this.kryptonPanel2.StateCommon.Color1 = System.Drawing.Color.White;
             this.kryptonPanel2.StateNormal.Color1 = System.Drawing.Color.LightGray;
             this.kryptonPanel2.TabIndex = 15;
@@ -410,13 +410,13 @@ namespace VideoEditor
             this.kryptonPanel6.Controls.Add(this.btnFitFill);
             this.kryptonPanel6.Location = new System.Drawing.Point(2, 0);
             this.kryptonPanel6.Name = "kryptonPanel6";
-            this.kryptonPanel6.Size = new System.Drawing.Size(63, 44);
+            this.kryptonPanel6.Size = new System.Drawing.Size(49, 44);
             this.kryptonPanel6.StateNormal.Color1 = System.Drawing.Color.DimGray;
             this.kryptonPanel6.TabIndex = 15;
             // 
             // btnFitFill
             // 
-            this.btnFitFill.Location = new System.Drawing.Point(16, 8);
+            this.btnFitFill.Location = new System.Drawing.Point(9, 9);
             this.btnFitFill.Name = "btnFitFill";
             this.btnFitFill.Size = new System.Drawing.Size(31, 27);
             this.btnFitFill.TabIndex = 16;
@@ -430,7 +430,7 @@ namespace VideoEditor
             // 
             this.kryptonPanel5.Controls.Add(this.zoomControl);
             this.kryptonPanel5.Controls.Add(this.btnZoomLen);
-            this.kryptonPanel5.Location = new System.Drawing.Point(66, 0);
+            this.kryptonPanel5.Location = new System.Drawing.Point(52, 0);
             this.kryptonPanel5.Name = "kryptonPanel5";
             this.kryptonPanel5.Size = new System.Drawing.Size(84, 44);
             this.kryptonPanel5.StateNormal.Color1 = System.Drawing.Color.DimGray;
@@ -464,15 +464,15 @@ namespace VideoEditor
             // 
             this.kryptonPanel4.Controls.Add(this.lb_gopVideo);
             this.kryptonPanel4.Controls.Add(this.btnChupManHinh);
-            this.kryptonPanel4.Location = new System.Drawing.Point(151, 1);
+            this.kryptonPanel4.Location = new System.Drawing.Point(137, 0);
             this.kryptonPanel4.Name = "kryptonPanel4";
-            this.kryptonPanel4.Size = new System.Drawing.Size(90, 43);
+            this.kryptonPanel4.Size = new System.Drawing.Size(90, 44);
             this.kryptonPanel4.StateNormal.Color1 = System.Drawing.Color.DimGray;
             this.kryptonPanel4.TabIndex = 0;
             // 
             // lb_gopVideo
             // 
-            this.lb_gopVideo.Location = new System.Drawing.Point(45, 7);
+            this.lb_gopVideo.Location = new System.Drawing.Point(48, 7);
             this.lb_gopVideo.Name = "lb_gopVideo";
             this.lb_gopVideo.Size = new System.Drawing.Size(31, 26);
             this.lb_gopVideo.TabIndex = 13;
@@ -484,7 +484,7 @@ namespace VideoEditor
             // 
             // btnChupManHinh
             // 
-            this.btnChupManHinh.Location = new System.Drawing.Point(3, 7);
+            this.btnChupManHinh.Location = new System.Drawing.Point(7, 7);
             this.btnChupManHinh.Name = "btnChupManHinh";
             this.btnChupManHinh.Size = new System.Drawing.Size(31, 27);
             this.btnChupManHinh.TabIndex = 14;

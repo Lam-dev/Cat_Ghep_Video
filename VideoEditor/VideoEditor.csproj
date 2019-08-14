@@ -311,6 +311,8 @@
     <None Include="Resources\fillMouseEnter.png" />
     <None Include="Resources\fit.png" />
     <None Include="Resources\fitMouseEnter.png" />
+    <None Include="Resources\flip.png" />
+    <None Include="Resources\flipMouseEnter.png" />
     <Content Include="vlcLib\libvlc.dll" />
     <Content Include="vlcLib\libvlccore.dll" />
     <None Include="Resources\Webp.net-resizeimage.gif" />

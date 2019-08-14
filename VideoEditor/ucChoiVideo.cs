@@ -510,6 +510,11 @@ namespace VideoEditor
         {
             if (!bgw_choiVideo.IsBusy)
             {
+                if (_videoDangPhat != null)
+                {
+                    _videoDangPhat.Dispose();
+                    _videoDangPhat = null;
+                }
                 _videoDangPhat = new VideoCapture(_duongDanVideoDangPhat);
                 KichThuocThayDoi();
                 _doDaiVideo = _videoDangPhat.FrameCount / _videoDangPhat.Fps * 1000;
