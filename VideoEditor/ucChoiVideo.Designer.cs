@@ -37,6 +37,7 @@
             this.timer_thongBaoDaChupHinh = new System.Windows.Forms.Timer(this.components);
             this.bgw_luuHinhDuocChup = new System.ComponentModel.BackgroundWorker();
             this.picBox_kinhLup = new VideoEditor.pictureBoxTron();
+            this.timer_choVideoDungPhat_chuyenVideo = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picbox_nhinToanCanh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_hienThiVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_kinhLup)).BeginInit();
@@ -100,6 +101,10 @@
             this.picBox_kinhLup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.KinhLupMM);
             this.picBox_kinhLup.MouseUp += new System.Windows.Forms.MouseEventHandler(this.KinhLupMU);
             // 
+            // timer_choVideoDungPhat_chuyenVideo
+            // 
+            this.timer_choVideoDungPhat_chuyenVideo.Tick += new System.EventHandler(this.timer_choVideoDungPhat_chuyenVideo_Tick);
+            // 
             // ucChoiVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,5 +131,6 @@
         private OpenCvSharp.UserInterface.PictureBoxIpl picBox_hienThiVideo;
         private System.Windows.Forms.Timer timer_thongBaoDaChupHinh;
         private System.ComponentModel.BackgroundWorker bgw_luuHinhDuocChup;
+        private System.Windows.Forms.Timer timer_choVideoDungPhat_chuyenVideo;
     }
 }

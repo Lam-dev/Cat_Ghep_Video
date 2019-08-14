@@ -522,6 +522,7 @@ namespace VideoEditor
 
         private void btnZoomLenMC(object sender, MouseEventArgs e)
         {
+           
             ucChoiVideo.batKinhLup = !ucChoiVideo.batKinhLup;
         }
 
@@ -682,7 +683,10 @@ namespace VideoEditor
             
         }
 
-      
+        private void timer_videoDungPhat_chuyenVideo_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ThongTinVideo

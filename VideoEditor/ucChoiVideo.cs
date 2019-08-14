@@ -57,8 +57,21 @@ namespace VideoEditor
                 {
 
                     khungZoom = new Rect(0, 0, picbox_nhinToanCanh.Width, picbox_nhinToanCanh.Height);
-                    _batZoomControl = value;
-                    picbox_nhinToanCanh.Visible = value;
+                    if (value == false)
+                    {
+                        if (!picBox_hienThiVideo.InvokeRequired)
+                        {
+                            _batZoomControl = value;
+                            picbox_nhinToanCanh.Visible = value;
+                        }
+                        else { }
+
+                    }
+                    else
+                    {
+                        _batZoomControl = value;
+                        picbox_nhinToanCanh.Visible = value;
+                    }
                     if(_dangFit)
                     {
                         dangFit = false;
@@ -73,8 +86,19 @@ namespace VideoEditor
         {
             set
             {
-                picBox_kinhLup.Visible = value;
-                _batKinhLup = value;
+                if (value == false)
+                    if (!picBox_hienThiVideo.InvokeRequired)
+                    {
+                        picBox_kinhLup.Visible = value;
+                        _batKinhLup = value;
+                    }
+                    else
+                    { }
+                else
+                {
+                    picBox_kinhLup.Visible = value;
+                    _batKinhLup = value;
+                }
             }
             get
             {
@@ -138,14 +162,8 @@ namespace VideoEditor
             try
             {
                 _duongDanVideoDangPhat = duongDan;
-                _videoDangPhat = new VideoCapture(_duongDanVideoDangPhat);
-                KichThuocThayDoi();
-                _doDaiVideo = _videoDangPhat.FrameCount / _videoDangPhat.Fps * 1000;
-                timer_thoiGianChuyenKhungHinh.Interval = (int)(1 / _videoDangPhat.Fps * 1000);
-                timer_thoiGianChuyenKhungHinh.Start();
-                if (timer_thoiGianChuyenKhungHinh.Enabled) _dangChay = true;
-                else _dangChay = false;
-
+                timer_thoiGianChuyenKhungHinh.Stop();
+                timer_choVideoDungPhat_chuyenVideo.Start();
             }
             catch { }
         }
@@ -193,7 +211,13 @@ namespace VideoEditor
                 {
                     if(timer_thongBaoDaChupHinh.Enabled)
                         OpenCvSharp.Cv2.PutText(khungHinhDangXem, " Da chup mot anh ", new OpenCvSharp.Point(100, 50), HersheyFonts.HersheyDuplex, 1, Scalar.Yellow, 1);
-                    picBox_hienThiVideo.ImageIpl = khungHinhDangXem;
+
+                    //Cv2.Flip(khungHinhDangXem, khungHinhDangXem, FlipMode.Y);
+                    picBox_hienThiVideo.Invoke(new MethodInvoker(delegate
+                    {
+                        picBox_hienThiVideo.ImageIpl = khungHinhDangXem;
+                    }));
+                   
                 }
                 if (_batKinhLup)
                     LayHinhChoKinhLup();
@@ -418,7 +442,10 @@ namespace VideoEditor
                
                 Mat hinhDuocCat = new Mat(khungHinhDangXem, khungCat);
                 hinhDuocCat = hinhDuocCat.Resize(new OpenCvSharp.Size(picBox_kinhLup.Width, picBox_kinhLup.Height), 0, 0, InterpolationFlags.Linear);
-                picBox_kinhLup.Image = BitmapConverter.ToBitmap(hinhDuocCat);
+                picBox_kinhLup.Invoke(new MethodInvoker(delegate
+                {
+                    picBox_kinhLup.Image = BitmapConverter.ToBitmap(hinhDuocCat);
+                }));
                 hinhDuocCat.Dispose();
 
             }
@@ -477,6 +504,21 @@ namespace VideoEditor
                 
             
             
+        }
+
+        private void timer_choVideoDungPhat_chuyenVideo_Tick(object sender, EventArgs e)
+        {
+            if (!bgw_choiVideo.IsBusy)
+            {
+                _videoDangPhat = new VideoCapture(_duongDanVideoDangPhat);
+                KichThuocThayDoi();
+                _doDaiVideo = _videoDangPhat.FrameCount / _videoDangPhat.Fps * 1000;
+                timer_thoiGianChuyenKhungHinh.Interval = (int)(1 / _videoDangPhat.Fps * 1000);
+                timer_thoiGianChuyenKhungHinh.Start();
+                if (timer_thoiGianChuyenKhungHinh.Enabled) _dangChay = true;
+                else _dangChay = false;
+                timer_choVideoDungPhat_chuyenVideo.Stop();
+            }
         }
     }
 }
