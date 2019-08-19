@@ -30,7 +30,7 @@ namespace VideoEditor
         int phanTramKhungZoom = 100;
         bool _khungZoomDuocGiu = false;
         bool _dangFit = true;
-
+        
         public bool dangFit
         {
             get
@@ -199,7 +199,9 @@ namespace VideoEditor
             {
 
                 var khungHinh = new Mat();
-                _videoDangPhat.Read(khungHinh);
+                khungHinh = _videoDangPhat.RetrieveMat();
+                
+                //_videoDangPhat.Read(khungHinh);
                 khungHinhDangXem = khungHinh.Resize(new OpenCvSharp.Size(picBox_hienThiVideo.Width, picBox_hienThiVideo.Height), 0, 0, InterpolationFlags.Linear);
 
                 if (_batZoomControl)
@@ -515,6 +517,7 @@ namespace VideoEditor
                     _videoDangPhat.Dispose();
                     _videoDangPhat = null;
                 }
+
                 _videoDangPhat = new VideoCapture(_duongDanVideoDangPhat);
                 KichThuocThayDoi();
                 _doDaiVideo = _videoDangPhat.FrameCount / _videoDangPhat.Fps * 1000;

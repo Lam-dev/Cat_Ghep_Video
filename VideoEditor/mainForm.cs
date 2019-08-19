@@ -374,13 +374,8 @@ namespace VideoEditor
                 MessageBox.Show("Chọn vị trí lưu");
                 return;
             }
-            if (tb_exportFileName.Text == null | tb_exportFileName.Text == "")
-            {
-                MessageBox.Show("Nhập tên");
-                return;
-            }
-
-            outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
+            
+            outputFilePath = tb_exportFilePath.Text ;
             if (File.Exists(outputFilePath))
             {
                 MessageBox.Show("Tệp đã tồn tại");
@@ -418,12 +413,21 @@ namespace VideoEditor
 
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
-            folderDlg.ShowNewFolderButton = true;
-            DialogResult result = folderDlg.ShowDialog();
-            if (result == DialogResult.OK)
+            SaveFileDialog dialog_layVideo = new SaveFileDialog
             {
-                tb_exportFilePath.Text = folderDlg.SelectedPath;
+                InitialDirectory = @"",
+                Title = "Chọn nơi lưu",
+                CreatePrompt = true,
+                DefaultExt = "xml",
+                Filter = " Mp4 (*.mp4) |*.mp4 | AVI (*.avi) | *.avi | Flv (*.flv) | *.flv | Mov (*.mov)|*.mov",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+
+               
+            };
+            if (dialog_layVideo.ShowDialog() == DialogResult.OK)
+            {
+                tb_exportFilePath.Text = dialog_layVideo.FileName;
             }
         }
 
@@ -634,7 +638,7 @@ namespace VideoEditor
             foreach (var process in ffmpegPr)
             {
                 process.Kill();
-                string outputFilePath = tb_exportFilePath.Text + @"\" + tb_exportFileName.Text + cbb_dinhDangXuat.Text;
+                string outputFilePath = tb_exportFilePath.Text;
                 panel_hienThiNutDung.Visible = false;
                 MessageBox.Show("Đã dừng");
 

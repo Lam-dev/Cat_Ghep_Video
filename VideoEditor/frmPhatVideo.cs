@@ -29,7 +29,7 @@ namespace VideoEditor
             ucChoiVideo.dangFit = true;
         }
 
-        private async void lb_themVideoClick(object sender, MouseEventArgs e)
+        private void lb_themVideoClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog dialog_layVideo = new OpenFileDialog
             {
@@ -95,7 +95,7 @@ namespace VideoEditor
             return "";
         }
 
-        private async void chonPhatVideo(object sender, anhDaiDienArgs e)
+        private void chonPhatVideo(object sender, anhDaiDienArgs e)
         {
             if (dangGiuCtr)
             {

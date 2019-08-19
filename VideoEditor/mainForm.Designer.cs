@@ -59,13 +59,10 @@
             this.kryptonLabel4 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.cbb_chonDoPhanGiai = new System.Windows.Forms.ComboBox();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cbb_dinhDangXuat = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.kryptonLabel2 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btn_export = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tb_exportFilePath = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btn_chonNoiLuu = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.tb_exportFileName = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btn_playVideoCut = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.lb_videoInfor = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.btn_cutVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -111,7 +108,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel_hienThiNutDung)).BeginInit();
             this.panel_hienThiNutDung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbb_dinhDangXuat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBox_pickRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
@@ -383,13 +379,10 @@
             this.kryptonGroupBox3.Panel.Controls.Add(this.panel_hienThiNutDung);
             this.kryptonGroupBox3.Panel.Controls.Add(this.cbb_chonDoPhanGiai);
             this.kryptonGroupBox3.Panel.Controls.Add(this.kryptonLabel3);
-            this.kryptonGroupBox3.Panel.Controls.Add(this.cbb_dinhDangXuat);
-            this.kryptonGroupBox3.Panel.Controls.Add(this.kryptonLabel2);
             this.kryptonGroupBox3.Panel.Controls.Add(this.kryptonLabel1);
             this.kryptonGroupBox3.Panel.Controls.Add(this.btn_export);
             this.kryptonGroupBox3.Panel.Controls.Add(this.tb_exportFilePath);
             this.kryptonGroupBox3.Panel.Controls.Add(this.btn_chonNoiLuu);
-            this.kryptonGroupBox3.Panel.Controls.Add(this.tb_exportFileName);
             this.kryptonGroupBox3.Size = new System.Drawing.Size(309, 200);
             this.kryptonGroupBox3.TabIndex = 24;
             this.kryptonGroupBox3.Values.Heading = "Xuất tập tin";
@@ -440,7 +433,7 @@
             "1280 x 720",
             "960 x 640",
             "640x480 "});
-            this.cbb_chonDoPhanGiai.Location = new System.Drawing.Point(90, 59);
+            this.cbb_chonDoPhanGiai.Location = new System.Drawing.Point(90, 36);
             this.cbb_chonDoPhanGiai.Name = "cbb_chonDoPhanGiai";
             this.cbb_chonDoPhanGiai.Size = new System.Drawing.Size(146, 21);
             this.cbb_chonDoPhanGiai.TabIndex = 26;
@@ -448,32 +441,11 @@
             // 
             // kryptonLabel3
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(4, 59);
+            this.kryptonLabel3.Location = new System.Drawing.Point(4, 36);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(80, 20);
             this.kryptonLabel3.TabIndex = 25;
             this.kryptonLabel3.Values.Text = "Độ phân giải";
-            // 
-            // cbb_dinhDangXuat
-            // 
-            this.cbb_dinhDangXuat.DropDownWidth = 56;
-            this.cbb_dinhDangXuat.Items.AddRange(new object[] {
-            ".mp4",
-            ".flv",
-            ".avi"});
-            this.cbb_dinhDangXuat.Location = new System.Drawing.Point(240, 34);
-            this.cbb_dinhDangXuat.Name = "cbb_dinhDangXuat";
-            this.cbb_dinhDangXuat.Size = new System.Drawing.Size(56, 21);
-            this.cbb_dinhDangXuat.TabIndex = 24;
-            this.cbb_dinhDangXuat.Text = ".mp4";
-            // 
-            // kryptonLabel2
-            // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(4, 33);
-            this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(52, 20);
-            this.kryptonLabel2.TabIndex = 23;
-            this.kryptonLabel2.Values.Text = "Tên tệp";
             // 
             // kryptonLabel1
             // 
@@ -510,13 +482,6 @@
             this.btn_chonNoiLuu.TabIndex = 19;
             this.btn_chonNoiLuu.Values.Text = "....";
             this.btn_chonNoiLuu.Click += new System.EventHandler(this.kryptonButton6_Click);
-            // 
-            // tb_exportFileName
-            // 
-            this.tb_exportFileName.Location = new System.Drawing.Point(90, 34);
-            this.tb_exportFileName.Name = "tb_exportFileName";
-            this.tb_exportFileName.Size = new System.Drawing.Size(146, 23);
-            this.tb_exportFileName.TabIndex = 20;
             // 
             // btn_playVideoCut
             // 
@@ -755,7 +720,6 @@
             this.panel_hienThiNutDung.ResumeLayout(false);
             this.panel_hienThiNutDung.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbb_dinhDangXuat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBox_pickRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
             this.kryptonGroupBox2.Panel.ResumeLayout(false);
@@ -791,14 +755,11 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_cutVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox tb_exportFilePath;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_chonNoiLuu;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox tb_exportFileName;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_export;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lb_videoInfor;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btn_playVideoCut;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbb_dinhDangXuat;
         private System.Windows.Forms.Timer timeGetPlayTime;
         private ComponentFactory.Krypton.Toolkit.KryptonButton button_layVideo;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
