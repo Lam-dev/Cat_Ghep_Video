@@ -12,10 +12,8 @@ namespace VideoEditor
 {
     public delegate void anhDaiDienVideoClick(object sender, anhDaiDienArgs e);
 
-    
     public partial class ucDaiDienVideo : UserControl
     {
-
         public event anhDaiDienVideoClick anhDaiDienClick;
         public event MouseEventHandler iMouseMove;
         public ucDaiDienVideo(int index, Bitmap image, string filePath, string tenFile, string dungLuong)

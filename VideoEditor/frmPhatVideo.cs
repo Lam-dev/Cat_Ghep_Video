@@ -27,6 +27,7 @@ namespace VideoEditor
         {
             InitializeComponent();
             ucChoiVideo.dangFit = true;
+            
         }
 
         private void lb_themVideoClick(object sender, MouseEventArgs e)
@@ -72,8 +73,6 @@ namespace VideoEditor
                         dsVideoControl[dsVideoControl.Count - 1].anhDaiDienClick += new VideoEditor.anhDaiDienVideoClick(chonPhatVideo);
                         dsVideoControl[dsVideoControl.Count - 1].iMouseMove += new MouseEventHandler(danhSachVideo_MM);
                     }));
-
-
                 }
                 catch
                 { }
@@ -97,31 +96,38 @@ namespace VideoEditor
 
         private void chonPhatVideo(object sender, anhDaiDienArgs e)
         {
-            if (dangGiuCtr)
+            try
             {
-                if (dsDangChon.Where(y => y == e.index).Count() != 0)
+                if (dangGiuCtr)
                 {
-                    dsDangChon.RemoveAll(y => y == e.index);
+                    if (dsDangChon.Where(y => y == e.index).Count() != 0)
+                    {
+                        dsDangChon.RemoveAll(y => y == e.index);
+                    }
+                    else
+                    {
+                        dsVideoControl[e.index].lb_duongDanVideo.BackColor = Color.Yellow;
+                        dsDangChon.Add(e.index);
+                    }
+                    dangChonNhieu = true;
                 }
                 else
                 {
-                    dsVideoControl[e.index].lb_duongDanVideo.BackColor = Color.Yellow;
-                    dsDangChon.Add(e.index);
-                }
-                dangChonNhieu = true;
-            }
-            else
-            {
-                ucChoiVideo.Play(e.filePath);
-                layThongTinVideo(e.filePath);
-               
-                timer_layThoiGianVideo.Start();
-                dangChonNhieu = false;
-                dsDangChon.Clear();
-                lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
-                panel_chonVideoBanDau.Visible = false;
-                ucChoiVideo.BackColor = Color.Black;
+                    ucChoiVideo.Play(e.filePath);
+                    layThongTinVideo(e.filePath);
 
+                    timer_layThoiGianVideo.Start();
+                    dangChonNhieu = false;
+                    dsDangChon.Clear();
+                    lb_playPause.Values.Image = VideoEditor.Properties.Resources.pauseLeave;
+                    panel_chonVideoBanDau.Visible = false;
+                    ucChoiVideo.BackColor = Color.Black;
+
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
 
@@ -154,11 +160,6 @@ namespace VideoEditor
             {
                 lb_playPause.Values.Image = VideoEditor.Properties.Resources.playleave;
             }
-        }
-
-        private void ucCuonVideo1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void thanhTruotDangCuon(object sender, cuonVideoArgs e)
@@ -230,31 +231,38 @@ namespace VideoEditor
 
         private void danhSachVideo_MM(object sender, MouseEventArgs e)
         {
-            var x = flowLayOut_chuaCacVideo.PointToClient(Cursor.Position);
-            for (int i = 0; i < flowLayOut_chuaCacVideo.Controls.Count; i++)
+            try
             {
-                var diemCuoi = new Point(flowLayOut_chuaCacVideo.Controls[i].Location.X + flowLayOut_chuaCacVideo.Controls[i].Width, flowLayOut_chuaCacVideo.Controls[i].Location.Y + flowLayOut_chuaCacVideo.Controls[i].Height);
-                if (lonHon(x, flowLayOut_chuaCacVideo.Controls[i].Location) & nhoHon(x, diemCuoi))
+                var x = flowLayOut_chuaCacVideo.PointToClient(Cursor.Position);
+                for (int i = 0; i < flowLayOut_chuaCacVideo.Controls.Count; i++)
                 {
-                    dsVideoControl[i].lb_duongDanVideo.BackColor = Color.LightYellow;
-                }
-                else
-                {
-                    if (dangChonNhieu)
+                    var diemCuoi = new Point(flowLayOut_chuaCacVideo.Controls[i].Location.X + flowLayOut_chuaCacVideo.Controls[i].Width, flowLayOut_chuaCacVideo.Controls[i].Location.Y + flowLayOut_chuaCacVideo.Controls[i].Height);
+                    if (lonHon(x, flowLayOut_chuaCacVideo.Controls[i].Location) & nhoHon(x, diemCuoi))
                     {
-                        var re = dsDangChon.Where(y => y == i);
-                        if (re.Count() != 0)
-                        {
-                            dsVideoControl[i].lb_duongDanVideo.BackColor = Color.Yellow;
-                        }
-                        else
-                            dsVideoControl[i].lb_duongDanVideo.BackColor = Color.LightGray;
+                        dsVideoControl[i].lb_duongDanVideo.BackColor = Color.LightYellow;
                     }
                     else
                     {
-                        dsVideoControl[i].lb_duongDanVideo.BackColor = Color.LightGray;
+                        if (dangChonNhieu)
+                        {
+                            var re = dsDangChon.Where(y => y == i);
+                            if (re.Count() != 0)
+                            {
+                                dsVideoControl[i].lb_duongDanVideo.BackColor = Color.Yellow;
+                            }
+                            else
+                                dsVideoControl[i].lb_duongDanVideo.BackColor = Color.LightGray;
+                        }
+                        else
+                        {
+                            dsVideoControl[i].lb_duongDanVideo.BackColor = Color.LightGray;
+                        }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
 
@@ -392,7 +400,6 @@ namespace VideoEditor
 
             }
         }
-
         private void playMouseEnter(object sender, EventArgs e)
         {
             lb_playPause.Values.Image = VideoEditor.Properties.Resources.Webp3;
@@ -682,11 +689,6 @@ namespace VideoEditor
             hinhTheoThoiGian.TopLevel = true;
             
         }
-
-        private void timer_videoDungPhat_chuyenVideo_Tick(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class ThongTinVideo
@@ -694,6 +696,5 @@ namespace VideoEditor
         public TimeSpan Duration;
         public string TenVideo;
         public string DuongDanCuaVideo;
-
     }
 }

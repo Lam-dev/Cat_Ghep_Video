@@ -43,7 +43,6 @@ namespace VideoEditor
             this.timer_layThoiGianVideo = new System.Windows.Forms.Timer(this.components);
             this.lb_playPause = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel_dieuKhien = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
-            this.ucThanhTruot_tuaVideo = new VideoEditor.ucThanhTruot();
             this.panel_chuaCacNutDieuKhien = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.nextSpeed = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.prevSpeed = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -55,7 +54,6 @@ namespace VideoEditor
             this.kryptonPanel3 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.btn_loa = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.lb_phongTo = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.ucThanhTruot_amThanh = new VideoEditor.ucThanhTruot();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel_congCu = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonPanel2 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
@@ -69,6 +67,8 @@ namespace VideoEditor
             this.btnChupManHinh = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.panel_chonVideoBanDau = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.btn_chonVideo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ucThanhTruot_tuaVideo = new VideoEditor.ucThanhTruot();
+            this.ucThanhTruot_amThanh = new VideoEditor.ucThanhTruot();
             this.ucChoiVideo = new VideoEditor.ucChoiVideo();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
@@ -217,19 +217,6 @@ namespace VideoEditor
             this.panel_dieuKhien.StateNormal.Color1 = System.Drawing.Color.DarkGray;
             this.panel_dieuKhien.TabIndex = 10;
             // 
-            // ucThanhTruot_tuaVideo
-            // 
-            this.ucThanhTruot_tuaVideo.BackColor = System.Drawing.Color.Transparent;
-            this.ucThanhTruot_tuaVideo.Location = new System.Drawing.Point(87, 9);
-            this.ucThanhTruot_tuaVideo.mauCuaDiem = System.Drawing.Color.Red;
-            this.ucThanhTruot_tuaVideo.mauDuongRay = System.Drawing.Color.White;
-            this.ucThanhTruot_tuaVideo.Name = "ucThanhTruot_tuaVideo";
-            this.ucThanhTruot_tuaVideo.phanTramHienTai = 0D;
-            this.ucThanhTruot_tuaVideo.Size = new System.Drawing.Size(768, 13);
-            this.ucThanhTruot_tuaVideo.TabIndex = 10;
-            this.ucThanhTruot_tuaVideo.thanhCuonDangTruot += new VideoEditor.cuonVideoHandle(this.thanhTruotDangCuon);
-            this.ucThanhTruot_tuaVideo.Load += new System.EventHandler(this.ucThanhTruot_tuaVideo_Load);
-            // 
             // panel_chuaCacNutDieuKhien
             // 
             this.panel_chuaCacNutDieuKhien.Controls.Add(this.nextSpeed);
@@ -363,19 +350,6 @@ namespace VideoEditor
             this.lb_phongTo.TabIndex = 20;
             this.lb_phongTo.Values.Image = global::VideoEditor.Properties.Resources.Webp2;
             this.lb_phongTo.Values.Text = "";
-            // 
-            // ucThanhTruot_amThanh
-            // 
-            this.ucThanhTruot_amThanh.BackColor = System.Drawing.Color.Transparent;
-            this.ucThanhTruot_amThanh.Location = new System.Drawing.Point(62, 46);
-            this.ucThanhTruot_amThanh.mauCuaDiem = System.Drawing.Color.Red;
-            this.ucThanhTruot_amThanh.mauDuongRay = System.Drawing.Color.White;
-            this.ucThanhTruot_amThanh.Name = "ucThanhTruot_amThanh";
-            this.ucThanhTruot_amThanh.phanTramHienTai = 0D;
-            this.ucThanhTruot_amThanh.Size = new System.Drawing.Size(74, 10);
-            this.ucThanhTruot_amThanh.TabIndex = 13;
-            this.ucThanhTruot_amThanh.thanhCuonDangTruot += new VideoEditor.cuonVideoHandle(this.thayDoiGiaTriAmThanh);
-            this.ucThanhTruot_amThanh.Load += new System.EventHandler(this.ucThanhTruot_amThanh_Load);
             // 
             // contextMenuStrip1
             // 
@@ -511,6 +485,32 @@ namespace VideoEditor
             this.btn_chonVideo.TabIndex = 12;
             this.btn_chonVideo.Values.Text = "Mở";
             this.btn_chonVideo.Click += new System.EventHandler(this.kryptonButton1_Click);
+            // 
+            // ucThanhTruot_tuaVideo
+            // 
+            this.ucThanhTruot_tuaVideo.BackColor = System.Drawing.Color.Transparent;
+            this.ucThanhTruot_tuaVideo.Location = new System.Drawing.Point(87, 9);
+            this.ucThanhTruot_tuaVideo.mauCuaDiem = System.Drawing.Color.Red;
+            this.ucThanhTruot_tuaVideo.mauDuongRay = System.Drawing.Color.White;
+            this.ucThanhTruot_tuaVideo.Name = "ucThanhTruot_tuaVideo";
+            this.ucThanhTruot_tuaVideo.phanTramHienTai = 0D;
+            this.ucThanhTruot_tuaVideo.Size = new System.Drawing.Size(768, 13);
+            this.ucThanhTruot_tuaVideo.TabIndex = 10;
+            this.ucThanhTruot_tuaVideo.thanhCuonDangTruot += new VideoEditor.cuonVideoHandle(this.thanhTruotDangCuon);
+            this.ucThanhTruot_tuaVideo.Load += new System.EventHandler(this.ucThanhTruot_tuaVideo_Load);
+            // 
+            // ucThanhTruot_amThanh
+            // 
+            this.ucThanhTruot_amThanh.BackColor = System.Drawing.Color.Transparent;
+            this.ucThanhTruot_amThanh.Location = new System.Drawing.Point(62, 46);
+            this.ucThanhTruot_amThanh.mauCuaDiem = System.Drawing.Color.Red;
+            this.ucThanhTruot_amThanh.mauDuongRay = System.Drawing.Color.White;
+            this.ucThanhTruot_amThanh.Name = "ucThanhTruot_amThanh";
+            this.ucThanhTruot_amThanh.phanTramHienTai = 0D;
+            this.ucThanhTruot_amThanh.Size = new System.Drawing.Size(74, 10);
+            this.ucThanhTruot_amThanh.TabIndex = 13;
+            this.ucThanhTruot_amThanh.thanhCuonDangTruot += new VideoEditor.cuonVideoHandle(this.thayDoiGiaTriAmThanh);
+            this.ucThanhTruot_amThanh.Load += new System.EventHandler(this.ucThanhTruot_amThanh_Load);
             // 
             // ucChoiVideo
             // 
